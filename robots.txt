@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prideinvests.com/sitemap.xml
