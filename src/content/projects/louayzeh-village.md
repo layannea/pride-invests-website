@@ -16,7 +16,6 @@ slides:
   - { image: "/media/projects/louayzeh/pool-club.jpg", cap: "Pool, playroom, gym &amp; cafeteria", alt: "The pools, sun deck, courts and clubhouse facilities" }
   - { image: "/media/projects/louayzeh/gym.jpg", cap: "The poolside gym", alt: "The gym with treadmills overlooking the pool and the wooded valley" }
   - { image: "/media/projects/louayzeh/entrance.jpg", cap: "The gated entrance", alt: "The secured gated entrance of Louayzeh Village" }
-  - { image: "/media/projects/louayzeh/master-plan.jpg", cap: "Site plan", alt: "Top view master plan of Louayzeh Village" }
   - { image: "/media/projects/louayzeh/nightfall.jpg", cap: "Nightfall over the village", alt: "Louayzeh Village illuminated at night" }
 amenities:
   - label: "Adult &amp; kids pools"

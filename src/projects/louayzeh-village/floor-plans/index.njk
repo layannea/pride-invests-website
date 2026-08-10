@@ -27,81 +27,95 @@ permalink: "/projects/louayzeh-village/floor-plans/index.html"
   <div class="with-rail">
     <div>
       <section class="detail-section" id="blocks" style="margin-top:0">
-        <div class="slider reveal" id="gallerySlider" style="margin-bottom:36px">
-          <div class="sl-item on" data-cap="The village from the front · blocks A – R" data-full="/media/projects/louayzeh/blocks-labeled.jpg"><img src="/media/projects/louayzeh/blocks-labeled.jpg" alt="Aerial render of Louayzeh Village with every block labeled from A to R"></div>
-          <div class="sl-item" data-cap="Master plan · locate your block" data-full="/media/projects/louayzeh/master-plan-labeled.jpg"><img src="/media/projects/louayzeh/master-plan-labeled.jpg" alt="Labeled master plan of Louayzeh Village showing the position of every block from A to R" loading="lazy"></div>
-          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
-          <button class="sl-arrow sl-next" aria-label="Next image">›</button>
-          <span class="sl-caption"></span>
-          <div class="sl-dots" role="tablist"></div>
+        <div class="blocks-map reveal" id="blocksMap">
+          <img src="/media/projects/louayzeh/blocks-labeled.jpg" alt="Aerial render of Louayzeh Village with every block labeled from A to R">
+          <svg viewBox="0 0 1600 902" preserveAspectRatio="none" role="group" aria-label="Interactive village plan — choose a residence collection">
+            <rect class="bm-dim" x="0" y="0" width="1600" height="902"></rect>
+          <a href="/projects/louayzeh-village/floor-plans/classic-residences/" class="bm-g" data-collection="classic" aria-label="The Classic Residences · blocks C, D, O, P and Q">
+            <rect class="bm-blk" x="428" y="153" width="140" height="79" rx="10"/>
+            <rect class="bm-blk" x="503" y="133" width="149" height="83" rx="10"/>
+            <rect class="bm-blk" x="308" y="230" width="134" height="117" rx="10"/>
+            <rect class="bm-blk" x="272" y="378" width="190" height="272" rx="10"/>
+            <rect class="bm-blk" x="438" y="418" width="284" height="224" rx="10"/>
+          </a>
+          <a href="/projects/louayzeh-village/floor-plans/select-residences/" class="bm-g" data-collection="select" aria-label="The Select Residences · blocks M and N">
+            <rect class="bm-blk" x="538" y="270" width="184" height="132" rx="10"/>
+            <rect class="bm-blk" x="418" y="264" width="130" height="128" rx="10"/>
+          </a>
+          <a href="/projects/louayzeh-village/floor-plans/grand-residences/" class="bm-g" data-collection="grand" aria-label="The Grand Residences · blocks A, B, F, G, H, I, J and K">
+            <rect class="bm-blk" x="575" y="60" width="120" height="95" rx="10"/>
+            <rect class="bm-blk" x="690" y="53" width="90" height="92" rx="10"/>
+            <rect class="bm-blk" x="788" y="122" width="180" height="90" rx="10"/>
+            <rect class="bm-blk" x="972" y="140" width="176" height="80" rx="10"/>
+            <rect class="bm-blk" x="1118" y="128" width="150" height="80" rx="10"/>
+            <rect class="bm-blk" x="1268" y="193" width="200" height="95" rx="10"/>
+            <rect class="bm-blk" x="1102" y="231" width="210" height="97" rx="10"/>
+            <rect class="bm-blk" x="912" y="270" width="230" height="112" rx="10"/>
+          </a>
+          <a href="/projects/louayzeh-village/floor-plans/full-floor-residences/" class="bm-g" data-collection="full-floor" aria-label="The Full-Floor Residences · blocks E, L and R">
+            <rect class="bm-blk" x="628" y="108" width="104" height="79" rx="10"/>
+            <rect class="bm-blk" x="763" y="280" width="175" height="132" rx="10"/>
+            <rect class="bm-blk" x="818" y="438" width="224" height="250" rx="10"/>
+          </a>
+          </svg>
+          <span class="vm-hint">Select a building to explore its collection</span>
+          <a class="bm-label" href="/projects/louayzeh-village/floor-plans/"><b></b><span>View floor plans <i>&rarr;</i></span></a>
         </div>
 
         <article class="res-card reveal" id="blocks-cdopq">
-          <a class="res-cover" href="/projects/louayzeh-village/floor-plans/classic-residences/" aria-label="Open The Classic Residences floor plans"></a>
           <div class="res-head">
             <div><p class="res-kicker">Blocks C · D · O · P · Q</p><h3>The Classic Residences</h3></div>
             <span class="res-price">175 – 299 m²</span>
           </div>
           <p class="res-sub">Five blocks, one shared set of apartments and floor plans · 2 apartments per floor</p>
           <div class="res-units">
-            <div class="ru"><span>Ground floor apartment</span><b>175 m² + 75 m² garden</b></div>
-            <div class="ru"><span>First floor apartment</span><b>175 m²</b></div>
-            <div class="ru"><span>First duplex · two levels</span><b>299 m² + 57 m² garden</b></div>
-            <div class="ru"><span>Roof duplex · two levels</span><b>270 m²</b></div>
+            <div class="ru"><span>Ground floor apartment</span><b>175 m² + 75 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/classic/gf.jpg" data-caps="" aria-label="View the ground floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First floor apartment</span><b>175 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/classic/f1.jpg" data-caps="" aria-label="View the first floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First duplex · two levels</span><b>299 m² + 57 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/classic/fd_lower.jpg|/media/projects/louayzeh/plans/classic/fd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the first duplex floor plan">View floor plan</button></div>
+            <div class="ru"><span>Roof duplex · two levels</span><b>270 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/classic/rd_lower.jpg|/media/projects/louayzeh/plans/classic/rd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the roof duplex floor plan">View floor plan</button></div>
           </div>
-        
-          <span class="res-link">View floor plans</span>
         </article>
 
         <article class="res-card reveal" id="blocks-mn">
-          <a class="res-cover" href="/projects/louayzeh-village/floor-plans/select-residences/" aria-label="Open The Select Residences floor plans"></a>
           <div class="res-head">
             <div><p class="res-kicker">Blocks M · N</p><h3>The Select Residences</h3></div>
             <span class="res-price">180 – 309 m²</span>
           </div>
           <p class="res-sub">Two blocks, one shared set of apartments and floor plans · 2 apartments per floor</p>
           <div class="res-units">
-            <div class="ru"><span>Ground floor apartment</span><b>180 m² + 87 m² garden</b></div>
-            <div class="ru"><span>First floor apartment</span><b>180 m²</b></div>
-            <div class="ru"><span>First duplex · two levels</span><b>309 m² + 54 m² garden</b></div>
-            <div class="ru"><span>Roof duplex · two levels</span><b>277 m²</b></div>
+            <div class="ru"><span>Ground floor apartment</span><b>180 m² + 87 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/select/gf.jpg" data-caps="" aria-label="View the ground floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First floor apartment</span><b>180 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/select/f1.jpg" data-caps="" aria-label="View the first floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First duplex · two levels</span><b>309 m² + 54 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/select/fd_lower.jpg|/media/projects/louayzeh/plans/select/fd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the first duplex floor plan">View floor plan</button></div>
+            <div class="ru"><span>Roof duplex · two levels</span><b>277 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/select/rd_lower.jpg|/media/projects/louayzeh/plans/select/rd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the roof duplex floor plan">View floor plan</button></div>
           </div>
-        
-          <span class="res-link">View floor plans</span>
         </article>
 
         <article class="res-card reveal" id="blocks-abfghijk">
-          <a class="res-cover" href="/projects/louayzeh-village/floor-plans/grand-residences/" aria-label="Open The Grand Residences floor plans"></a>
           <div class="res-head">
             <div><p class="res-kicker">Blocks A · B · F · G · H · I · J · K</p><h3>The Grand Residences</h3></div>
             <span class="res-price">190 – 327 m²</span>
           </div>
           <p class="res-sub">Eight blocks, one shared set of apartments and floor plans · 2 apartments per floor</p>
           <div class="res-units">
-            <div class="ru"><span>Ground floor apartment</span><b>190 m² + 81 m² garden</b></div>
-            <div class="ru"><span>First floor apartment</span><b>190 m²</b></div>
-            <div class="ru"><span>First duplex · two levels</span><b>327 m² + 96 m² garden</b></div>
-            <div class="ru"><span>Roof duplex · two levels</span><b>289 m²</b></div>
+            <div class="ru"><span>Ground floor apartment</span><b>190 m² + 81 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/grand/gf.jpg" data-caps="" aria-label="View the ground floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First floor apartment</span><b>190 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/grand/f1.jpg" data-caps="" aria-label="View the first floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First duplex · two levels</span><b>327 m² + 96 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/grand/fd_lower.jpg|/media/projects/louayzeh/plans/grand/fd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the first duplex floor plan">View floor plan</button></div>
+            <div class="ru"><span>Roof duplex · two levels</span><b>289 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/grand/rd_lower.jpg|/media/projects/louayzeh/plans/grand/rd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the roof duplex floor plan">View floor plan</button></div>
           </div>
-        
-          <span class="res-link">View floor plans</span>
         </article>
 
         <article class="res-card reveal" id="blocks-elr">
-          <a class="res-cover" href="/projects/louayzeh-village/floor-plans/full-floor-residences/" aria-label="Open The Full-Floor Residences floor plans"></a>
           <div class="res-head">
             <div><p class="res-kicker">Blocks E · L · R</p><h3>The Full-Floor Residences</h3></div>
             <span class="res-price">227 – 390 m²</span>
           </div>
           <p class="res-sub">Three blocks, one shared set of apartments and floor plans · one full-floor apartment per level</p>
           <div class="res-units">
-            <div class="ru"><span>Ground floor apartment</span><b>227 m² + 159 m² garden</b></div>
-            <div class="ru"><span>Second floor apartment</span><b>227 m²</b></div>
-            <div class="ru"><span>First duplex · two levels</span><b>390 m² + 96 m² garden</b></div>
-            <div class="ru"><span>Roof duplex · two levels</span><b>322 m²</b></div>
+            <div class="ru"><span>Ground floor apartment</span><b>227 m² + 159 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/full-floor/gf.jpg" data-caps="" aria-label="View the ground floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>Second floor apartment</span><b>227 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/full-floor/f2.jpg" data-caps="" aria-label="View the second floor apartment floor plan">View floor plan</button></div>
+            <div class="ru"><span>First duplex · two levels</span><b>390 m² + 96 m² garden</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/full-floor/fd_lower.jpg|/media/projects/louayzeh/plans/full-floor/fd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the first duplex floor plan">View floor plan</button></div>
+            <div class="ru"><span>Roof duplex · two levels</span><b>322 m²</b><button type="button" class="ru-view" data-plans="/media/projects/louayzeh/plans/full-floor/rd_lower.jpg|/media/projects/louayzeh/plans/full-floor/rd_upper.jpg" data-caps="Lower level|Upper level" aria-label="View the roof duplex floor plan">View floor plan</button></div>
           </div>
-        
-          <span class="res-link">View floor plans</span>
         </article>
       </section>
 
@@ -187,15 +201,6 @@ permalink: "/projects/louayzeh-village/floor-plans/index.html"
 
 <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
-<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
-  <button class="lb-close" aria-label="Close">Close ✕</button>
-  <button class="lb-nav lb-prev" aria-label="Previous">‹</button>
-  <img src="" alt="Enlarged view">
-  <button class="lb-nav lb-next" aria-label="Next">›</button>
-  <span class="lb-count"></span>
-  <span class="lb-cap"></span>
-  <a class="lb-dl" href="" download>Download</a>
-</div>
 
 {% include "footer.njk" %}
 

@@ -431,34 +431,75 @@
 })();
 
 
-/* ── floor-plan lightbox: click to open, X to close, download the image ── */
+/* ── floor-plan lightbox: single or multi plan, swipe between levels, X, download ── */
 (function () {
-  var links = document.querySelectorAll('a.plan-open');
-  if (!links.length) return;
+  var openers = document.querySelectorAll('a.plan-open, button.ru-view');
+  if (!openers.length) return;
   var ov = document.createElement('div');
   ov.className = 'plan-lb';
   ov.innerHTML = '<button type="button" class="plan-lb-x" aria-label="Close floor plan">&times;</button>' +
-    '<img alt="Floor plan"><div class="plan-lb-bar"><a class="plan-lb-dl" download>Download</a></div>';
+    '<button type="button" class="plan-lb-nav plan-lb-prev" aria-label="Previous plan" hidden>\u2039</button>' +
+    '<img alt="Floor plan">' +
+    '<button type="button" class="plan-lb-nav plan-lb-next" aria-label="Next plan" hidden>\u203a</button>' +
+    '<div class="plan-lb-meta"><b class="plan-lb-cap"></b><span class="plan-lb-count"></span></div>' +
+    '<div class="plan-lb-bar"><a class="plan-lb-dl" download>Download</a></div>';
   document.body.appendChild(ov);
-  var img = ov.querySelector('img');
-  var dl = ov.querySelector('.plan-lb-dl');
+  var img = ov.querySelector('img'), dl = ov.querySelector('.plan-lb-dl'),
+      cap = ov.querySelector('.plan-lb-cap'), cnt = ov.querySelector('.plan-lb-count'),
+      prev = ov.querySelector('.plan-lb-prev'), next = ov.querySelector('.plan-lb-next');
+  var list = [], caps = [], i = 0;
+  function render() {
+    img.src = list[i];
+    img.alt = caps[i] || 'Floor plan';
+    dl.href = list[i];
+    dl.setAttribute('download', list[i].split('/').pop());
+    cap.textContent = caps[i] || '';
+    cnt.textContent = list.length > 1 ? (i + 1) + ' / ' + list.length : '';
+    prev.hidden = next.hidden = list.length < 2;
+  }
+  function openWith(l, c, start) { list = l; caps = c; i = start || 0; render(); ov.classList.add('on'); document.body.style.overflow = 'hidden'; }
   function close() { ov.classList.remove('on'); document.body.style.overflow = ''; }
-  links.forEach(function (a) {
-    a.addEventListener('click', function (e) {
+  function step(d) { if (list.length > 1) { i = (i + d + list.length) % list.length; render(); } }
+  openers.forEach(function (el) {
+    el.addEventListener('click', function (e) {
       e.preventDefault();
-      var href = a.getAttribute('href');
-      var inner = a.querySelector('img');
-      img.src = href;
-      img.alt = inner ? inner.alt : 'Floor plan';
-      dl.href = href;
-      dl.setAttribute('download', href.split('/').pop());
-      ov.classList.add('on');
-      document.body.style.overflow = 'hidden';
+      if (el.classList.contains('ru-view')) {
+        openWith(el.getAttribute('data-plans').split('|'), (el.getAttribute('data-caps') || '').split('|'));
+        return;
+      }
+      var viewer = el.closest('.plan-viewer');
+      if (viewer && viewer.classList.contains('multi')) {
+        var links = Array.prototype.slice.call(viewer.querySelectorAll('a.plan-open'));
+        var l = links.map(function (a) { return a.getAttribute('href'); });
+        var c = links.map(function (a) {
+          var fc = a.parentElement.querySelector('figcaption b');
+          return fc ? fc.textContent : '';
+        });
+        openWith(l, c, links.indexOf(el));
+        return;
+      }
+      var inner = el.querySelector('img');
+      openWith([el.getAttribute('href')], [el.getAttribute('data-cap') || '']);
     });
   });
+  prev.addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
+  next.addEventListener('click', function (e) { e.stopPropagation(); step(1); });
   ov.querySelector('.plan-lb-x').addEventListener('click', close);
   ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!ov.classList.contains('on')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+  var tx = null;
+  ov.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  ov.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 45) step(dx < 0 ? 1 : -1);
+    tx = null;
+  }, { passive: true });
 })();
 
 
@@ -472,4 +513,33 @@
     if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
     if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
   });
+})();
+
+
+/* ── Louayzeh hub: hover a building, light its whole collection ── */
+(function () {
+  var map = document.getElementById('blocksMap');
+  if (!map) return;
+  var label = map.querySelector('.bm-label');
+  var labelName = label.querySelector('b');
+  var groups = Array.prototype.slice.call(map.querySelectorAll('.bm-g'));
+  var NAMES = { classic: 'The Classic Residences', select: 'The Select Residences',
+                grand: 'The Grand Residences', 'full-floor': 'The Full-Floor Residences' };
+  function activate(g) {
+    map.classList.add('active');
+    groups.forEach(function (x) { x.classList.toggle('lit', x === g); });
+    labelName.textContent = NAMES[g.getAttribute('data-collection')] || '';
+    label.setAttribute('href', g.getAttribute('href'));
+  }
+  function clearAll() {
+    map.classList.remove('active');
+    groups.forEach(function (x) { x.classList.remove('lit'); });
+  }
+  groups.forEach(function (g) {
+    g.addEventListener('mouseenter', function () { activate(g); });
+    g.addEventListener('focus', function () { activate(g); });
+    g.addEventListener('blur', function () { clearAll(); });
+  });
+  /* selection stays while the cursor travels to the title; it clears on leaving the map */
+  map.addEventListener('mouseleave', clearAll);
 })();
