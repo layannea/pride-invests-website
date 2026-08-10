@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ ctitle }} | Louayzeh Village | Pride Invests</title>
+<meta name="description" content="{{ meta_desc }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+</head>
+<body class="has-action-bar">
+
+{% set nav_solid = true %}{% include "nav.njk" %}
+
+<main class="page plans-page">
+  <div class="page-head">
+    <a class="fp-back" href="/projects/louayzeh-village/floor-plans/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to Residences</span></a>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/louayzeh-village/">Louayzeh Village</a> / <a href="/projects/louayzeh-village/floor-plans/">Residences</a> / {{ ctitle }}</nav>
+    <p class="res-kicker" style="margin-bottom:4px">{{ blocks }}</p>
+    <h1 class="page-title">{{ ctitle }}</h1>
+    <p class="page-intro">{{ intro }}</p>
+  </div>
+
+  <div class="with-rail">
+    <div>
+      <section class="detail-section" style="margin-top:0">
+        <div class="res-units" style="max-width:780px">
+            {% for u in unit_rows %}<div class="ru"><span>{{ u.label }}</span><b>{{ u.value }}</b></div>
+{% endfor %}
+        </div>
+        <h2 class="reveal" style="font-family:var(--font-display);font-weight:400;color:var(--navy);margin-top:44px">Floor plans</h2>
+{% for t in tiers %}
+        <article class="plan-card reveal">
+          <div class="plan-card-head">
+            <h3>{{ t.name }}</h3>
+            <span class="plan-card-area">{{ t.area }}</span>
+          </div>
+          <div class="plan-viewer{% if t.plans.length > 1 %} multi{% endif %}">
+            <div class="plan-track">
+{% for p in t.plans %}              <figure class="plan-pane">{% if t.plans.length > 1 %}
+                <figcaption><b>{{ p.cap }}</b><span>{{ p.area }}</span></figcaption>{% endif %}
+                <a class="plan-open" href="{{ p.file }}"><img src="{{ p.file }}" alt="{{ p.alt }}" loading="lazy"></a>
+              </figure>
+{% endfor %}            </div>{% if t.plans.length > 1 %}
+            <button type="button" class="pv-prev" aria-label="Previous plan">‹</button>
+            <button type="button" class="pv-next" aria-label="Next plan">›</button>{% endif %}
+          </div>
+        </article>
+{% endfor %}
+      </section>
+    </div>
+
+    {% include "rail.njk" %}
+  </div>
+</main>
+
+{% include "action-bar.njk" %}
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-close" aria-label="Close">Close ✕</button>
+  <button class="lb-nav lb-prev" aria-label="Previous">‹</button>
+  <img src="" alt="Enlarged view">
+  <button class="lb-nav lb-next" aria-label="Next">›</button>
+  <span class="lb-count"></span>
+  <span class="lb-cap"></span>
+  <a class="lb-dl" href="" download>Download</a>
+</div>
+
+{% include "footer.njk" %}
+
+<script src="/js/units-data.js?v={{ build.time }}"></script>
+<script src="/js/projects.js?v={{ build.time }}"></script>
+</body>
+</html>

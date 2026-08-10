@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title_tag | safe }}</title>
+<meta name="description" content="{{ meta_desc | safe }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+</head>
+<body>
+
+{% set nav_solid = true %}{% include "nav.njk" %}
+
+<main class="page">
+  <div class="page-head" style="padding-bottom:10px">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Our Story</nav>
+    <h1 class="page-title">Our story</h1>
+  </div>
+
+  <div class="story-wrap">
+    <p class="story-eyebrow reveal">{{ story_eyebrow | safe }}</p>
+    <p class="story-lead reveal">{{ story_lead | safe }}</p>
+
+    <div class="story-row">
+      <div class="story-photo reveal">
+        <figure><img src="/media/story/founder-portrait.jpg" alt="Ahmad El Assaad, founder of Pride Invests, at his desk"></figure>
+        <figcaption>Ahmad El Assaad · Founder</figcaption>
+      </div>
+      <div class="story-text">
+{% for p in copy1 %}        <p{% if p.cls %} class="{{ p.cls }}"{% endif %}>{{ p.html | safe }}</p>
+{% endfor %}      </div>
+    </div>
+  </div>
+
+  <div class="story-quote reveal">
+    <svg viewBox="0 0 148 229" aria-hidden="true"><polygon fill="#24428A" points="0,0 125,0 88,229 49,229"/><polygon fill="#7E7E7E" points="68,89 148,89 132,229 99,229"/></svg>
+{% for p in copy2 %}        <p{% if p.cls %} class="{{ p.cls }}"{% endif %}>{{ p.html | safe }}</p>
+{% endfor %}  </div>
+
+  <div class="story-wrap" style="padding-bottom:40px">
+    <div class="story-row flip">
+      <div class="story-photo reveal">
+        <figure><img src="/media/story/founder-desk.jpg" alt="Ahmad El Assaad, founder of Pride Invests"></figure>
+              </div>
+      <div class="story-text">
+{% for p in copy3 %}        <p{% if p.cls %} class="{{ p.cls }}"{% endif %}>{{ p.html | safe }}</p>
+{% endfor %}        <div class="story-sign reveal">
+          <span class="sn">Ahmad El Assaad</span>
+          <span class="sr">Founder, Pride Invests</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-cta">
+{% for p in copy4 %}        <p{% if p.cls %} class="{{ p.cls }}"{% endif %}>{{ p.html | safe }}</p>
+{% endfor %}      <a class="btn btn-navy reveal" href="/projects/">Explore our projects</a>
+    </div>
+  </div>
+</main>
+
+{% include "footer.njk" %}
+
+<script src="/js/projects.js?v={{ build.time }}"></script>
+</body>
+</html>

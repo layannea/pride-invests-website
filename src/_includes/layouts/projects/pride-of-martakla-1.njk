@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title_tag | safe }}</title>
+<meta name="description" content="{{ meta_desc | safe }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+</head>
+<body class="has-action-bar">
+
+{% set nav_solid = true %}{% include "nav.njk" %}
+
+<main style="padding-top:70px">
+  <section class="detail-hero" style="background-image:url('/media/projects/martakla/facade.jpg')">
+    <div class="detail-hero-inner">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / Pride of Martakla 1</nav>
+      <h1>Pride of Martakla 1</h1>
+    </div>
+  </section>
+
+  <div class="with-rail" style="padding-top:0">
+    <div>
+      <section class="detail-section" id="facts" style="margin-top:44px">
+        <div class="facts-strip reveal">
+          {% for f in facts %}<div class="fact-cell">
+          <span class="fk">{{ f.k | safe }}</span>
+          <span class="fv">{{ f.v | safe }}</span>
+        </div>
+        {% endfor %}
+        </div>
+      </section>
+
+      <section class="detail-section">
+        <h2 class="reveal">{{ intro_title | safe }}</h2>
+        <div class="detail-prose reveal">
+{% for p in intro %}          <p>{{ p | safe }}</p>
+{% endfor %}        </div>
+      </section>
+
+      <section class="detail-section" id="film">
+        <p class="detail-eyebrow reveal">The film</p>
+        <h2 class="reveal">See it come to life</h2>
+        <div class="walk-embed reveal">
+          <iframe src="{{ film_url }}" title="Pride of Martakla 1 — project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </section>
+
+      <section class="detail-section" id="gallery">
+        <p class="detail-eyebrow reveal">Gallery</p>
+        <h2 class="reveal">The community</h2>
+        <div class="slider reveal" id="gallerySlider">
+{% for s in slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
+{% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
+          <button class="sl-arrow sl-next" aria-label="Next image">›</button>
+          <span class="sl-caption"></span>
+          <div class="sl-dots" role="tablist"></div>
+        </div>
+      </section>
+
+      <section class="detail-section" id="apartments">
+        <p class="detail-eyebrow reveal">The apartments</p>
+        <h2 class="reveal">The residences</h2>
+        <nav class="interior-nav room-tabs reveal" id="roomTabs" aria-label="Blocks">
+          {% for b in blocks %}<button type="button"{% if loop.first %} class="on"{% endif %} data-room="{{ b.key }}">{{ b.label | safe }}</button>
+          {% endfor %}</nav>
+        {% for b in blocks %}<div class="room-group{% if loop.first %} on{% endif %}" id="room-{{ b.key }}">
+          <div class="sold-grid">
+{% for c in b.cards %}          <article class="scard">
+            <span class="scard-badge">Sold</span>
+            <h4>{{ c.name | safe }}</h4>
+            <p class="scard-floor">{{ c.floor | safe }}</p>
+            <p>{{ c.text | safe }}</p>
+          </article>
+{% endfor %}          </div>
+        </div>
+        {% endfor %}</section>
+      <!-- ══ location ══ -->
+      {% set loc_name = "Pride of Martakla 1" %}{% set loc_q = "VH34%2B57X+La+Vista+5311,+Baabda" %}{% set loc_z = "16" %}{% set loc_illu = false %}{% include "location.njk" %}
+
+    </div>
+
+    {% include "rail.njk" %}
+  </div>
+</main>
+
+<!-- mobile action bar -->
+{% include "action-bar.njk" %}
+
+<!-- lightbox -->
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+  <button class="lb-close" aria-label="Close">Close ✕</button>
+  <button class="lb-nav lb-prev" aria-label="Previous">‹</button>
+  <img src="" alt="Enlarged view">
+  <button class="lb-nav lb-next" aria-label="Next">›</button>
+  <span class="lb-count"></span>
+  <span class="lb-cap"></span>
+  <a class="lb-dl" href="" download>Download</a>
+</div>
+
+{% include "footer.njk" %}
+
+<script src="/js/projects.js?v={{ build.time }}"></script>
+</body>
+</html>

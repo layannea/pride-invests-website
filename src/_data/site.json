@@ -1,0 +1,26 @@
+{
+  "phone_display": "+961 25 920 920",
+  "phone_tel": "+96125920920",
+  "wa_display": "+961 71 333 769",
+  "wa_number": "96171333769",
+  "email": "sales@prideinvests.com",
+  "linkedin": "https://www.linkedin.com/company/pride-invests",
+  "instagram": "https://www.instagram.com/prideinvests/",
+  "offices": [
+    {
+      "city": "Beirut",
+      "country": "Lebanon",
+      "address": "Redwood Mansion, Level&nbsp;III, Yarzeh Main Road, Beirut"
+    },
+    {
+      "city": "Cannes",
+      "country": "France",
+      "address": "89 Rue d'Antibes, 2ème étage,<br>06400 Cannes"
+    },
+    {
+      "city": "Lisbon",
+      "country": "Portugal",
+      "address": "Rua Ricardo Espírito Santo, nº9, cv. dta., 1200-790 Lisboa"
+    }
+  ]
+}

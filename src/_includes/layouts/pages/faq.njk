@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title_tag | safe }}</title>
+<meta name="description" content="{{ meta_desc | safe }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What types of properties does Pride Invests offer?", "acceptedAnswer": {"@type": "Answer", "text": "Pride Invests offers a selection of apartments, duplexes, townhouses and private mansions across its developments."}}, {"@type": "Question", "name": "Where are your current projects located?", "acceptedAnswer": {"@type": "Answer", "text": "Our current projects are located in selected residential areas including Yarzeh, Baabda and Louayzeh. Each project page includes its location and nearby points of interest."}}, {"@type": "Question", "name": "How can I check which residences are available?", "acceptedAnswer": {"@type": "Answer", "text": "Use the “Find Your Home” section to filter available residences by location, size and number of bedrooms. You may also contact our sales team for the latest availability."}}, {"@type": "Question", "name": "Are floor plans available online?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Floor plans are mostly provided on the relevant residence pages. Our sales team can also provide detailed plans and additional information upon request."}}, {"@type": "Question", "name": "Can I arrange a private viewing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Private viewings can be arranged through the “Book a Viewing” form, by telephone or through WhatsApp."}}, {"@type": "Question", "name": "What are the payment terms?", "acceptedAnswer": {"@type": "Answer", "text": "Payment terms vary by project and residence. The applicable payment schedule is shown on each project page or can be confirmed by our sales team."}}, {"@type": "Question", "name": "When will the property be delivered?", "acceptedAnswer": {"@type": "Answer", "text": "The expected delivery date is displayed on each project page. Our sales team can provide the latest construction and delivery update."}}, {"@type": "Question", "name": "How can I contact Pride Invests?", "acceptedAnswer": {"@type": "Answer", "text": "You can contact us by telephone, WhatsApp, email or through the website’s inquiry form."}}]}</script>
+</head>
+<body>
+
+{% set nav_solid = true %}{% include "nav.njk" %}
+
+<main class="page">
+  <div class="page-head" style="text-align:center;max-width:1100px;margin:0 auto">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / FAQ</nav>
+    <h1 class="page-title" style="font-size:clamp(1.9rem,3.6vw,2.7rem)">Frequently asked questions</h1>
+    <p class="page-intro" style="margin-left:auto;margin-right:auto;max-width:none;font-size:.95rem">Everything buyers ask us most. For anything else, our team is one call or message away.</p>
+  </div>
+  <div style="padding:30px 6vw 90px">
+    <div class="faq-list">
+      {% for f in faqs %}<div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false"><span class="fq-n">{{ f.n }}</span><span class="fq-t">{{ f.q | safe }}</span><span class="fx" aria-hidden="true"></span></button>
+        <div class="faq-a">{{ f.a | safe }}</div>
+      </div>
+      {% endfor %}</div>
+    <div style="text-align:center;margin-top:50px">
+      <a class="btn btn-navy" href="/contact/">Ask us anything</a>
+    </div>
+  </div>
+</main>
+
+{% include "footer.njk" %}
+
+<script src="/js/projects.js?v={{ build.time }}"></script>
+</body>
+</html>
