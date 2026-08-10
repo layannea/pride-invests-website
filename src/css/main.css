@@ -4,1170 +4,1180 @@
      navy #24428A · gray #7E7E7E
    Type: Marcellus (display) · Jost (body)
    ═══════════════════════════════════════════════════════ */
-:root{
-  --navy:#24428A;        /* exact logo blue  */
-  --gray:#7E7E7E;        /* exact logo gray  */
-  --ink:#1A2B55;         /* body text, derived from navy */
-  --stone:#F2EFE9;
-  --stone-2:#E8E3D9;
-  --night:#0C1120;
-  --line:rgba(36,66,138,.16);
-  --font-display:'Marcellus',serif;
-  --font-body:'Jost',sans-serif;
-  --ease:cubic-bezier(.22,.8,.24,1);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--font-body);font-weight:300;color:var(--ink);background:var(--stone);line-height:1.65;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-
-/* ── Preloader — logo draws in, fills, then flies into the hero lockup ── */
-.preloader{position:fixed;inset:0;background:var(--stone);display:flex;align-items:center;justify-content:center;z-index:100;transition:background 1s var(--ease),opacity .5s var(--ease),visibility .5s}
-.preloader.lift{background:rgba(242,239,233,0)}   /* curtain melts away, hero shows behind the flying mark */
-.preloader.done{opacity:0;visibility:hidden}
-.skip-intro .preloader{display:none}
-.skip-intro .hero-mark,.skip-intro .hero-title span,.skip-intro .hero-slogan,.skip-intro .hero-cta{opacity:1;animation:none !important}
-.preloader-mark{will-change:transform;transition:transform .7s var(--ease);filter:drop-shadow(0 2px 10px rgba(0,0,0,0))}
-.preloader-mark .wedge{fill:rgba(255,255,255,0);stroke-width:3;stroke-dasharray:720;stroke-dashoffset:720;animation:draw .85s cubic-bezier(.5,.05,.35,1) forwards;transition:fill .45s ease,stroke-opacity .45s ease}
-.preloader-mark .navy{stroke:var(--navy)}
-.preloader-mark .gray{stroke:var(--gray);animation-delay:.2s}
-@keyframes draw{to{stroke-dashoffset:0}}
-/* step 2: ink fills the outlines */
-.preloader-mark.filled .navy{fill:var(--navy);stroke-opacity:0}
-.preloader-mark.filled .gray{fill:var(--gray);stroke-opacity:0}
-/* step 3: while flying onto the photograph, the mark keeps its brand colors and gains a soft glow */
-.preloader-mark.in-flight{filter:drop-shadow(0 1px 3px rgba(0,0,0,.45)) drop-shadow(0 0 22px rgba(255,255,255,.35))}
-
-/* ── Brand lockup (exact logo colors) ──────── */
-.nav-brand{display:flex;align-items:center;gap:12px}
-.brand-mark{width:21px;height:32px}
-.brand-mark .navy{fill:var(--navy)}
-.brand-mark .gray{fill:var(--gray)}
-.brand-word{font-family:var(--font-body);font-size:1.05rem;letter-spacing:.14em;font-weight:400;color:var(--gray)}
-.brand-word b{color:var(--navy);font-weight:600}
-
-/* ── Navbar ────────────────────────────────── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 5vw;transition:background .5s,box-shadow .5s,padding .5s}
-.nav.solid{background:rgba(242,239,233,.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:12px 5vw}
-/* over photography, the lockup reverses to white/gray for legibility */
-.nav:not(.solid) .brand-word{color:#C9CCD2}
-.nav:not(.solid) .brand-word b{color:#fff}
-.nav:not(.solid) .brand-mark .navy{fill:#fff}
-.nav:not(.solid) .brand-mark .gray{fill:#C9CCD2}
-.nav-links{display:flex;align-items:center;gap:34px;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase}
-.nav-links a{position:relative;padding:4px 0;color:var(--navy)}
-.nav:not(.solid) .nav-links a{color:#EDEBE5}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
-.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
-/* contact pair — Lebanon home office + WhatsApp, grouped tighter than the nav links */
-.nav-contact{display:flex;align-items:center;gap:10px}
-.nav-call{display:inline-flex;align-items:center;gap:8px;border:1px solid currentColor;padding:8px 15px !important;border-radius:2px;letter-spacing:.1em;white-space:nowrap;transition:color .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease)}
-.nav-call::after{display:none}
-.nav-call svg{width:14px;height:14px;fill:currentColor;flex:none}
-.nav-wa svg{width:15px;height:15px}
-.nav.solid .nav-links .nav-tel:hover{background:var(--navy);border-color:var(--navy);color:#fff}
-.nav:not(.solid) .nav-links .nav-tel:hover{background:rgba(255,255,255,.16);border-color:#fff;color:#fff}
-.nav .nav-links .nav-wa:hover{color:#25D366;border-color:#25D366}
-.nav-burger{display:none;background:none;border:0;width:34px;height:26px;position:relative;cursor:pointer}
-.nav-burger span{position:absolute;left:0;width:100%;height:1.5px;background:#fff;transition:.4s var(--ease)}
-.nav.solid .nav-burger span{background:var(--navy)}
-.nav-burger span:first-child{top:8px}.nav-burger span:last-child{top:17px}
-.nav-burger.open span:first-child{top:12px;transform:rotate(45deg)}
-.nav-burger.open span:last-child{top:12px;transform:rotate(-45deg)}
-
-/* ── Hero ──────────────────────────────────── */
-/* Restored to the original treatment: dark night base, full-opacity video layer,
-   dark scrim. The footage fades toward night, keeping its own dynamics intact. */
-.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--night)}
-.hero-slides{position:absolute;inset:0;z-index:1}   /* all video layers stay below the scrim & content */
-.slide{position:absolute;inset:0;opacity:0;z-index:0;pointer-events:none;transition:opacity 1.1s cubic-bezier(.45,.05,.35,.95)}
-.slide.is-active{opacity:1;z-index:2}          /* incoming: dissolves in on top of the outgoing scene */
-.slide.is-under{opacity:1;z-index:1;transition:none}  /* outgoing: stays fully visible beneath */
-/* ambient background videos: quiet, dimmed, the title owns the stage.
-   Brightness sits a touch above the original .72 — lighter than before, but far
-   below the 1.15 lift that was tried and rolled back. */
-.slide-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.88) saturate(.85)}
-
-.hero-scrim{position:absolute;inset:0;z-index:3;background:
-  linear-gradient(180deg,rgba(12,17,32,.68) 0%,rgba(12,17,32,.46) 30%,rgba(12,17,32,.48) 62%,rgba(12,17,32,.82) 100%)}
-
-.hero-content{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 6vw}
-.hero-mark{width:62px;height:96px;margin-bottom:30px;opacity:0;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45)) drop-shadow(0 0 22px rgba(255,255,255,.35))}
-.hero-mark .navy{fill:var(--navy)}.hero-mark .gray{fill:var(--gray)}
-.hero.ready .hero-mark{opacity:1}   /* revealed the instant the flying mark lands on it */
-/* one crisp shadow for the whole lockup — no glow, no per-word special casing */
-.hero-title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.75rem,7.6vw,5.8rem);letter-spacing:.14em;line-height:1.05;display:flex;gap:.16em;flex-wrap:wrap;justify-content:center;text-shadow:0 1px 3px rgba(4,8,18,.78),0 4px 20px rgba(4,8,18,.6),0 12px 48px rgba(4,8,18,.35)}
-.hero-title span{opacity:0}
-.hero.ready .hero-title span{animation:fadeUp 1.2s var(--ease) forwards}
-.hero.ready .hero-title .w1{animation-delay:.05s}
-/* no outline — PRIDE is plain brand navy, separated only by the title's drop shadow */
-.hero-title .w1{color:var(--navy);text-shadow:0 1px 3px rgba(0,0,0,.35),0 0 26px rgba(255,255,255,.55),0 0 60px rgba(255,255,255,.25)}
-.hero-title .w2{color:#fff}
-.hero.ready .hero-title .w2{animation-delay:.25s}
-.hero-slogan{margin-top:24px;font-size:clamp(1rem,1.95vw,1.32rem);letter-spacing:.4em;text-transform:uppercase;color:#FFFFFF;font-weight:400;text-shadow:0 1px 3px rgba(4,8,18,.82),0 3px 18px rgba(4,8,18,.68);opacity:0}
-.hero.ready .hero-slogan{animation:fadeUp 1.2s var(--ease) .5s forwards}
-.hero-cta{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0}
-.hero.ready .hero-cta{animation:fadeUp 1.2s var(--ease) .8s forwards}
-/* .hero-cta is reused in the CTA band, where .reveal/.reveal.in controls its visibility */
-.cta-band .hero-cta{opacity:0;transform:translateY(34px)}
-.cta-band .hero-cta.in{opacity:1;transform:none}
-@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-
-.btn{display:inline-block;padding:14px 32px;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;border-radius:2px;transition:.45s var(--ease)}
-.btn-ghost{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.55);color:#fff;backdrop-filter:blur(6px)}
-.btn-ghost:hover{background:#fff;color:var(--navy)}
-.btn-line{border:1px solid rgba(255,255,255,.4);color:#EDEBE5}
-.btn-line:hover{border-color:#fff;color:#fff}
-.btn-white{background:#fff;color:var(--navy);border:1px solid #fff}
-.btn-white:hover{background:transparent;color:#fff}
-.btn-line-navy{border:1px solid var(--navy);color:var(--navy)}
-.btn-line-navy:hover{background:var(--navy);color:#fff}
-/* The hero backdrop is light now, so the translucent-white buttons built for a dark
-   hero all but disappeared. Inside .hero they get a dark scrim and a firmer edge;
-   the CTA band keeps the original treatment. */
-.hero .btn-ghost{background:rgba(10,15,28,.34);border-color:rgba(255,255,255,.82);color:#fff}
-.hero .btn-ghost:hover{background:#fff;border-color:#fff;color:var(--navy)}
-.hero .btn-line{background:rgba(10,15,28,.22);border-color:rgba(255,255,255,.7);color:#fff}
-.hero .btn-line:hover{background:rgba(10,15,28,.46);border-color:#fff;color:#fff}
-
-/* buttons that carry a leading glyph (call / WhatsApp) */
-.btn-icon{display:inline-flex;align-items:center;justify-content:center;gap:11px}
-.btn-icon svg{width:16px;height:16px;fill:currentColor;flex:none}
-/* keyboard focus is visible on every contact affordance */
-.btn:focus-visible,.nav-call:focus-visible,.soc:focus-visible,.dest-details a:focus-visible,
-.rail-call:focus-visible,.rail-wa:focus-visible,.action-bar a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
-
-/* slide rail + caption */
-.hero-rail{position:absolute;right:4vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:18px;z-index:5}
-.rail-dot{width:2px;height:34px;background:rgba(255,255,255,.28);position:relative;cursor:pointer;transition:.4s}
-.rail-dot::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleY(0);transform-origin:top;transition:transform .4s}
-.rail-dot.on::after{transform:scaleY(1);transition:transform 3.2s linear}
-/* minimal caption: no pill — white text carried by a soft shadow and a hairline bar */
-.hero-caption{position:absolute;left:5vw;bottom:44px;z-index:4;color:#fff;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.7);padding-left:13px;text-shadow:0 1px 2px rgba(8,12,24,.6),0 2px 14px rgba(8,12,24,.45);transition:opacity .6s}
-.hero-caption.fading{opacity:0}
-
-/* ── Scroll reveal ─────────────────────────── */
-.statement .wd{display:inline-block;opacity:0;transform:translateY(.45em);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.statement.in .wd{opacity:1;transform:none}
-
-.reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-
-/* ── Sections ──────────────────────────────── */
-section{padding:96px 8vw}
-.eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin-bottom:22px}
-.eyebrow-strong{font-size:.8rem;color:var(--navy);font-weight:600;letter-spacing:.34em}
-.section-title{font-family:var(--font-display);font-size:clamp(2rem,4.4vw,3.2rem);font-weight:400;margin-bottom:60px;color:var(--navy)}
-
-/* compact intro band: the statement runs wider (52ch) so it sets in two lines
-   instead of three, and the vertical rhythm is tightened throughout */
-.manifesto{text-align:center;max-width:1100px;margin:0 auto;padding-top:30px;padding-bottom:30px}
-.manifesto .eyebrow{margin-bottom:12px}
-.statement{font-family:var(--font-display);font-weight:400;font-size:clamp(1.25rem,2.4vw,1.85rem);line-height:1.34;max-width:52ch;margin:0 auto}
-.statement em{font-style:italic;color:var(--navy)}
-.fact-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
-.fact{display:flex;flex-direction:column;gap:2px}
-.fact-k{font-family:var(--font-display);font-size:1.6rem;line-height:1.15;color:var(--navy)}
-.fact-l{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
-
-/* projects */
-.projects{background:#fff}
-.project{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;margin-bottom:64px}
-.project.flip .project-media{order:2}
-.project-media{position:relative;display:block;aspect-ratio:16/10;background-size:cover;background-position:center;overflow:hidden;border-radius:2px;transition:transform .8s var(--ease)}
-.project-media::after{content:"";position:absolute;inset:0;background:rgba(36,66,138,.10);transition:.6s}
-.project-media:hover{transform:scale(1.015)}
-.project-media:hover::after{background:transparent}
-.project-status{position:absolute;top:18px;left:18px;background:var(--navy);color:#fff;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;padding:8px 14px;z-index:2}
-.project-loc{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gray)}
-.project-info h3{font-family:var(--font-display);font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:400;margin:14px 0 18px;color:var(--navy)}
-.project-info p{color:var(--ink);max-width:52ch}
-.text-link{display:inline-block;margin-top:26px;font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:5px;transition:.4s}
-.text-link:hover{letter-spacing:.36em}
-.sold-strip{border-top:1px solid var(--line);padding-top:44px;display:flex;flex-wrap:wrap;align-items:baseline;gap:26px}
-.sold-strip .eyebrow{margin:0}
-.sold-items{font-family:var(--font-display);font-size:1.15rem;color:var(--gray);display:flex;gap:18px;flex-wrap:wrap}
-.sold-items i{font-style:normal;color:var(--stone-2)}
-
-/* sales offices */
-.destinations{text-align:center;background:var(--stone);padding-top:70px;padding-bottom:70px}
-.destinations .section-title{margin-bottom:40px}
-.dest-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:34px;max-width:1150px;margin:0 auto}
-
-/* ── Homepage sales offices ─────────────────────────────────────────────────
-   id-scoped so /contact/ keeps its own left-aligned list.
-   Sits on white, continuing the section above it with only a hairline between:
-   the old beige band was a third background colour inside a short vertical run,
-   which is what made this read as a leftover strip rather than a section.
-   Each office is one centred column — city, country, a short rule, the address,
-   then the three contact lines. */
-#offices{background:#fff;border-top:1px solid var(--line);padding-top:20px;padding-bottom:24px}
-#offices .section-title{font-size:1.25rem;margin-bottom:12px}
-#offices .dest-row{gap:12px 30px;max-width:980px}
-#offices .dest{display:flex;flex-direction:column;align-items:center;gap:0}
-#offices .dest-city{font-size:1.15rem;line-height:1.15}
-/* country label gets its own line — baseline-gluing it beside the city read as an
-   accident — and carries the short centred rule that separates head from detail */
-#offices .dest-country{position:relative;margin-top:2px;padding-bottom:8px;
-  font-size:.58rem;letter-spacing:.28em}
-#offices .dest-country::after{content:"";position:absolute;left:50%;bottom:0;
-  transform:translateX(-50%);width:22px;height:1px;background:var(--line)}
-#offices .dest-details{margin-top:7px;max-width:290px;display:flex;flex-direction:column;
-  align-items:center;gap:2px;font-size:.8rem;line-height:1.35}
-/* every address is exactly two lines (Cannes carries an explicit break),
-   so the 2-line floor keeps all three contact rows on one shared baseline */
-#offices .dest-addr{color:var(--ink);text-wrap:balance;min-height:2.7em;margin-bottom:2px}
-#offices .dest-details a{gap:9px;margin-top:0}
-#offices .dest-details a svg{width:14px;height:14px}
-.dest{display:flex;flex-direction:column;gap:4px;align-items:center}
-.dest-city{font-family:var(--font-display);font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--navy)}
-.dest-country{font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray)}
-.dest-details{font-style:normal;margin-top:10px;font-size:.92rem;line-height:1.55;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:2px}
-/* every contact line carries its own glyph so the block scans in one pass */
-.dest-details a{display:inline-flex;align-items:center;gap:8px}
-.dest-details a svg{width:14px;height:14px;fill:currentColor;flex:none}
-.dest-tel{margin-top:8px;color:var(--navy);letter-spacing:.06em}
-.dest-wa{color:var(--navy);letter-spacing:.06em}
-.dest-wa:hover{color:#1DA851}
-.dest-tel:hover,.dest-mail:hover,.dest-wa:hover{text-decoration:underline}
-.dest-mail{color:var(--gray);margin-top:4px}
-
-/* CTA — navy brand band.
-   Was a flat two-stop navy with the copy floating in a lot of dead space. Now it has
-   an overhead light source, hairline rules top and bottom to seat it against the
-   neighbouring sections, a measured content column, and a button row whose three
-   items share one height and one baseline. */
-/* pure brand navy, flat — the same #24428A used everywhere else on the site */
-.cta-band{position:relative;overflow:hidden;text-align:center;color:#fff;
-  padding-top:76px;padding-bottom:80px;background:var(--navy)}
-/* wide enough to keep the three CTAs on one row at desktop widths */
-.cta-inner{position:relative;z-index:1;max-width:880px;margin:0 auto}
-.cta-band .eyebrow{color:#A7BCE7;margin-bottom:13px}
-.cta-band h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,3.3vw,2.5rem);line-height:1.16;margin-bottom:12px;text-wrap:balance}
-.cta-band p{color:#C4D0EC;max-width:54ch;margin:0 auto;font-size:.94rem;line-height:1.6;text-wrap:balance}
-.cta-band .hero-cta{margin-top:30px;gap:14px}
-/* one height, one baseline, no odd-sized odd-one-out */
-.cta-band .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px}
-.cta-band .btn-white{box-shadow:0 10px 26px -14px rgba(0,0,0,.5)}
-.cta-band .btn-line{border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.05)}
-.cta-band .btn-line:hover{background:rgba(255,255,255,.14);border-color:#fff}
-
-/* WhatsApp always reads green — glyph at rest, full fill on hover */
-.btn-wa{border-color:rgba(37,211,102,.5) !important}
-.btn-wa svg{fill:#25D366}
-.btn-wa:hover{background:#25D366 !important;border-color:#25D366 !important;color:#fff}
-.btn-wa:hover svg{fill:#fff}
-
-/* footer — light, brand lockup in exact colors */
-.footer{background:#fff;border-top:1px solid var(--line);padding:54px 8vw 34px}
-.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px}
-.footer-social{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.footer-social{gap:26px}
-.soc{display:flex;align-items:center;gap:10px;color:var(--navy);transition:.35s var(--ease)}
-/* fill:currentColor is the fallback; the branded icons carry their own fill
-   attributes per path, which win over this inherited value */
-.soc svg{width:26px;height:26px;fill:currentColor;display:block}
-.soc-mail svg{width:26px;height:20px}   /* Gmail mark is 4:3, not square */
-.soc span{font-size:.9rem;letter-spacing:.06em;color:var(--ink)}
-.soc:hover{transform:translateY(-2px);opacity:.78}
-/* a hairline ties the legal line to the row above instead of leaving it floating */
-.footer-legal{margin-top:36px;padding-top:26px;border-top:1px solid var(--line);
-  font-size:.74rem;letter-spacing:.14em;color:var(--gray);text-align:center}
-
-/* ── Responsive ────────────────────────────── */
-/* between 1121 and 1340 the five links plus contact pills and social glyphs are still all
-   on one line, so the tracking and padding tighten instead of wrapping */
-@media(min-width:1121px) and (max-width:1340px){
-  .nav{padding-left:3.5vw;padding-right:3.5vw}
-  .nav.solid{padding-left:3.5vw;padding-right:3.5vw}
-  .nav-links{gap:22px;font-size:.76rem;letter-spacing:.16em}
-  .nav-contact{gap:8px}
-  .nav-call{padding:7px 12px !important;letter-spacing:.06em}
-}
-/* the full nav needs ~1120px to breathe; below that it becomes the burger menu */
-@media(max-width:1120px){
-  /* the solid nav's backdrop-filter must not become the containing block for the
-     fixed fullscreen menu, or the overlay collapses into the 64px bar */
-  .nav,.nav.solid{-webkit-backdrop-filter:none;backdrop-filter:none}
-  .nav-links{position:fixed;inset:0;background:rgba(12,17,32,.97);flex-direction:column;justify-content:center;gap:36px;font-size:1rem;transform:translateY(-100%);visibility:hidden;transition:transform .6s var(--ease),visibility 0s .6s}
-  .nav-links.open{transform:none;visibility:visible;transition:transform .6s var(--ease)}
-  .nav-links a{color:#fff !important}
-  /* stretch so both stacked pills share the width of the wider number */
-  .nav-contact{flex-direction:column;align-items:stretch;gap:20px}
-  .nav-links .nav-call{padding:12px 22px !important;border-color:rgba(255,255,255,.45);letter-spacing:.08em;justify-content:center}
-  .nav-burger{display:block;z-index:60}
-}
-@media(max-width:900px){
-  .project{grid-template-columns:1fr;gap:30px;margin-bottom:70px}
-  .project.flip .project-media{order:0}
-  .hero-rail{display:none}
-  section{padding:80px 7vw}
-  .hero-caption{bottom:34px}
-  .footer-row{flex-direction:column;align-items:center}
-  .soc-mail span{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
-  .slide.fx-lights .lit{opacity:1}
-  .reveal{opacity:1;transform:none}
-}
-
-/* ═══════════════════════════════════════════
-   PROJECT PAGES — index, finder, detail
-   ═══════════════════════════════════════════ */
-.page{padding-top:150px}
-.page-head{padding:0 8vw 40px;max-width:1500px}
-.crumbs{font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
-.crumbs a:hover{color:var(--navy)}
-.page-title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.2rem,5vw,3.6rem);color:var(--navy)}
-.page-intro{max-width:60ch;margin-top:14px;color:var(--ink)}
-
-/* layout with persistent contact rail */
-.with-rail{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:54px;padding:0 5vw 80px;max-width:1500px;margin:0 auto;align-items:start}
-.with-rail section{padding:0}   /* neutralize the global homepage section padding */
-.rail-side{position:sticky;top:96px}
-
-/* contact rail card */
-.contact-rail{background:#fff;border:1px solid var(--line);border-radius:3px;padding:26px;box-shadow:0 18px 50px -30px rgba(23,34,74,.35)}
-.contact-rail h3{font-family:var(--font-display);font-weight:400;font-size:1.3rem;color:var(--navy);margin-bottom:4px}
-.contact-rail .rail-sub{font-size:.82rem;color:var(--gray);margin-bottom:18px}
-.rail-call{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;padding:13px;border-radius:2px;font-size:.95rem;letter-spacing:.08em;transition:.35s}
-.rail-call:hover{background:#1B336E}
-.rail-wa{display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);color:var(--navy);padding:11px;border-radius:2px;font-size:.82rem;letter-spacing:.12em;margin-top:10px;transition:.35s}
-.rail-wa:hover{border-color:#25D366;color:#1DA851}
-.rail-call svg,.rail-wa svg{width:15px;height:15px;fill:currentColor;flex:none}
-.rail-form{margin-top:20px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:20px}
-.rail-form label{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray)}
-.rail-form input,.rail-form select,.rail-form textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:2px;font-family:var(--font-body);font-size:.9rem;color:var(--ink);background:var(--stone);outline:none;transition:border .3s}
-.rail-form input:focus,.rail-form select:focus,.rail-form textarea:focus{border-color:var(--navy)}
-.rail-form button{background:var(--navy);color:#fff;border:0;padding:13px;border-radius:2px;font-family:var(--font-body);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.35s}
-.rail-form button:hover{background:#1B336E}
-.rail-success{display:none;text-align:center;padding:18px 6px;color:var(--navy);font-size:.92rem;line-height:1.5}
-.rail-note{font-size:.7rem;color:var(--gray);text-align:center;margin-top:10px}
-
-/* mobile action bar */
-.action-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);padding:10px 14px;gap:10px;box-shadow:0 -10px 30px -18px rgba(23,34,74,.4)}
-.action-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 6px;border-radius:2px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
-.action-bar a svg{width:14px;height:14px;fill:currentColor;flex:none}
-.ab-call{background:var(--navy);color:#fff}
-.ab-wa{border:1px solid var(--line);color:var(--navy)}
-
-/* project cards grid */
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:34px}
-.pcard{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
-/* the whole card is one click target; specific inner links sit above the cover */
-.pcard-cover{position:absolute;inset:0;z-index:2}
-.pcard-body h3 a,.pcard .text-link{position:relative;z-index:3}
-.pcard:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(23,34,74,.45)}
-.pcard-media{position:relative;aspect-ratio:16/10;background:var(--stone-2) center/cover no-repeat;overflow:hidden}
-.pcard-media .ph-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
-.pcard-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
-.pcard:hover .pcard-media img{transform:scale(1.05)}
-.pcard-badge{position:absolute;top:14px;left:14px;background:var(--navy);color:#fff;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;padding:7px 12px;z-index:2}
-.pcard-badge.sold{background:#5C616B}
-.pcard-badge.delivered-not-sold{background:#2F6B50}   /* "Delivered but not Sold Out" — reserved for the CMS */
-.pcard-body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
-.pcard-loc{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
-.pcard-body h3{font-family:var(--font-display);font-weight:400;font-size:1.5rem;color:var(--navy)}
-.pcard-body p{font-size:.92rem;color:var(--ink);flex:1}
-.pcard .text-link{margin-top:8px}
-
-/* unit finder */
-.finder{margin-top:80px}
-.finder-sub{font-size:.92rem;color:var(--gray);margin-bottom:22px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-/* one quiet panel: self-labelling selects, no shouting caps labels above each field */
-.finder-bar{background:#fff;border:1px solid var(--line);border-radius:3px;padding:16px;margin-bottom:18px}
-.fld{display:flex;flex-direction:column;min-width:0}
-.fld select{width:100%;padding:11px 34px 11px 13px;border:1px solid var(--line);border-radius:2px;
-  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%235C616B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 11px center/14px no-repeat;
-  -webkit-appearance:none;appearance:none;
-  font-family:var(--font-body);font-size:.88rem;color:var(--ink);outline:none;cursor:pointer;
-  transition:border-color .3s}
-.fld select:hover{border-color:var(--gray)}
-.fld select:focus-visible{border-color:var(--navy);box-shadow:0 0 0 3px rgba(36,66,138,.12)}
-.finder-reset{align-self:center;justify-self:start;background:none;border:none;cursor:pointer;
-  font-family:var(--font-body);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--gray);padding:11px 0;border-bottom:1px solid transparent;transition:.3s}
-.finder-reset:hover{color:var(--navy);border-bottom-color:var(--navy)}
-.finder-count{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
-/* the full inventory hides behind this until asked for */
-.plans-reveal{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;
-  background:#fff;border:1px solid var(--navy);border-radius:3px;padding:17px 20px;margin-bottom:22px;
-  font-family:var(--font-body);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--navy);
-  transition:background .35s,color .35s}
-.plans-reveal svg{width:16px;height:16px}
-.plans-reveal:hover{background:var(--navy);color:#fff}
-/* as a link to /projects/floor-plans/ the arrow slides on hover */
-a.plans-link{text-decoration:none;max-width:520px}
-a.plans-link svg{transition:transform .35s var(--ease)}
-a.plans-link:hover svg{transform:translateX(5px)}
-.plans-more{display:block;margin:26px auto 0;cursor:pointer;background:none;border:1px solid var(--line);
-  border-radius:100px;padding:12px 28px;font-family:var(--font-body);font-size:.7rem;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--navy);transition:border-color .3s,background .3s}
-.plans-more:hover{border-color:var(--navy);background:#fff}
-.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-/* every card shares one skeleton — head, title, feature list, footer — and the
-   feature list flexes, so price + link sit on the SAME baseline in every card
-   whether or not a home has a garden or terrace */
-.ucard{background:#fff;border:1px solid var(--line);border-radius:3px;padding:20px 20px 16px;display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .5s var(--ease);opacity:0;transform:translateY(16px);animation:uIn .6s var(--ease) forwards}
-@keyframes uIn{to{opacity:1;transform:none}}
-.ucard:hover{transform:translateY(-4px);box-shadow:0 22px 44px -30px rgba(23,34,74,.4)}
-.ucard-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.ucard-proj{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ucard-type{flex:none;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);border:1px solid var(--line);border-radius:100px;padding:4px 10px;background:var(--stone)}
-.ucard-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:12px 0 14px}
-.ucard h4{font-family:var(--font-display);font-weight:400;font-size:1.3rem;color:var(--navy)}
-.ucard-size{font-family:var(--font-display);font-size:1.02rem;color:var(--navy);white-space:nowrap}
-.ucard-feat{list-style:none;margin:0;padding:14px 0 12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:9px;flex:1}
-.ucard-feat li{display:flex;align-items:center;gap:11px;font-size:.84rem;color:var(--ink)}
-.ucard-feat b{font-weight:500;color:var(--navy)}
-.ucard-feat svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--navy);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
-.ucard-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:13px}
-.ucard-price{font-size:.94rem;color:var(--navy);letter-spacing:.03em}
-.ucard-link{flex:none;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:3px;transition:.35s}
-.ucard-link:hover{letter-spacing:.28em}
-.finder-empty{display:none;text-align:center;padding:50px 20px;color:var(--gray)}
-
-/* project detail */
-.detail-hero{position:relative;height:64vh;min-height:440px;background:center/cover no-repeat;display:flex;align-items:flex-end}
-.detail-hero::before{content:"";position:absolute;inset:0;background:rgba(23,34,74,.16);mix-blend-mode:multiply}
-.detail-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,17,32,.28) 0%,rgba(12,17,32,.08) 40%,rgba(13,19,38,.68) 100%)}
-.detail-hero-inner{position:relative;z-index:2;color:#fff;padding:0 8vw 48px;width:100%}
-.detail-hero .crumbs{color:#EDEBE5;font-size:.82rem;font-weight:600;letter-spacing:.24em;text-shadow:0 1px 8px rgba(0,0,0,.5)}.detail-hero .crumbs a:hover{color:#fff;text-decoration:underline}
-.detail-hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2.4rem,5.6vw,4rem);text-shadow:0 2px 24px rgba(0,0,0,.45);letter-spacing:.02em}
-.stat-bar{display:flex;flex-wrap:wrap;gap:10px 34px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#D6D9E2}
-.stat-bar b{color:#fff;font-weight:500}
-.detail-section{margin-top:76px}
-.detail-section:first-child{margin-top:56px}
-.detail-eyebrow{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
-/* heading and body share one 720px measure — the title no longer runs far wider
-   than the prose column beneath it */
-.detail-section>h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.55rem,2.5vw,1.95rem);color:var(--navy);margin-bottom:22px;letter-spacing:.02em;max-width:760px}
-.detail-prose{max-width:720px;color:var(--ink)}
-.detail-prose p:first-child{font-size:1.14rem;line-height:1.75}
-.detail-prose p+p{margin-top:16px}
-
-/* gallery slider */
-.slider{position:relative;aspect-ratio:16/9;border-radius:3px;overflow:hidden;background:var(--night)}
-.slider .sl-item{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;cursor:zoom-in}
-.slider .sl-item.on{opacity:1}
-.slider .sl-item img{width:100%;height:100%;object-fit:cover}
-.sl-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(12,17,32,.28);backdrop-filter:blur(6px);color:#fff;font-size:1rem;cursor:pointer;transition:.35s;display:flex;align-items:center;justify-content:center}
-.sl-arrow:hover{background:#fff;color:var(--navy);border-color:#fff}
-.sl-prev{left:18px}.sl-next{right:18px}
-.sl-caption{position:absolute;left:22px;bottom:20px;z-index:4;color:#EDEBE5;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.6)}
-.sl-dots{position:absolute;right:22px;bottom:24px;z-index:5;display:flex;gap:8px}
-.sl-dot{width:22px;height:2px;background:rgba(255,255,255,.35);cursor:pointer;transition:.35s;border:0;padding:0}
-.sl-dot.on{background:#fff}
-.slider::after{content:"";position:absolute;inset:auto 0 0 0;height:90px;background:linear-gradient(180deg,transparent,rgba(12,17,32,.55));pointer-events:none}
-
-/* amenities: hairline editorial list */
-.amen-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 54px;max-width:860px}
-.amen-list li{list-style:none;display:flex;align-items:center;gap:16px;padding:12px 2px;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--ink)}
-.am-ic{width:24px;height:24px;flex:none;stroke:var(--navy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
-
-/* residences: open editorial layout */
-.res-card{border-top:1px solid var(--line);padding:52px 0 56px;scroll-margin-top:110px}
-.res-card:last-of-type{padding-bottom:10px}
-.res-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:6px}
-.res-head h3{font-family:var(--font-display);font-weight:400;font-size:clamp(2.3rem,4.4vw,3.2rem);color:var(--navy);line-height:1.1}
-.res-price{font-family:var(--font-display);font-size:1.4rem;color:var(--navy);letter-spacing:.03em}
-.res-specs{display:flex;flex-wrap:wrap;gap:8px 32px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin:16px 0 22px;padding-top:16px;border-top:1px solid var(--line);max-width:860px}
-.res-specs span{position:relative}
-.res-specs span+span::before{content:"";position:absolute;left:-17px;top:50%;width:3px;height:3px;background:var(--gray);border-radius:50%;transform:translateY(-50%)}
-.res-specs b{color:var(--navy);font-weight:500;letter-spacing:.06em}
-.res-card>p{max-width:72ch;color:var(--ink);font-size:1.02rem;line-height:1.75}
-.plans{margin-top:28px}
-.plans-label{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
-.plan-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;max-width:860px}
-.plan-thumb{position:relative;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#fff;transition:box-shadow .45s var(--ease),transform .45s var(--ease)}
-.plan-thumb:hover{box-shadow:0 22px 44px -26px rgba(23,34,74,.5);transform:translateY(-3px)}
-.plan-thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .8s var(--ease)}
-.plan-thumb:hover img{transform:scale(1.04)}
-.plan-thumb span{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:11px 14px;border-top:1px solid var(--line)}
-.plan-thumb span::after{content:"⤢";font-size:.85rem;color:var(--gray)}
-
-/* payment timeline */
-.timeline{position:relative;padding-top:6px}
-.tl-line{position:absolute;top:82px;left:5px;right:6%;height:1px;background:var(--line);overflow:hidden}
-.tl-line::after{content:"";position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left}
-.timeline.in .tl-line::after{transform:scaleX(1);transition:transform 2.2s var(--ease) .3s}
-.tl-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
-.tl-step{position:relative;opacity:0;transform:translateY(14px)}
-.timeline.in .tl-step{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.timeline.in .tl-step:nth-child(1){transition-delay:.35s}
-.timeline.in .tl-step:nth-child(2){transition-delay:.8s}
-.timeline.in .tl-step:nth-child(3){transition-delay:1.25s}
-.timeline.in .tl-step:nth-child(4){transition-delay:1.7s}
-.tl-step .pct{display:block;font-family:var(--font-display);font-size:2.3rem;line-height:1;color:var(--navy)}
-.tl-dot{display:block;width:9px;height:9px;background:var(--navy);transform:rotate(45deg);margin:29px 0 0 1px}
-.tl-step p{font-size:.9rem;color:var(--ink);margin-top:26px;max-width:22ch}
-@media(max-width:760px){.tl-steps{grid-template-columns:repeat(2,1fr);gap:38px 22px}.tl-line{display:none}.tl-dot{display:none}.tl-step p{margin-top:12px}}
-
-/* craftsmanship: hairline definition rows */
-.spec-list{max-width:860px}
-.spec-row{display:grid;grid-template-columns:220px 1fr;gap:26px;padding:17px 2px;border-bottom:1px solid var(--line);align-items:baseline}
-.spec-row h4{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:500}
-.spec-row p{font-size:.95rem;color:var(--ink)}
-@media(max-width:640px){.spec-row{grid-template-columns:1fr;gap:6px}}
-
-/* map */
-.map-wrap{border-radius:3px;overflow:hidden;border:1px solid var(--line)}
-.map-wrap iframe{display:block;width:100%;height:380px;border:0;filter:saturate(.85)}
-
-/* lightbox */
-.lightbox{position:fixed;inset:0;background:rgba(12,17,32,.92);z-index:90;display:none;align-items:center;justify-content:center;padding:4vw}
-.lightbox.open{display:flex}
-.lightbox img{max-width:100%;max-height:86vh;border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.lb-close{position:absolute;top:22px;right:26px;color:#fff;font-size:1rem;letter-spacing:.24em;text-transform:uppercase;background:none;border:0;cursor:pointer}
-.lb-dl{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#fff;border:1px solid rgba(255,255,255,.5);padding:10px 22px;border-radius:2px;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
-.lb-dl:hover{background:#fff;color:var(--navy)}
-
-@media(max-width:1020px){
-  .with-rail{grid-template-columns:1fr}
-  .rail-side{position:static}
-  .action-bar{display:flex}
-  body.has-action-bar{padding-bottom:64px}
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .gallery a:first-child{grid-column:span 2;grid-row:span 1}
-  .page{padding-top:120px}
-}
-
-/* ═══════════════════════════════════════════
-   iOS / MOBILE REFINEMENTS
-   Media-query & @supports scoped only — zero
-   change to desktop rendering.
-   ═══════════════════════════════════════════ */
-
-/* iOS Safari: 100vh includes the collapsed URL bar and causes jumpy
-   heroes. svh is the visible viewport; identical to vh on desktop. */
-@supports (height: 100svh){
-  .hero{height:100svh}
-}
-
-@media(max-width:760px){
-  /* safety net against accidental horizontal scroll */
-  body{overflow-x:hidden}
-
-  /* hero: tighter tracking so the wordmark and slogan sit well at 390px */
-  .hero-title{letter-spacing:.12em}
-  .hero-slogan{letter-spacing:.28em}
-  .hero-cta{gap:12px}
-  .btn{padding:13px 26px}
-
-  /* project detail hero: shorter on phones, content hugs the base */
-  .detail-hero{height:52vh;min-height:360px}
-  .detail-hero-inner{padding-bottom:28px}
-  .stat-bar{gap:8px 22px}
-
-  /* gallery slider: taller ratio reads better in portrait */
-  .slider{aspect-ratio:4/3}
-  .sl-arrow{width:40px;height:40px}
-  .sl-caption{left:16px;bottom:16px;max-width:55%}
-  .sl-dots{right:16px;bottom:20px}
-
-  /* single-column amenity list */
-  .amen-list{grid-template-columns:1fr}
-
-  /* iOS zooms the page when a focused field is under 16px — prevent it */
-  .rail-form input,.rail-form select,.rail-form textarea,.fld select{font-size:16px}
-
-  /* iPhone home-indicator safe area */
-  .action-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
-  .lb-dl{bottom:calc(24px + env(safe-area-inset-bottom))}
-
-  /* residences: name and price stack cleanly */
-  .res-head{flex-direction:column;align-items:flex-start;gap:4px}
-  .res-card{padding:40px 0 44px}
-  .plan-row{grid-template-columns:1fr 1fr}
-
-  .map-wrap iframe{height:300px}
-  .footer-social{justify-content:center}
-  .footer-legal{margin-top:26px}
-  .contact-rail{padding:22px}
-}
-
-@media(max-width:420px){
-  .plan-row{grid-template-columns:1fr}
-  .fact-row{gap:26px}
-  .dest-row{gap:30px}
-}
-@supports (height: 100svh){
-  @media(max-width:760px){
-    .detail-hero{height:52svh}
+   :root{
+    --navy:#24428A;        /* exact logo blue  */
+    --gray:#7E7E7E;        /* exact logo gray  */
+    --ink:#1A2B55;         /* body text, derived from navy */
+    --stone:#F2EFE9;
+    --stone-2:#E8E3D9;
+    --night:#0C1120;
+    --line:rgba(36,66,138,.16);
+    --font-display:'Marcellus',serif;
+    --font-body:'Jost',sans-serif;
+    --ease:cubic-bezier(.22,.8,.24,1);
   }
-}
-
-/* ═══════════════════════════════════════════
-   OUR STORY
-   ═══════════════════════════════════════════ */
-.story-wrap{max-width:1180px;margin:0 auto;padding:0 6vw 30px}
-.story-lead{font-family:var(--font-display);font-weight:400;font-size:clamp(1.45rem,2.8vw,2.1rem);line-height:1.4;color:var(--navy);max-width:34ch;margin:2px 0 24px}
-.story-row{display:grid;grid-template-columns:330px minmax(0,1fr);gap:46px;align-items:center;margin-bottom:28px}
-.story-row.flip{grid-template-columns:minmax(0,1fr) 330px}
-.story-row.flip .story-photo{order:2}
-.story-photo{position:relative}
-.story-photo.reveal{opacity:1;transform:none}  /* clip-path handles its entrance */
-.story-photo figure{margin:0;overflow:hidden;border-radius:3px;clip-path:inset(0 100% 0 0);transition:clip-path 1.3s var(--ease)}
-.story-photo.in figure{clip-path:inset(0 0 0 0)}
-.story-photo img{width:100%;display:block;transform:scale(1.08);transition:transform 1.6s var(--ease)}
-.story-photo.in img{transform:scale(1)}
-.story-photo figcaption{margin-top:14px;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
-.story-text p{color:var(--ink);font-size:.98rem;line-height:1.7;max-width:58ch}
-.story-text p+p{margin-top:14px}
-.story-text .story-mark{font-family:var(--font-display);font-size:1.25rem;color:var(--navy)}
-.story-quote{text-align:center;padding:40px 6vw;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 40px}
-.story-quote svg{width:22px;height:34px;margin-bottom:16px}
-.story-quote p{font-family:var(--font-display);font-weight:400;font-size:clamp(1.2rem,2.3vw,1.7rem);line-height:1.5;color:var(--navy);max-width:44ch;margin:0 auto}
-.story-cta{text-align:center;padding-bottom:20px}
-.story-cta p{font-family:var(--font-display);font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--navy);margin-bottom:30px;max-width:34ch;margin-left:auto;margin-right:auto}
-@media(max-width:900px){
-  .story-row,.story-row.flip{grid-template-columns:1fr;gap:34px;margin-bottom:64px}
-  .story-row.flip .story-photo{order:0}
-  .story-photo{max-width:420px}
-  .story-lead{margin-bottom:44px}
-  .story-quote{padding:60px 8vw;margin-bottom:64px}
-}
-
-/* ── project facts strip (status · delivery · sizes) ── */
-.facts-strip{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);border-radius:3px;background:#fff;margin-top:34px;overflow:hidden}
-/* values wrap INSIDE their cell — nothing escapes the box */
-/* cells center their content vertically, so single- and two-line values sit balanced */
-.fact-cell{flex:1 1 170px;min-width:0;padding:18px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
-.fact-cell:last-child{border-right:0}
-.fact-cell .fk{display:block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.fact-cell .fv{display:block;font-family:var(--font-display);font-size:1.05rem;line-height:1.3;color:var(--navy);overflow-wrap:break-word}
-@media(max-width:760px){.fact-cell{flex-basis:46%;border-bottom:1px solid var(--line)}}
-
-/* ── quick navigation bar beneath the hero ── */
-.quick-nav{position:sticky;top:58px;z-index:30;background:rgba(242,239,233,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.quick-nav-inner{display:flex;gap:8px;overflow-x:auto;padding:0 5vw;max-width:1500px;margin:0 auto;scrollbar-width:none}
-.quick-nav-inner::-webkit-scrollbar{display:none}
-.quick-nav a{flex:none;padding:15px 14px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);border-bottom:2px solid transparent;transition:.3s;white-space:nowrap}
-.quick-nav a:hover{color:var(--navy);border-bottom-color:var(--navy)}
-
-/* ── "On the Horizon" — premium navy cards ── */
-.horizon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-bottom:80px}
-.horizon-card{position:relative;display:block;border-radius:3px;overflow:hidden;padding:42px 34px 38px;color:#fff;background:linear-gradient(150deg,#24428A 0%,#1B3270 55%,#131F45 100%);transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
-.horizon-card:hover{transform:translateY(-5px);box-shadow:0 34px 60px -34px rgba(19,31,69,.65)}
-.hz-mark{position:absolute;right:-36px;bottom:-70px;width:190px;height:294px;opacity:.1;transition:transform 1s var(--ease),opacity .6s}
-.hz-mark polygon{fill:#fff}
-.hz-mark .g{fill:#B9BEC7}
-.horizon-card:hover .hz-mark{transform:translateY(-12px) rotate(-3deg);opacity:.16}
-.hc-soon{display:inline-block;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:#DCE3F4;margin-bottom:18px}
-.horizon-card .hc-country{display:block;font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#AAB6D6}
-.horizon-card h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3vw,2.4rem);color:#fff;margin:8px 0 10px}
-.horizon-card p{font-size:.92rem;color:#C8D2EC;max-width:34ch}
-.hc-link{display:inline-block;margin-top:22px;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:5px;transition:.4s}
-.horizon-card:hover .hc-link{border-bottom-color:#fff;letter-spacing:.34em}
-
-/* ── FAQ accordion ── */
-.faq-list{max-width:820px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--line)}
-.faq-q{width:100%;background:none;border:0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;padding:22px 2px;font-family:var(--font-display);font-size:clamp(1.05rem,2vw,1.3rem);color:var(--navy)}
-.faq-q .fx{flex:none;width:14px;height:14px;position:relative;transition:transform .45s var(--ease)}
-.faq-q .fx::before,.faq-q .fx::after{content:"";position:absolute;background:var(--navy);inset:auto}
-.faq-q .fx::before{left:0;top:6px;width:14px;height:1.5px}
-.faq-q .fx::after{left:6.25px;top:0;width:1.5px;height:14px;transition:opacity .3s}
-.faq-item.open .fx{transform:rotate(180deg)}
-.faq-item.open .fx::after{opacity:0}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .55s var(--ease)}
-.faq-a p{padding:0 34px 22px 2px;color:var(--ink);max-width:64ch}
-
-/* ── finder bar: 9 selects + reset on a 5-column grid ── */
-.finder-bar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-@media(max-width:1100px){.finder-bar{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:640px){.finder-bar{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:400px){.finder-bar{grid-template-columns:1fr}}
-
-/* "On the Horizon" project cards — navy field with the faint brand wedge */
-.hz-media{display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(150deg,#24428A 0%,#1B3270 55%,#131F45 100%)}
-.hz-media .hz-mini{width:54px;opacity:.26;transition:transform .8s var(--ease)}
-.hz-media .hz-mini polygon{fill:#fff}
-.hz-media .hz-mini .g{fill:#96A5CE}
-.pcard:hover .hz-media .hz-mini{transform:translateY(-6px)}
-.pcard-badge.hz{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.42);color:#fff}
-
-/* floor plans collapse behind a disclosure inside each residence */
-.plans-toggle{display:inline-flex;align-items:center;gap:12px;cursor:pointer;
-  background:#fff;border:1px solid var(--line);border-radius:3px;padding:13px 20px;
-  font-family:var(--font-body);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--navy);transition:border-color .3s,background .3s}
-.plans-toggle:hover{border-color:var(--navy)}
-.plans-toggle svg{width:15px;height:15px;transition:transform .4s var(--ease)}
-.plans.open .plans-toggle svg{transform:rotate(180deg)}
-.plans .plan-row{display:none;margin-top:16px}
-.plans.open .plan-row{display:grid}
-
-.loc-illustration{display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden}
-.loc-illustration img{display:block;width:100%;transition:transform 1s var(--ease)}
-.loc-illustration:hover img{transform:scale(1.02)}
-.pcard-meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:2px}
-.pcard-meta b{color:var(--navy);font-weight:500}
-
-/* story accents */
-.story-eyebrow{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
-.story-sign{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);max-width:280px}
-.story-sign .sn{font-family:var(--font-display);font-size:1.2rem;color:var(--navy)}
-.story-sign .sr{display:block;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gray);margin-top:4px}
-/* faq numbering + tighter page head */
-.fq-n{flex:none;font-family:var(--font-body);font-size:.68rem;letter-spacing:.24em;color:var(--gray);width:34px}
-.fq-t{flex:1}
-.faq-q{gap:14px}
-.page-head .page-intro{margin-top:10px}
-
-/* ═══ Yarzeh page round 3 ═══ */
-/* anchors land with the sticky bars accounted for */
-.detail-section{scroll-margin-top:126px}
-
-/* bigger, clearer section headers */
-.detail-eyebrow{font-size:.72rem;color:var(--navy);opacity:.75}
-/* sized so titles like "Ten minutes from Beirut, a world away" hold one line on desktop */
-.detail-section>h2{font-size:clamp(1.55rem,2.5vw,1.95rem) !important}
-
-/* hero brochure action */
-.hero-actions{margin-top:20px}
-.qn-brochure{color:var(--navy) !important;font-weight:600;border-bottom-color:transparent}
-.qn-brochure:hover{border-bottom-color:var(--navy)}
-
-/* price basis note */
-.price-note{margin-top:12px;font-size:.82rem;color:var(--gray);max-width:70ch}
-
-/* walkthrough cards */
-.walk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.walk-card{position:relative;display:flex;flex-direction:column;gap:6px;padding:26px 24px 22px;border:1px solid var(--line);border-radius:3px;background:#fff;transition:.45s var(--ease);overflow:hidden}
-.walk-card::after{content:"⟳";position:absolute;right:18px;top:20px;font-size:1.25rem;color:var(--gray);transition:.45s var(--ease)}
-.walk-card:hover{border-color:var(--navy);transform:translateY(-3px);box-shadow:0 20px 40px -28px rgba(23,34,74,.45)}
-.walk-card:hover::after{color:var(--navy);transform:rotate(45deg)}
-.wk-n{font-size:.64rem;letter-spacing:.3em;color:var(--gray)}
-.wk-t{font-family:var(--font-display);font-size:1.45rem;color:var(--navy)}
-.wk-cta{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);margin-top:8px}
-.walk-card:hover .wk-cta{color:var(--navy)}
-
-/* interiors strip */
-.interiors{margin-top:26px}
-.int-strip{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}
-.int-thumb{flex:0 0 210px;scroll-snap-align:start;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#fff;transition:.4s var(--ease)}
-.int-thumb:hover{transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(23,34,74,.45)}
-.int-thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-.int-thumb span{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:9px 12px;border-top:1px solid var(--line)}
-
-/* lightbox group navigation */
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(12,17,32,.35);color:#fff;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:.3s;z-index:5}
-.lb-nav:hover{background:#fff;color:var(--navy)}
-.lightbox.has-group .lb-nav{display:flex}
-.lb-prev{left:22px}.lb-next{right:22px}
-.lb-count{position:absolute;top:26px;left:26px;color:#D8D5CD;font-size:.72rem;letter-spacing:.26em}
-
-/* email in the contact rail: visible, accentuated */
-.rail-note{font-size:.9rem;color:var(--ink);margin-top:14px;line-height:1.5}
-.rail-note a{font-weight:600;letter-spacing:.02em;border-bottom:1px solid var(--navy);padding-bottom:1px}
-.rail-note a:hover{background:rgba(36,66,138,.07)}
-
-/* ═══ Daisy II interiors: floor → room hierarchy ═══ */
-.floor-block{margin-bottom:44px}
-.floor-label{display:inline-block;font-family:var(--font-display);font-size:1.25rem;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:24px}
-.room-group{margin-bottom:26px}
-.room-title{display:flex;align-items:baseline;gap:14px;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);font-weight:500;margin-bottom:12px}
-.room-count{font-size:.64rem;letter-spacing:.2em;color:var(--gray);font-weight:400}
-.room-group .int-thumb{flex:0 0 240px}
-.room-group .int-thumb img{aspect-ratio:3/2}
-@media(max-width:760px){.room-group .int-thumb{flex:0 0 190px}}
-
-/* interiors floor chips + lightbox caption */
-.interior-nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
-.interior-nav a{padding:10px 20px;border:1px solid var(--line);border-radius:100px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);background:#fff;transition:.35s}
-.interior-nav a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.floor-block{scroll-margin-top:126px}
-.lb-cap{position:absolute;top:26px;left:50%;transform:translateX(-50%);color:#EDEBE5;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6)}
-
-/* ═══ Yarzeh polish pass ═══ */
-/* clear hairline rhythm between sections for scannability */
-.with-rail .detail-section + .detail-section{border-top:1px solid var(--line);padding-top:54px;margin-top:54px}
-
-/* floor strips: header, larger labeled thumbs, arrow controls */
-.floor-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;margin-bottom:16px}
-.floor-head .floor-label{margin-bottom:0}
-.floor-sub{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray)}
-.strip-wrap{position:relative}
-.strip-wrap .int-strip{scroll-behavior:smooth;padding-right:30px}
-.int-thumb{flex:0 0 264px}
-.int-thumb img{aspect-ratio:3/2;width:100%;object-fit:cover;display:block}
-.int-thumb span{display:block;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);padding:9px 12px;border-top:1px solid var(--line);background:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.st-btn{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);z-index:6;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--navy);font-size:1.15rem;cursor:pointer;box-shadow:0 10px 26px -14px rgba(23,34,74,.4);transition:.3s;display:flex;align-items:center;justify-content:center}
-.st-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.st-prev{left:-14px}.st-next{right:-14px}
-@media(max-width:760px){.int-thumb{flex:0 0 210px}.st-btn{display:none}}
-
-/* quick-nav scroll-spy highlight */
-.quick-nav a.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600}
-
-/* lightbox: image breathes, download sits clearly below it */
-.lightbox img{max-height:74vh;margin-bottom:52px}
-.lb-dl{bottom:18px}
-@media(max-width:760px){.lb-dl{bottom:calc(14px + env(safe-area-inset-bottom))}}
-
-/* back to top */
-.to-top{position:fixed;right:22px;bottom:84px;z-index:55;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:1.1rem;cursor:pointer;box-shadow:0 14px 30px -16px rgba(23,34,74,.45);opacity:0;visibility:hidden;transform:translateY(10px);transition:.4s var(--ease)}
-.to-top.show{opacity:1;visibility:visible;transform:none}
-.to-top:hover{background:var(--navy);color:#fff}
-@media(min-width:1021px){.to-top{bottom:26px}}
-
-/* contact page layout */
-.contact-grid{display:grid;grid-template-columns:400px minmax(0,1fr);gap:60px;max-width:1100px;margin:0 auto;padding:10px 6vw 90px;align-items:start}
-.contact-card{box-shadow:0 24px 60px -34px rgba(23,34,74,.4)}
-@media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:44px}}
-
-.fv-nowrap{white-space:normal;font-size:1rem}
-
-/* ═══════════════════════════════════════════
-   BRAND MARK COLOURS
-   Kept last in the file so these win over the
-   generic fill:currentColor icon rules above.
-   ═══════════════════════════════════════════ */
-/* WhatsApp green everywhere the mark appears */
-.nav-links a.nav-wa svg,
-.dest-details a.dest-wa svg,
-.contact-rail a.rail-wa svg,
-.action-bar a.ab-wa svg{fill:#25D366}
-/* the phone handset stays brand navy / inherits on dark surfaces */
-.dest-details a.dest-tel svg{fill:var(--navy)}
-
-
-/* ── project page: actions under key facts — one shared height and baseline ── */
-.detail-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}
-.detail-actions .btn{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;font-size:.72rem;letter-spacing:.24em;line-height:1;outline:none}
-.btn-navy{background:var(--navy);border:1px solid var(--navy);color:#fff}
-.btn-navy:hover{background:#1B3270;border-color:#1B3270}
-
-/* ── gallery sub-sections ── */
-.gal-sub{margin-top:44px;margin-bottom:16px}
-.gal-label{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gray)}
-.gal-sub+.slider{margin-top:0}
-
-/* room + walkthrough tabs reuse the pill look, as buttons */
-.interior-nav button{padding:10px 20px;border:1px solid var(--line);border-radius:100px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);background:#fff;cursor:pointer;font-family:var(--font-body);transition:.35s}
-.interior-nav button:hover{border-color:var(--navy)}
-.interior-nav button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.room-tabs{margin-bottom:20px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px}
-.room-tabs::-webkit-scrollbar{display:none}
-.room-tabs button{white-space:nowrap;padding:8px 15px;font-size:.62rem;letter-spacing:.14em;flex:none}
-.room-group{display:none}
-.room-group.on{display:block}
-
-/* embedded 360° walkthrough */
-.walk-tabs{margin-bottom:16px}
-.walk-embed{position:relative;aspect-ratio:16/9;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--night)}
-.walk-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.walk-fallback{margin-top:12px;font-size:.78rem}
-.walk-fallback a{color:var(--navy);letter-spacing:.14em;text-transform:uppercase;font-size:.68rem;border-bottom:1px solid var(--navy);padding-bottom:3px}
-@media(max-width:760px){.walk-embed{aspect-ratio:4/3}}
-
-
-/* ── /yarzeh-mansions/floor-plans/ : calm, editorial residence cards ── */
-.plans-page .res-mansion{font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin:44px 0 16px}
-.plans-page .res-mansion:first-child{margin-top:0}
-.plans-page .res-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:38px 42px 36px;margin-bottom:28px;scroll-margin-top:110px}
-.plans-page .res-card:last-of-type{margin-bottom:0}
-.plans-page .res-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
-.plans-page .res-head h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem;color:var(--navy);letter-spacing:.01em}
-.plans-page .res-type{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
-.plans-page .res-price{margin-left:auto;font-family:var(--font-display);font-size:1.25rem;color:var(--navy)}
-/* one quiet spec line, values in navy — no pills, no boxes */
-.plans-page .res-specs{display:flex;flex-wrap:wrap;gap:6px 30px;margin:18px 0 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.plans-page .res-specs span{font-size:.88rem;color:var(--ink);letter-spacing:.01em}
-.plans-page .res-specs b{font-weight:500;color:var(--navy)}
-.plans-page .res-card>p{max-width:78ch;color:var(--ink);font-size:.96rem;line-height:1.75;margin-top:20px}
-.plans-page .plans{margin-top:26px}
-.plans-page .plans-label{margin-bottom:14px}
-.plans-page .plan-row{max-width:none}
-@media(max-width:900px){.plans-page .res-card{padding:28px 26px 26px}}
-@media(max-width:640px){.plans-page .res-price{margin-left:0;width:100%}}
-
-
-/* back link on floor-plan pages */
-.fp-back{display:inline-flex;align-items:center;gap:8px;font-size:.95rem;font-weight:500;color:var(--navy);margin-bottom:14px;transition:color .3s var(--ease)}
-.fp-back:hover{color:#17224A}
-.fp-back:hover svg{transform:translateX(-3px)}
-.fp-back svg{width:15px;height:15px;transition:transform .35s var(--ease)}
-.fp-back:hover svg{transform:translateX(-4px)}
-
-/* block-group unit lists (Louayzeh floor plans) */
-.plans-page .res-units{margin-top:20px;border-top:1px solid var(--line)}
-.plans-page .res-units .ru{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:13px 2px;border-bottom:1px solid var(--line)}
-.plans-page .res-units .ru span{font-size:.92rem;color:var(--ink)}
-.plans-page .res-units .ru b{font-weight:500;color:var(--navy);font-size:.92rem;text-align:right;white-space:nowrap}
-.plans-page .res-note{margin-top:14px;font-size:.82rem;color:var(--gray)}
-.plans-page .res-meta{margin-top:14px;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray)}
-.plans-page .page-intro{max-width:900px;line-height:1.8}
-.plans-page .res-sub{margin-top:6px;font-size:.84rem;color:var(--gray);letter-spacing:.02em}
-.plans-page .blocks-map{display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:34px}
-.plans-page .blocks-map img{display:block;width:100%}
-.plans-page .blocks-map figcaption{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);padding:12px 16px;border-top:1px solid var(--line);background:#fff}
-@media(max-width:600px){.plans-page .res-units .ru{flex-direction:column;gap:3px}.plans-page .res-units .ru b{text-align:left;white-space:normal}}
-
-
-/* ── sold-out apartment cards (delivered projects) ── */
-.sold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.scard{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px;padding:22px 22px 20px}
-.scard-badge{position:absolute;top:16px;right:16px;background:#5C616B;color:#fff;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;padding:5px 11px;border-radius:2px}
-.scard h4{font-family:var(--font-display);font-weight:400;font-size:1.12rem;color:var(--navy);padding-right:64px;line-height:1.35}
-.scard-floor{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);margin:7px 0 11px}
-.scard p:not(.scard-floor){font-size:.85rem;color:var(--ink);line-height:1.6}
-
-
-/* sold-out status reads loud and clear in the facts strip */
-.fact-cell .fv-sold{color:#A8332C;font-size:1.05rem;letter-spacing:.04em;font-weight:400}
-/* "Delivered but not Sold Out" — reserved for the CMS; no current project uses it yet */
-.fact-cell .fv-delivered-not-sold{color:#2F6B50;font-size:1.05rem;letter-spacing:.04em;font-weight:400}
-
-/* ═══════════════════════════════════════════
-   SOCIAL LINKS — navbar, CTA band, contact rail
-   (LinkedIn + Instagram surfaced beyond the footer)
-   ═══════════════════════════════════════════ */
-
-/* ── Navbar: compact icon buttons after the contact pills ── */
-.nav-social{display:flex;align-items:center;gap:15px;margin-left:4px;padding-left:16px;border-left:1px solid rgba(255,255,255,.28)}
-.nav.solid .nav-social{border-left-color:var(--line)}
-/* borderless glyphs in their brand colors from the start, footer-style */
-.nav-soc{display:inline-flex;align-items:center;justify-content:center;flex:none;
-  transition:transform .35s var(--ease),filter .35s var(--ease)}
-.nav-soc::after{display:none}   /* no underline animation on icon links */
-.nav-soc svg{width:21px;height:21px;fill:currentColor;display:block}
-/* LinkedIn: official blue on the solid bar, a lighter blue over dark photography */
-.nav .nav-links .nav-li{color:#0A66C2}
-.nav:not(.solid) .nav-links .nav-li{color:#5AA3EC}
-/* Instagram: white glyph over the hero footage; on the solid bar it borrows the
-   footer's gradient def so it matches the footer exactly */
-.nav:not(.solid) .nav-links .nav-ig{color:#fff}
-.nav.solid .nav-social .nav-ig svg{fill:url(#igGrad)}
-/* hover: lift and grow; a soft glow over the dark hero, a touch of extra pop when solid */
-.nav-soc:hover{transform:translateY(-2px) scale(1.14)}
-.nav.solid .nav-soc:hover{filter:brightness(1.1) saturate(1.12)}
-.nav:not(.solid) .nav-soc:hover{filter:drop-shadow(0 0 7px rgba(255,255,255,.45))}
-
-/* ── CTA band: “Follow us” row under the buttons ── */
-.cta-social{margin-top:34px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px}
-.cta-soc{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;flex:none;
-  border:1px solid rgba(255,255,255,.42);border-radius:50%;color:#fff;background:rgba(255,255,255,.05);
-  transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease)}
-.cta-soc svg{width:19px;height:19px;fill:currentColor;display:block}
-.cta-soc:hover{transform:translateY(-2px)}
-.cta-soc.cta-li:hover{background:#0A66C2;border-color:#0A66C2}
-.cta-soc.cta-ig:hover{background:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);border-color:transparent}
-
-/* ── Contact rail card: quiet social row under “Or email …” ── */
-.rail-social{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.rail-soc{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;
-  border:1px solid var(--line);border-radius:50%;color:var(--navy);
-  transition:color .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease)}
-.rail-soc svg{width:16px;height:16px;fill:currentColor;display:block}
-.rail-soc.rail-li:hover{color:#fff;background:#0A66C2;border-color:#0A66C2}
-.rail-soc.rail-ig:hover{color:#fff;background:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);border-color:transparent}
-
-/* focus parity with the rest of the site */
-.nav-soc:focus-visible,.cta-soc:focus-visible,.rail-soc:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
-.nav:not(.solid) .nav-soc:focus-visible,.cta-soc:focus-visible{outline-color:#fff}
-
-/* inside the fullscreen burger menu the icons become a centered row of large tap targets */
-@media(max-width:1120px){
-  .nav-social{border-left:0;padding-left:0;margin-left:0;justify-content:center;gap:18px;margin-top:8px}
-  .nav-links .nav-soc{padding:10px}   /* glyph + padding keeps a ~46px tap target */
-  .nav-links .nav-soc svg{width:26px;height:26px}
-  .nav-links a.nav-li{color:#5AA3EC !important}   /* the overlay forces links white; LinkedIn keeps its blue */
-}
-
-
-/* ── Simple gallery pages (Alma Verde, Saint Paul) — client fills in details via the CMS ── */
-.simple-gallery-wrap{padding:10px 8vw 80px;max-width:1500px}
-.simple-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:18px}
-.simple-gallery img{width:100%;height:100%;object-fit:cover;border-radius:3px;display:block;border:1px solid var(--line)}
-
-
-/* ── Residence collections: cards link to their own floor-plan page ── */
-.plans-page .res-card{position:relative;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
-.plans-page .res-card:hover{transform:translateY(-4px);box-shadow:0 26px 54px -34px rgba(23,34,74,.4)}
-.res-cover{position:absolute;inset:0;z-index:2}
-.res-kicker{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:6px}
-.res-link{display:inline-block;margin-top:18px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:3px}
-
-/* floor-plan figures on collection pages */
-.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(430px,100%),1fr));gap:22px;margin-top:26px}
-.plan-fig{background:#fff;border:1px solid var(--line);border-radius:3px;padding:14px;margin:0}
-.plan-fig img{width:100%;display:block;border-radius:2px}
-.plan-fig figcaption{padding:12px 4px 2px;font-size:.86rem;color:var(--ink)}
-.plan-fig figcaption b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.15rem;color:var(--navy);margin-bottom:2px}
-
-
-/* ── coming-soon cards are visibly inert ── */
-.pcard.soon{cursor:default}
-.pcard.soon:hover{transform:none;box-shadow:none}
-.pcard.soon .pcard-media img{filter:grayscale(.55) brightness(.72)}
-.pcard.soon:hover .pcard-media img{transform:none}
-.pcard.soon .pcard-body{opacity:.72}
-
-/* ── collection pages: apartments grouped by tier ── */
-.tier{margin-top:36px}
-.tier-title{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;
-  font-family:var(--font-display);font-weight:400;font-size:1.5rem;color:var(--navy);
-  border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px}
-.tier-title span{font-size:.92rem;color:var(--ink);font-family:inherit;letter-spacing:.02em}
-
-/* ── floor-plan lightbox with close + download ── */
-.plan-fig a{cursor:zoom-in;display:block}
-.plan-lb{position:fixed;inset:0;z-index:200;background:rgba(12,17,32,.9);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:4vh 4vw}
-.plan-lb.on{display:flex}
-.plan-lb img{max-width:min(1200px,92vw);max-height:80vh;background:#fff;border-radius:3px;display:block}
-.plan-lb-bar{display:flex;justify-content:center}
-.plan-lb-dl{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.55);padding:9px 16px;border-radius:2px;transition:background .3s var(--ease),color .3s var(--ease)}
-.plan-lb-dl:hover{background:#fff;color:var(--navy)}
-.plan-lb-x{position:absolute;top:16px;right:22px;background:none;border:0;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;padding:4px}
-
-
-/* ── coming-soon cards: inert label keeps card heights aligned ── */
-.soon-note{display:inline-block;margin-top:auto;padding-bottom:3px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);border-bottom:1px solid var(--line);align-self:flex-start;cursor:default}
-
-/* ── collection pages: one white card per apartment, plans inside ── */
-.plan-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:30px 34px 34px;margin-top:26px}
-.plan-card-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px}
-.plan-card-head h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;color:var(--navy)}
-.plan-card-area{font-family:var(--font-display);font-size:1.05rem;color:var(--navy);letter-spacing:.03em}
-.plan-card-sub{margin-top:6px;font-size:.95rem;color:var(--ink);max-width:64ch}
-.plan-viewer{position:relative;margin-top:20px}
-.plan-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:0}
-.plan-track::-webkit-scrollbar{display:none}
-.plan-pane{flex:0 0 100%;scroll-snap-align:start;margin:0;padding:0;box-sizing:border-box}
-.plan-pane figcaption{display:block;padding:0 2px 10px;max-width:620px;margin:0 auto;width:100%}
-.plan-pane figcaption b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.15rem;color:var(--navy)}
-.plan-pane figcaption span{display:block;margin-top:2px;font-size:.88rem;color:var(--ink)}
-.plan-pane img{width:100%;max-width:620px;max-height:380px;object-fit:contain;display:block;margin:0 auto}
-.pv-prev,.pv-next{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--navy);font-size:1.5rem;line-height:1;cursor:pointer;z-index:2;transition:background .3s var(--ease)}
-.pv-prev:hover,.pv-next:hover{background:var(--navy);color:#fff}
-.pv-prev{left:-14px}
-.pv-next{right:-14px}
-@media(max-width:700px){.plan-card{padding:20px 16px 24px}.pv-prev{left:6px}.pv-next{right:6px}}
-
-
-/* ── plans invite the click: quiet expand badge + soft hover ── */
-.plan-open{position:relative;display:block;width:fit-content;margin:0 auto}
-.plan-open img{transition:opacity .35s var(--ease)}
-.plan-open::after{content:"";position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;
-  background:rgba(23,34,74,.78) url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/16px 16px no-repeat;
-  opacity:1;transition:background-color .3s var(--ease)}
-.plan-open:hover img{opacity:.93}
-.plan-open:hover::after{background-color:rgba(23,34,74,.95)}
-
-
-/* ── horizon cards carry their project photo, heavily faded under the navy ── */
-.horizon-card.hc-photo{position:relative;overflow:hidden;background-size:cover;background-position:center}
-.horizon-card.hc-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(23,34,74,.86) 0%,rgba(23,34,74,.8) 55%,rgba(30,45,96,.84) 100%)}
-.horizon-card.hc-photo > *{position:relative;z-index:1}
-
-/* ── homepage CTA band sits on the brand navy ── */
-.cta-band{background:var(--navy)}
-.cta-band > img,.cta-band > video{display:none}
-
-/* ── contact page: quieter sales offices ── */
-.offices-compact .dest-details{font-size:.88rem;gap:6px}
-.offices-compact .dest-row{gap:20px}
-
-/* ── sold-project block tabs: rectangular, in the site's language ── */
-
-/* sold-project block tabs: rectangular, on-brand */
-.room-tabs button{border-radius:2px;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:9px 16px}
-.room-tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
-
-/* inert horizon cards: no hover motion */
-.horizon-card.hc-photo{cursor:default}
-.horizon-card.hc-photo:hover{transform:none;box-shadow:none}
-
-
-/* ── mobile fit fixes (no desktop impact) ── */
-@media(max-width:900px){
-  .loc-illustration img{max-width:100%;height:auto}
-}
-@media(max-width:380px){
-  .proj-grid{grid-template-columns:1fr}
-}
-
-/* stacked with-rail columns must be allowed to shrink below content min-width */
-@media(max-width:1020px){.with-rail > *{min-width:0}}
-
-
-/* ── mobile polish pass (≤900/720px only — desktop untouched) ── */
-@media(max-width:900px){
-  /* the section nav scrolls sideways: show a fade so it's obviously swipeable */
-  .quick-nav-inner{-webkit-overflow-scrolling:touch;padding-right:64px}
-  .quick-nav::after{content:"";position:absolute;top:0;right:0;bottom:0;width:64px;pointer-events:none;
-    background:linear-gradient(90deg,rgba(242,239,233,0),rgba(242,239,233,.97) 72%)}
-  .quick-nav a{padding:13px 11px;font-size:.64rem;letter-spacing:.16em}
-}
-@media(max-width:720px){
-  .page{padding-top:116px}
-  .page-head{padding-bottom:28px}
-  /* sales offices — homepage and contact page: tighter type, less air */
-  .destinations{padding-top:48px;padding-bottom:48px}
-  .dest-row{gap:22px}
-  .dest{gap:4px}
-  .dest-city{font-size:1.05rem !important;letter-spacing:.04em}
-  .dest-details{font-size:.84rem;gap:3px;line-height:1.45}
-  #offices .dest-row{gap:6px 24px}
-  #offices .dest-city{font-size:1rem}
-  #offices .dest-country{font-size:.58rem;padding-bottom:5px}
-  #offices .dest-details{margin-top:5px;font-size:.84rem;gap:3px}
-  .offices-compact .dest{border-top:1px solid var(--line);padding-top:12px}
-  .offices-compact .dest:first-child{border-top:0;padding-top:0}
-  .offices-compact{margin-top:4px}
-  /* contact rail breathes on a phone without towering */
-  .contact-rail{padding:26px 20px 30px}
-  /* maps don't need to be square-tall on a phone */
-  .map-wrap iframe{height:300px}
-}
-
-
-/* ── hub tables: open a specific floor plan straight from the row ── */
-.illu-cap{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
-.plans-page .res-units .ru{flex-wrap:wrap}
-.ru-view{position:relative;z-index:3;flex:none;font-family:inherit;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);background:none;border:0;border-bottom:1px solid var(--navy);padding:0 0 2px;cursor:pointer;white-space:nowrap;transition:opacity .3s var(--ease)}
-.ru-view:hover{opacity:.65}
-@media(max-width:560px){.plans-page .res-units .ru b{white-space:normal;text-align:left}}
-
-/* ── lightbox: multi-plan navigation ── */
-.plan-lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:rgba(12,17,32,.35);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;z-index:2;transition:background .3s var(--ease)}
-.plan-lb-nav:hover{background:rgba(255,255,255,.18)}
-.plan-lb-prev{left:18px}
-.plan-lb-next{right:18px}
-.plan-lb-nav[hidden]{display:none}
-.plan-lb-meta{display:flex;align-items:baseline;gap:12px;color:#fff;min-height:1.2em}
-.plan-lb-cap{font-family:var(--font-display);font-size:1.05rem;letter-spacing:.04em}
-.plan-lb-count{font-size:.72rem;letter-spacing:.22em;opacity:.7}
-
-
-/* ── Louayzeh hub: interactive collection map ── */
-.blocks-map{position:relative;display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:10px}
-.blocks-map img{display:block;width:100%}
-.blocks-map svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.bm-dim{fill:rgba(12,17,32,0);transition:fill .45s var(--ease);pointer-events:none}
-.blocks-map.active .bm-dim{fill:rgba(12,17,32,.55)}
-.bm-g{cursor:pointer;outline:none}
-.bm-blk{fill:rgba(255,255,255,0);stroke:rgba(255,255,255,0);stroke-width:2.5;transition:fill .35s var(--ease),stroke .35s var(--ease)}
-.bm-g.lit .bm-blk{fill:rgba(255,255,255,.28);stroke:#fff;stroke-width:3;filter:drop-shadow(0 0 16px rgba(255,255,255,.75))}
-.bm-g:focus-visible .bm-blk{stroke:#fff;stroke-dasharray:6 5}
-.bm-label{position:absolute;bottom:22px;left:50%;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:rgba(23,34,74,.95);color:#fff;padding:13px 30px 14px;border-radius:2px;text-align:center;box-shadow:0 20px 50px -16px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s var(--ease)}
-.blocks-map.active .bm-label{pointer-events:auto}
-.bm-label:hover{background:rgba(30,45,96,.98)}
-.bm-label:hover i{transform:translateX(4px)}
-.bm-label i{display:inline-block;font-style:normal;transition:transform .3s var(--ease)}
-.blocks-map.active .bm-label{opacity:1;transform:translate(-50%,0)}
-.bm-label b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.2rem;letter-spacing:.05em}
-.bm-label span{display:block;margin-top:3px;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;opacity:.72}
-@media(max-width:700px){.bm-label{padding:9px 16px 10px}.bm-label b{font-size:.98rem}.bm-label span{display:none}}
-
-
-/* instruction chip lives on the image itself */
-.vm-hint{position:absolute;top:16px;left:16px;z-index:2;background:rgba(23,34,74,.82);color:#fff;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;padding:9px 16px;border-radius:2px;pointer-events:none;backdrop-filter:blur(4px);transition:opacity .4s var(--ease)}
-.blocks-map.active .vm-hint{opacity:0}
-@media(max-width:700px){.vm-hint{font-size:.56rem;letter-spacing:.16em;padding:7px 11px;top:10px;left:10px}}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font-body);font-weight:300;color:var(--ink);background:var(--stone);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  
+  /* ── Preloader — logo draws in, fills, then flies into the hero lockup ── */
+  .preloader{position:fixed;inset:0;background:var(--stone);display:flex;align-items:center;justify-content:center;z-index:100;transition:background 1s var(--ease),opacity .5s var(--ease),visibility .5s}
+  .preloader.lift{background:rgba(242,239,233,0)}   /* curtain melts away, hero shows behind the flying mark */
+  .preloader.done{opacity:0;visibility:hidden}
+  .skip-intro .preloader{display:none}
+  .skip-intro .hero-mark,.skip-intro .hero-title span,.skip-intro .hero-slogan,.skip-intro .hero-cta{opacity:1;animation:none !important}
+  .preloader-mark{will-change:transform;transition:transform .7s var(--ease);filter:drop-shadow(0 2px 10px rgba(0,0,0,0))}
+  .preloader-mark .wedge{fill:rgba(255,255,255,0);stroke-width:3;stroke-dasharray:720;stroke-dashoffset:720;animation:draw .85s cubic-bezier(.5,.05,.35,1) forwards;transition:fill .45s ease,stroke-opacity .45s ease}
+  .preloader-mark .navy{stroke:var(--navy)}
+  .preloader-mark .gray{stroke:var(--gray);animation-delay:.2s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  /* step 2: ink fills the outlines */
+  .preloader-mark.filled .navy{fill:var(--navy);stroke-opacity:0}
+  .preloader-mark.filled .gray{fill:var(--gray);stroke-opacity:0}
+  /* step 3: while flying onto the photograph, the mark keeps its brand colors and gains a soft glow */
+  .preloader-mark.in-flight{filter:drop-shadow(0 1px 3px rgba(0,0,0,.45)) drop-shadow(0 0 22px rgba(255,255,255,.35))}
+  
+  /* ── Brand lockup (exact logo colors) ──────── */
+  .nav-brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{width:21px;height:32px}
+  .brand-mark .navy{fill:var(--navy)}
+  .brand-mark .gray{fill:var(--gray)}
+  .brand-word{font-family:var(--font-body);font-size:1.05rem;letter-spacing:.14em;font-weight:400;color:var(--gray)}
+  .brand-word b{color:var(--navy);font-weight:600}
+  
+  /* ── Navbar ────────────────────────────────── */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:20px 5vw;transition:background .5s,box-shadow .5s,padding .5s}
+  .nav.solid{background:rgba(242,239,233,.94);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line);padding:12px 5vw}
+  /* over photography, the lockup reverses to white/gray for legibility */
+  .nav:not(.solid) .brand-word{color:#C9CCD2}
+  .nav:not(.solid) .brand-word b{color:#fff}
+  .nav:not(.solid) .brand-mark .navy{fill:#fff}
+  .nav:not(.solid) .brand-mark .gray{fill:#C9CCD2}
+  .nav-links{display:flex;align-items:center;gap:34px;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase}
+  .nav-links a{position:relative;padding:4px 0;color:var(--navy)}
+  .nav:not(.solid) .nav-links a{color:#EDEBE5}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
+  .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+  /* contact pair — Lebanon home office + WhatsApp, grouped tighter than the nav links */
+  .nav-contact{display:flex;align-items:center;gap:10px}
+  .nav-call{display:inline-flex;align-items:center;gap:8px;border:1px solid currentColor;padding:8px 15px !important;border-radius:2px;letter-spacing:.1em;white-space:nowrap;transition:color .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease)}
+  .nav-call::after{display:none}
+  .nav-call svg{width:14px;height:14px;fill:currentColor;flex:none}
+  .nav-wa svg{width:15px;height:15px}
+  .nav.solid .nav-links .nav-tel:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+  .nav:not(.solid) .nav-links .nav-tel:hover{background:rgba(255,255,255,.16);border-color:#fff;color:#fff}
+  .nav .nav-links .nav-wa:hover{color:#25D366;border-color:#25D366}
+  .nav-burger{display:none;background:none;border:0;width:34px;height:26px;position:relative;cursor:pointer}
+  .nav-burger span{position:absolute;left:0;width:100%;height:1.5px;background:#fff;transition:.4s var(--ease)}
+  .nav.solid .nav-burger span{background:var(--navy)}
+  .nav-burger span:first-child{top:8px}.nav-burger span:last-child{top:17px}
+  .nav-burger.open span:first-child{top:12px;transform:rotate(45deg)}
+  .nav-burger.open span:last-child{top:12px;transform:rotate(-45deg)}
+  
+  /* ── Hero ──────────────────────────────────── */
+  /* Restored to the original treatment: dark night base, full-opacity video layer,
+     dark scrim. The footage fades toward night, keeping its own dynamics intact. */
+  .hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--night)}
+  .hero-slides{position:absolute;inset:0;z-index:1}   /* all video layers stay below the scrim & content */
+  .slide{position:absolute;inset:0;opacity:0;z-index:0;pointer-events:none;transition:opacity 1.1s cubic-bezier(.45,.05,.35,.95)}
+  .slide.is-active{opacity:1;z-index:2}          /* incoming: dissolves in on top of the outgoing scene */
+  .slide.is-under{opacity:1;z-index:1;transition:none}  /* outgoing: stays fully visible beneath */
+  /* ambient background videos: quiet, dimmed, the title owns the stage.
+     Brightness sits a touch above the original .72 — lighter than before, but far
+     below the 1.15 lift that was tried and rolled back. */
+  .slide-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.88) saturate(.85)}
+  
+  .hero-scrim{position:absolute;inset:0;z-index:3;background:
+    linear-gradient(180deg,rgba(12,17,32,.68) 0%,rgba(12,17,32,.46) 30%,rgba(12,17,32,.48) 62%,rgba(12,17,32,.82) 100%)}
+  
+  .hero-content{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:0 6vw}
+  .hero-mark{width:62px;height:96px;margin-bottom:30px;opacity:0;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45)) drop-shadow(0 0 22px rgba(255,255,255,.35))}
+  .hero-mark .navy{fill:var(--navy)}.hero-mark .gray{fill:var(--gray)}
+  .hero.ready .hero-mark{opacity:1}   /* revealed the instant the flying mark lands on it */
+  /* one crisp shadow for the whole lockup — no glow, no per-word special casing */
+  .hero-title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.75rem,7.6vw,5.8rem);letter-spacing:.14em;line-height:1.05;display:flex;gap:.16em;flex-wrap:wrap;justify-content:center;text-shadow:0 1px 3px rgba(4,8,18,.78),0 4px 20px rgba(4,8,18,.6),0 12px 48px rgba(4,8,18,.35)}
+  .hero-title span{opacity:0}
+  .hero.ready .hero-title span{animation:fadeUp 1.2s var(--ease) forwards}
+  .hero.ready .hero-title .w1{animation-delay:.05s}
+  /* no outline — PRIDE is plain brand navy, separated only by the title's drop shadow */
+  .hero-title .w1{color:var(--navy);text-shadow:0 1px 3px rgba(0,0,0,.35),0 0 26px rgba(255,255,255,.55),0 0 60px rgba(255,255,255,.25)}
+  .hero-title .w2{color:#fff}
+  .hero.ready .hero-title .w2{animation-delay:.25s}
+  .hero-slogan{margin-top:24px;font-size:clamp(1rem,1.95vw,1.32rem);letter-spacing:.4em;text-transform:uppercase;color:#FFFFFF;font-weight:400;text-shadow:0 1px 3px rgba(4,8,18,.82),0 3px 18px rgba(4,8,18,.68);opacity:0}
+  .hero.ready .hero-slogan{animation:fadeUp 1.2s var(--ease) .5s forwards}
+  .hero-cta{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;opacity:0}
+  .hero.ready .hero-cta{animation:fadeUp 1.2s var(--ease) .8s forwards}
+  /* .hero-cta is reused in the CTA band, where .reveal/.reveal.in controls its visibility */
+  .cta-band .hero-cta{opacity:0;transform:translateY(34px)}
+  .cta-band .hero-cta.in{opacity:1;transform:none}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  
+  .btn{display:inline-block;padding:14px 32px;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;border-radius:2px;transition:.45s var(--ease)}
+  .btn-ghost{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.55);color:#fff;backdrop-filter:blur(6px)}
+  .btn-ghost:hover{background:#fff;color:var(--navy)}
+  .btn-line{border:1px solid rgba(255,255,255,.4);color:#EDEBE5}
+  .btn-line:hover{border-color:#fff;color:#fff}
+  .btn-white{background:#fff;color:var(--navy);border:1px solid #fff}
+  .btn-white:hover{background:transparent;color:#fff}
+  .btn-line-navy{border:1px solid var(--navy);color:var(--navy)}
+  .btn-line-navy:hover{background:var(--navy);color:#fff}
+  /* The hero backdrop is light now, so the translucent-white buttons built for a dark
+     hero all but disappeared. Inside .hero they get a dark scrim and a firmer edge;
+     the CTA band keeps the original treatment. */
+  .hero .btn-ghost{background:rgba(10,15,28,.34);border-color:rgba(255,255,255,.82);color:#fff}
+  .hero .btn-ghost:hover{background:#fff;border-color:#fff;color:var(--navy)}
+  .hero .btn-line{background:rgba(10,15,28,.22);border-color:rgba(255,255,255,.7);color:#fff}
+  .hero .btn-line:hover{background:rgba(10,15,28,.46);border-color:#fff;color:#fff}
+  
+  /* buttons that carry a leading glyph (call / WhatsApp) */
+  .btn-icon{display:inline-flex;align-items:center;justify-content:center;gap:11px}
+  .btn-icon svg{width:16px;height:16px;fill:currentColor;flex:none}
+  /* keyboard focus is visible on every contact affordance */
+  .btn:focus-visible,.nav-call:focus-visible,.soc:focus-visible,.dest-details a:focus-visible,
+  .rail-call:focus-visible,.rail-wa:focus-visible,.action-bar a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+  
+  /* slide rail + caption */
+  .hero-rail{position:absolute;right:4vw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:18px;z-index:5}
+  .rail-dot{width:2px;height:34px;background:rgba(255,255,255,.28);position:relative;cursor:pointer;transition:.4s}
+  .rail-dot::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleY(0);transform-origin:top;transition:transform .4s}
+  .rail-dot.on::after{transform:scaleY(1);transition:transform 3.2s linear}
+  /* minimal caption: no pill — white text carried by a soft shadow and a hairline bar */
+  .hero-caption{position:absolute;left:5vw;bottom:44px;z-index:4;color:#fff;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,.7);padding-left:13px;text-shadow:0 1px 2px rgba(8,12,24,.6),0 2px 14px rgba(8,12,24,.45);transition:opacity .6s}
+  .hero-caption.fading{opacity:0}
+  
+  /* ── Scroll reveal ─────────────────────────── */
+  .statement .wd{display:inline-block;opacity:0;transform:translateY(.45em);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .statement.in .wd{opacity:1;transform:none}
+  
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  
+  /* ── Sections ──────────────────────────────── */
+  section{padding:96px 8vw}
+  .eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin-bottom:22px}
+  .eyebrow-strong{font-size:.8rem;color:var(--navy);font-weight:600;letter-spacing:.34em}
+  .section-title{font-family:var(--font-display);font-size:clamp(2rem,4.4vw,3.2rem);font-weight:400;margin-bottom:60px;color:var(--navy)}
+  
+  /* compact intro band: the statement runs wider (52ch) so it sets in two lines
+     instead of three, and the vertical rhythm is tightened throughout */
+  .manifesto{text-align:center;max-width:1100px;margin:0 auto;padding-top:30px;padding-bottom:30px}
+  .manifesto .eyebrow{margin-bottom:12px}
+  .statement{font-family:var(--font-display);font-weight:400;font-size:clamp(1.25rem,2.4vw,1.85rem);line-height:1.34;max-width:52ch;margin:0 auto}
+  .statement em{font-style:italic;color:var(--navy)}
+  .fact-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
+  .fact{display:flex;flex-direction:column;gap:2px}
+  .fact-k{font-family:var(--font-display);font-size:1.6rem;line-height:1.15;color:var(--navy)}
+  .fact-l{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+  
+  /* projects */
+  .projects{background:#fff}
+  .project{display:grid;grid-template-columns:1.15fr 1fr;gap:60px;align-items:center;margin-bottom:64px}
+  .project.flip .project-media{order:2}
+  .project-media{position:relative;display:block;aspect-ratio:16/10;background-size:cover;background-position:center;overflow:hidden;border-radius:2px;transition:transform .8s var(--ease)}
+  .project-media::after{content:"";position:absolute;inset:0;background:rgba(36,66,138,.10);transition:.6s}
+  .project-media:hover{transform:scale(1.015)}
+  .project-media:hover::after{background:transparent}
+  .project-status{position:absolute;top:18px;left:18px;background:var(--navy);color:#fff;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;padding:8px 14px;z-index:2}
+  .project-loc{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gray)}
+  .project-info h3{font-family:var(--font-display);font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:400;margin:14px 0 18px;color:var(--navy)}
+  .project-info p{color:var(--ink);max-width:52ch}
+  .text-link{display:inline-block;margin-top:26px;font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:5px;transition:.4s}
+  .text-link:hover{letter-spacing:.36em}
+  .sold-strip{border-top:1px solid var(--line);padding-top:44px;display:flex;flex-wrap:wrap;align-items:baseline;gap:26px}
+  .sold-strip .eyebrow{margin:0}
+  .sold-items{font-family:var(--font-display);font-size:1.15rem;color:var(--gray);display:flex;gap:18px;flex-wrap:wrap}
+  .sold-items i{font-style:normal;color:var(--stone-2)}
+  
+  /* sales offices */
+  .destinations{text-align:center;background:var(--stone);padding-top:70px;padding-bottom:70px}
+  .destinations .section-title{margin-bottom:40px}
+  .dest-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:34px;max-width:1150px;margin:0 auto}
+  
+  /* ── Homepage sales offices ─────────────────────────────────────────────────
+     id-scoped so /contact/ keeps its own left-aligned list.
+     Sits on white, continuing the section above it with only a hairline between:
+     the old beige band was a third background colour inside a short vertical run,
+     which is what made this read as a leftover strip rather than a section.
+     Each office is one centred column — city, country, a short rule, the address,
+     then the three contact lines. */
+  #offices{background:#fff;border-top:1px solid var(--line);padding-top:20px;padding-bottom:24px}
+  #offices .section-title{font-size:1.25rem;margin-bottom:12px}
+  #offices .dest-row{gap:12px 30px;max-width:980px}
+  #offices .dest{display:flex;flex-direction:column;align-items:center;gap:0}
+  #offices .dest-city{font-size:1.15rem;line-height:1.15}
+  /* country label gets its own line — baseline-gluing it beside the city read as an
+     accident — and carries the short centred rule that separates head from detail */
+  #offices .dest-country{position:relative;margin-top:2px;padding-bottom:8px;
+    font-size:.58rem;letter-spacing:.28em}
+  #offices .dest-country::after{content:"";position:absolute;left:50%;bottom:0;
+    transform:translateX(-50%);width:22px;height:1px;background:var(--line)}
+  #offices .dest-details{margin-top:7px;max-width:290px;display:flex;flex-direction:column;
+    align-items:center;gap:2px;font-size:.8rem;line-height:1.35}
+  /* every address is exactly two lines (Cannes carries an explicit break),
+     so the 2-line floor keeps all three contact rows on one shared baseline */
+  #offices .dest-addr{color:var(--ink);text-wrap:balance;min-height:2.7em;margin-bottom:2px}
+  #offices .dest-details a{gap:9px;margin-top:0}
+  #offices .dest-details a svg{width:14px;height:14px}
+  .dest{display:flex;flex-direction:column;gap:4px;align-items:center}
+  .dest-city{font-family:var(--font-display);font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--navy)}
+  .dest-country{font-size:.74rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray)}
+  .dest-details{font-style:normal;margin-top:10px;font-size:.92rem;line-height:1.55;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:2px}
+  /* every contact line carries its own glyph so the block scans in one pass */
+  .dest-details a{display:inline-flex;align-items:center;gap:8px}
+  .dest-details a svg{width:14px;height:14px;fill:currentColor;flex:none}
+  .dest-tel{margin-top:8px;color:var(--navy);letter-spacing:.06em}
+  .dest-wa{color:var(--navy);letter-spacing:.06em}
+  .dest-wa:hover{color:#1DA851}
+  .dest-tel:hover,.dest-mail:hover,.dest-wa:hover{text-decoration:underline}
+  .dest-mail{color:var(--gray);margin-top:4px}
+  
+  /* CTA — navy brand band.
+     Was a flat two-stop navy with the copy floating in a lot of dead space. Now it has
+     an overhead light source, hairline rules top and bottom to seat it against the
+     neighbouring sections, a measured content column, and a button row whose three
+     items share one height and one baseline. */
+  /* pure brand navy, flat — the same #24428A used everywhere else on the site */
+  .cta-band{position:relative;overflow:hidden;text-align:center;color:#fff;
+    padding-top:76px;padding-bottom:80px;background:var(--navy)}
+  /* wide enough to keep the three CTAs on one row at desktop widths */
+  .cta-inner{position:relative;z-index:1;max-width:880px;margin:0 auto}
+  .cta-band .eyebrow{color:#A7BCE7;margin-bottom:13px}
+  .cta-band h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.7rem,3.3vw,2.5rem);line-height:1.16;margin-bottom:12px;text-wrap:balance}
+  .cta-band p{color:#C4D0EC;max-width:54ch;margin:0 auto;font-size:.94rem;line-height:1.6;text-wrap:balance}
+  .cta-band .hero-cta{margin-top:30px;gap:14px}
+  /* one height, one baseline, no odd-sized odd-one-out */
+  .cta-band .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px}
+  .cta-band .btn-white{box-shadow:0 10px 26px -14px rgba(0,0,0,.5)}
+  .cta-band .btn-line{border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.05)}
+  .cta-band .btn-line:hover{background:rgba(255,255,255,.14);border-color:#fff}
+  
+  /* WhatsApp always reads green — glyph at rest, full fill on hover */
+  .btn-wa{border-color:rgba(37,211,102,.5) !important}
+  .btn-wa svg{fill:#25D366}
+  .btn-wa:hover{background:#25D366 !important;border-color:#25D366 !important;color:#fff}
+  .btn-wa:hover svg{fill:#fff}
+  
+  /* footer — light, brand lockup in exact colors */
+  .footer{background:#fff;border-top:1px solid var(--line);padding:54px 8vw 34px}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px}
+  .footer-social{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .footer-social{gap:26px}
+  .soc{display:flex;align-items:center;gap:10px;color:var(--navy);transition:.35s var(--ease)}
+  /* fill:currentColor is the fallback; the branded icons carry their own fill
+     attributes per path, which win over this inherited value */
+  .soc svg{width:26px;height:26px;fill:currentColor;display:block}
+  .soc-mail svg{width:26px;height:20px}   /* Gmail mark is 4:3, not square */
+  .soc span{font-size:.9rem;letter-spacing:.06em;color:var(--ink)}
+  .soc:hover{transform:translateY(-2px);opacity:.78}
+  /* a hairline ties the legal line to the row above instead of leaving it floating */
+  .footer-legal{margin-top:36px;padding-top:26px;border-top:1px solid var(--line);
+    font-size:.74rem;letter-spacing:.14em;color:var(--gray);text-align:center}
+  
+  /* ── Responsive ────────────────────────────── */
+  /* between 1121 and 1340 the five links plus contact pills and social glyphs are still all
+     on one line, so the tracking and padding tighten instead of wrapping */
+  @media(min-width:1121px) and (max-width:1340px){
+    .nav{padding-left:3.5vw;padding-right:3.5vw}
+    .nav.solid{padding-left:3.5vw;padding-right:3.5vw}
+    .nav-links{gap:22px;font-size:.76rem;letter-spacing:.16em}
+    .nav-contact{gap:8px}
+    .nav-call{padding:7px 12px !important;letter-spacing:.06em}
+  }
+  /* the full nav needs ~1120px to breathe; below that it becomes the burger menu */
+  @media(max-width:1120px){
+    /* the solid nav's backdrop-filter must not become the containing block for the
+       fixed fullscreen menu, or the overlay collapses into the 64px bar */
+    .nav,.nav.solid{-webkit-backdrop-filter:none;backdrop-filter:none}
+    .nav-links{position:fixed;inset:0;background:rgba(12,17,32,.97);flex-direction:column;justify-content:center;gap:36px;font-size:1rem;transform:translateY(-100%);visibility:hidden;transition:transform .6s var(--ease),visibility 0s .6s}
+    .nav-links.open{transform:none;visibility:visible;transition:transform .6s var(--ease)}
+    .nav-links a{color:#fff !important}
+    /* stretch so both stacked pills share the width of the wider number */
+    .nav-contact{flex-direction:column;align-items:stretch;gap:20px}
+    .nav-links .nav-call{padding:12px 22px !important;border-color:rgba(255,255,255,.45);letter-spacing:.08em;justify-content:center}
+    .nav-burger{display:block;z-index:60}
+  }
+  @media(max-width:900px){
+    .project{grid-template-columns:1fr;gap:30px;margin-bottom:70px}
+    .project.flip .project-media{order:0}
+    .hero-rail{display:none}
+    section{padding:80px 7vw}
+    .hero-caption{bottom:34px}
+    .footer-row{flex-direction:column;align-items:center}
+    .soc-mail span{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    .slide.fx-lights .lit{opacity:1}
+    .reveal{opacity:1;transform:none}
+  }
+  
+  /* ═══════════════════════════════════════════
+     PROJECT PAGES — index, finder, detail
+     ═══════════════════════════════════════════ */
+  .page{padding-top:150px}
+  .page-head{padding:0 8vw 40px;max-width:1500px}
+  .crumbs{font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+  .crumbs a:hover{color:var(--navy)}
+  .page-title{font-family:var(--font-display);font-weight:400;font-size:clamp(2.2rem,5vw,3.6rem);color:var(--navy)}
+  .page-intro{max-width:60ch;margin-top:14px;color:var(--ink)}
+  
+  /* layout with persistent contact rail */
+  .with-rail{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:54px;padding:0 5vw 80px;max-width:1500px;margin:0 auto;align-items:start}
+  .with-rail section{padding:0}   /* neutralize the global homepage section padding */
+  .rail-side{position:sticky;top:96px}
+  
+  /* contact rail card */
+  .contact-rail{background:#fff;border:1px solid var(--line);border-radius:3px;padding:26px;box-shadow:0 18px 50px -30px rgba(23,34,74,.35)}
+  .contact-rail h3{font-family:var(--font-display);font-weight:400;font-size:1.3rem;color:var(--navy);margin-bottom:4px}
+  .contact-rail .rail-sub{font-size:.82rem;color:var(--gray);margin-bottom:18px}
+  .rail-call{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;padding:13px;border-radius:2px;font-size:.95rem;letter-spacing:.08em;transition:.35s}
+  .rail-call:hover{background:#1B336E}
+  .rail-wa{display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);color:var(--navy);padding:11px;border-radius:2px;font-size:.82rem;letter-spacing:.12em;margin-top:10px;transition:.35s}
+  .rail-wa:hover{border-color:#25D366;color:#1DA851}
+  .rail-call svg,.rail-wa svg{width:15px;height:15px;fill:currentColor;flex:none}
+  .rail-form{margin-top:20px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:20px}
+  .rail-form label{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray)}
+  .rail-form input,.rail-form select,.rail-form textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:2px;font-family:var(--font-body);font-size:.9rem;color:var(--ink);background:var(--stone);outline:none;transition:border .3s}
+  .rail-form input:focus,.rail-form select:focus,.rail-form textarea:focus{border-color:var(--navy)}
+  .rail-form textarea{resize:vertical;min-height:96px}
+  .rail-form button{background:var(--navy);color:#fff;border:0;padding:13px;border-radius:2px;font-family:var(--font-body);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.35s}
+  .rail-form button:disabled{opacity:.55;cursor:default}
+  .rail-form button:hover{background:#1B336E}
+  .rail-success{display:none;text-align:center;padding:18px 6px;color:var(--navy);font-size:.92rem;line-height:1.5}
+  .rail-error{display:none;text-align:center;padding-top:10px;color:#9A3B2E;font-size:.85rem;line-height:1.5}
+  .rail-note{font-size:.7rem;color:var(--gray);text-align:center;margin-top:10px}
+  
+  /* mobile action bar */
+  .action-bar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);padding:10px 14px;gap:10px;box-shadow:0 -10px 30px -18px rgba(23,34,74,.4)}
+  .action-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:12px 6px;border-radius:2px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+  .action-bar a svg{width:14px;height:14px;fill:currentColor;flex:none}
+  .ab-call{background:var(--navy);color:#fff}
+  .ab-wa{border:1px solid var(--line);color:var(--navy)}
+  
+  /* project cards grid */
+  .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:34px}
+  .pcard{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden;display:flex;flex-direction:column;transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+  /* the whole card is one click target; specific inner links sit above the cover */
+  .pcard-cover{position:absolute;inset:0;z-index:2}
+  .pcard-body h3 a,.pcard .text-link{position:relative;z-index:3}
+  .pcard:hover{transform:translateY(-6px);box-shadow:0 30px 60px -34px rgba(23,34,74,.45)}
+  .pcard-media{position:relative;aspect-ratio:16/10;background:var(--stone-2) center/cover no-repeat;overflow:hidden}
+  .pcard-media .ph-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
+  .pcard-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .pcard:hover .pcard-media img{transform:scale(1.05)}
+  .pcard-badge{position:absolute;top:14px;left:14px;background:var(--navy);color:#fff;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;padding:7px 12px;z-index:2}
+  .pcard-badge.sold{background:#5C616B}
+  .pcard-badge.delivered-not-sold{background:#2F6B50}   /* "Delivered but not Sold Out" — reserved for the CMS */
+  .pcard-body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .pcard-loc{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
+  .pcard-body h3{font-family:var(--font-display);font-weight:400;font-size:1.5rem;color:var(--navy)}
+  .pcard-body p{font-size:.92rem;color:var(--ink);flex:1}
+  .pcard .text-link{margin-top:8px}
+  
+  /* unit finder */
+  .finder{margin-top:80px}
+  .finder-sub{font-size:.92rem;color:var(--gray);margin-bottom:22px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  /* one quiet panel: self-labelling selects, no shouting caps labels above each field */
+  .finder-bar{background:#fff;border:1px solid var(--line);border-radius:3px;padding:16px;margin-bottom:18px}
+  .fld{display:flex;flex-direction:column;min-width:0}
+  .fld select{width:100%;padding:11px 34px 11px 13px;border:1px solid var(--line);border-radius:2px;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6' fill='none' stroke='%235C616B' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 11px center/14px no-repeat;
+    -webkit-appearance:none;appearance:none;
+    font-family:var(--font-body);font-size:.88rem;color:var(--ink);outline:none;cursor:pointer;
+    transition:border-color .3s}
+  .fld select:hover{border-color:var(--gray)}
+  .fld select:focus-visible{border-color:var(--navy);box-shadow:0 0 0 3px rgba(36,66,138,.12)}
+  .finder-reset{align-self:center;justify-self:start;background:none;border:none;cursor:pointer;
+    font-family:var(--font-body);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gray);padding:11px 0;border-bottom:1px solid transparent;transition:.3s}
+  .finder-reset:hover{color:var(--navy);border-bottom-color:var(--navy)}
+  .finder-count{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+  /* the full inventory hides behind this until asked for */
+  .plans-reveal{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;
+    background:#fff;border:1px solid var(--navy);border-radius:3px;padding:17px 20px;margin-bottom:22px;
+    font-family:var(--font-body);font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--navy);
+    transition:background .35s,color .35s}
+  .plans-reveal svg{width:16px;height:16px}
+  .plans-reveal:hover{background:var(--navy);color:#fff}
+  /* as a link to /projects/floor-plans/ the arrow slides on hover */
+  a.plans-link{text-decoration:none;max-width:520px}
+  a.plans-link svg{transition:transform .35s var(--ease)}
+  a.plans-link:hover svg{transform:translateX(5px)}
+  .plans-more{display:block;margin:26px auto 0;cursor:pointer;background:none;border:1px solid var(--line);
+    border-radius:100px;padding:12px 28px;font-family:var(--font-body);font-size:.7rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--navy);transition:border-color .3s,background .3s}
+  .plans-more:hover{border-color:var(--navy);background:#fff}
+  .unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+  /* every card shares one skeleton — head, title, feature list, footer — and the
+     feature list flexes, so price + link sit on the SAME baseline in every card
+     whether or not a home has a garden or terrace */
+  .ucard{background:#fff;border:1px solid var(--line);border-radius:3px;padding:20px 20px 16px;display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .5s var(--ease);opacity:0;transform:translateY(16px);animation:uIn .6s var(--ease) forwards}
+  @keyframes uIn{to{opacity:1;transform:none}}
+  .ucard:hover{transform:translateY(-4px);box-shadow:0 22px 44px -30px rgba(23,34,74,.4)}
+  .ucard-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .ucard-proj{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ucard-type{flex:none;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);border:1px solid var(--line);border-radius:100px;padding:4px 10px;background:var(--stone)}
+  .ucard-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:12px 0 14px}
+  .ucard h4{font-family:var(--font-display);font-weight:400;font-size:1.3rem;color:var(--navy)}
+  .ucard-size{font-family:var(--font-display);font-size:1.02rem;color:var(--navy);white-space:nowrap}
+  .ucard-feat{list-style:none;margin:0;padding:14px 0 12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:9px;flex:1}
+  .ucard-feat li{display:flex;align-items:center;gap:11px;font-size:.84rem;color:var(--ink)}
+  .ucard-feat b{font-weight:500;color:var(--navy)}
+  .ucard-feat svg{width:16px;height:16px;flex:none;fill:none;stroke:var(--navy);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+  .ucard-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--line);padding-top:13px}
+  .ucard-price{font-size:.94rem;color:var(--navy);letter-spacing:.03em}
+  .ucard-link{flex:none;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:3px;transition:.35s}
+  .ucard-link:hover{letter-spacing:.28em}
+  .finder-empty{display:none;text-align:center;padding:50px 20px;color:var(--gray)}
+  
+  /* project detail */
+  .detail-hero{position:relative;height:64vh;min-height:440px;background:center/cover no-repeat;display:flex;align-items:flex-end}
+  .detail-hero::before{content:"";position:absolute;inset:0;background:rgba(23,34,74,.16);mix-blend-mode:multiply}
+  .detail-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,17,32,.28) 0%,rgba(12,17,32,.08) 40%,rgba(13,19,38,.68) 100%)}
+  .detail-hero-inner{position:relative;z-index:2;color:#fff;padding:0 8vw 48px;width:100%}
+  .detail-hero .crumbs{color:#EDEBE5;font-size:.82rem;font-weight:600;letter-spacing:.24em;text-shadow:0 1px 8px rgba(0,0,0,.5)}.detail-hero .crumbs a:hover{color:#fff;text-decoration:underline}
+  .detail-hero h1{font-family:var(--font-display);font-weight:400;font-size:clamp(2.4rem,5.6vw,4rem);text-shadow:0 2px 24px rgba(0,0,0,.45);letter-spacing:.02em}
+  .stat-bar{display:flex;flex-wrap:wrap;gap:10px 34px;margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.22);font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:#D6D9E2}
+  .stat-bar b{color:#fff;font-weight:500}
+  .detail-section{margin-top:76px}
+  .detail-section:first-child{margin-top:56px}
+  .detail-eyebrow{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
+  /* heading and body share one 720px measure — the title no longer runs far wider
+     than the prose column beneath it */
+  .detail-section>h2{font-family:var(--font-display);font-weight:400;font-size:clamp(1.55rem,2.5vw,1.95rem);color:var(--navy);margin-bottom:22px;letter-spacing:.02em;max-width:760px}
+  .detail-prose{max-width:720px;color:var(--ink)}
+  .detail-prose p:first-child{font-size:1.14rem;line-height:1.75}
+  .detail-prose p+p{margin-top:16px}
+  
+  /* gallery slider */
+  .slider{position:relative;aspect-ratio:16/9;border-radius:3px;overflow:hidden;background:var(--night)}
+  .slider .sl-item{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;cursor:zoom-in}
+  .slider .sl-item.on{opacity:1}
+  .slider .sl-item img{width:100%;height:100%;object-fit:cover}
+  .sl-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(12,17,32,.28);backdrop-filter:blur(6px);color:#fff;font-size:1rem;cursor:pointer;transition:.35s;display:flex;align-items:center;justify-content:center}
+  .sl-arrow:hover{background:#fff;color:var(--navy);border-color:#fff}
+  .sl-prev{left:18px}.sl-next{right:18px}
+  .sl-caption{position:absolute;left:22px;bottom:20px;z-index:4;color:#EDEBE5;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .sl-dots{position:absolute;right:22px;bottom:24px;z-index:5;display:flex;gap:8px}
+  .sl-dot{width:22px;height:2px;background:rgba(255,255,255,.35);cursor:pointer;transition:.35s;border:0;padding:0}
+  .sl-dot.on{background:#fff}
+  .slider::after{content:"";position:absolute;inset:auto 0 0 0;height:90px;background:linear-gradient(180deg,transparent,rgba(12,17,32,.55));pointer-events:none}
+  
+  /* amenities: hairline editorial list */
+  .amen-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 54px;max-width:860px}
+  .amen-list li{list-style:none;display:flex;align-items:center;gap:16px;padding:12px 2px;border-bottom:1px solid var(--line);font-size:.95rem;color:var(--ink)}
+  .am-ic{width:24px;height:24px;flex:none;stroke:var(--navy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+  
+  /* residences: open editorial layout */
+  .res-card{border-top:1px solid var(--line);padding:52px 0 56px;scroll-margin-top:110px}
+  .res-card:last-of-type{padding-bottom:10px}
+  .res-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:6px}
+  .res-head h3{font-family:var(--font-display);font-weight:400;font-size:clamp(2.3rem,4.4vw,3.2rem);color:var(--navy);line-height:1.1}
+  .res-price{font-family:var(--font-display);font-size:1.4rem;color:var(--navy);letter-spacing:.03em}
+  .res-specs{display:flex;flex-wrap:wrap;gap:8px 32px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);margin:16px 0 22px;padding-top:16px;border-top:1px solid var(--line);max-width:860px}
+  .res-specs span{position:relative}
+  .res-specs span+span::before{content:"";position:absolute;left:-17px;top:50%;width:3px;height:3px;background:var(--gray);border-radius:50%;transform:translateY(-50%)}
+  .res-specs b{color:var(--navy);font-weight:500;letter-spacing:.06em}
+  .res-card>p{max-width:72ch;color:var(--ink);font-size:1.02rem;line-height:1.75}
+  .plans{margin-top:28px}
+  .plans-label{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gray);margin-bottom:14px}
+  .plan-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;max-width:860px}
+  .plan-thumb{position:relative;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#fff;transition:box-shadow .45s var(--ease),transform .45s var(--ease)}
+  .plan-thumb:hover{box-shadow:0 22px 44px -26px rgba(23,34,74,.5);transform:translateY(-3px)}
+  .plan-thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+  .plan-thumb:hover img{transform:scale(1.04)}
+  .plan-thumb span{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:11px 14px;border-top:1px solid var(--line)}
+  .plan-thumb span::after{content:"⤢";font-size:.85rem;color:var(--gray)}
+  
+  /* payment timeline */
+  .timeline{position:relative;padding-top:6px}
+  .tl-line{position:absolute;top:82px;left:5px;right:6%;height:1px;background:var(--line);overflow:hidden}
+  .tl-line::after{content:"";position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left}
+  .timeline.in .tl-line::after{transform:scaleX(1);transition:transform 2.2s var(--ease) .3s}
+  .tl-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .tl-step{position:relative;opacity:0;transform:translateY(14px)}
+  .timeline.in .tl-step{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .timeline.in .tl-step:nth-child(1){transition-delay:.35s}
+  .timeline.in .tl-step:nth-child(2){transition-delay:.8s}
+  .timeline.in .tl-step:nth-child(3){transition-delay:1.25s}
+  .timeline.in .tl-step:nth-child(4){transition-delay:1.7s}
+  .tl-step .pct{display:block;font-family:var(--font-display);font-size:2.3rem;line-height:1;color:var(--navy)}
+  .tl-dot{display:block;width:9px;height:9px;background:var(--navy);transform:rotate(45deg);margin:29px 0 0 1px}
+  .tl-step p{font-size:.9rem;color:var(--ink);margin-top:26px;max-width:22ch}
+  @media(max-width:760px){.tl-steps{grid-template-columns:repeat(2,1fr);gap:38px 22px}.tl-line{display:none}.tl-dot{display:none}.tl-step p{margin-top:12px}}
+  
+  /* craftsmanship: hairline definition rows */
+  .spec-list{max-width:860px}
+  .spec-row{display:grid;grid-template-columns:220px 1fr;gap:26px;padding:17px 2px;border-bottom:1px solid var(--line);align-items:baseline}
+  .spec-row h4{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:500}
+  .spec-row p{font-size:.95rem;color:var(--ink)}
+  @media(max-width:640px){.spec-row{grid-template-columns:1fr;gap:6px}}
+  
+  /* map */
+  .map-wrap{border-radius:3px;overflow:hidden;border:1px solid var(--line)}
+  .map-wrap iframe{display:block;width:100%;height:380px;border:0;filter:saturate(.85)}
+  
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(12,17,32,.92);z-index:90;display:none;align-items:center;justify-content:center;padding:4vw}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:100%;max-height:86vh;border-radius:3px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb-close{position:absolute;top:22px;right:26px;color:#fff;font-size:1rem;letter-spacing:.24em;text-transform:uppercase;background:none;border:0;cursor:pointer}
+  .lb-dl{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#fff;border:1px solid rgba(255,255,255,.5);padding:10px 22px;border-radius:2px;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase}
+  .lb-dl:hover{background:#fff;color:var(--navy)}
+  
+  @media(max-width:1020px){
+    .with-rail{grid-template-columns:1fr}
+    .rail-side{position:static}
+    .action-bar{display:flex}
+    body.has-action-bar{padding-bottom:64px}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .gallery a:first-child{grid-column:span 2;grid-row:span 1}
+    .page{padding-top:120px}
+  }
+  
+  /* ═══════════════════════════════════════════
+     iOS / MOBILE REFINEMENTS
+     Media-query & @supports scoped only — zero
+     change to desktop rendering.
+     ═══════════════════════════════════════════ */
+  
+  /* iOS Safari: 100vh includes the collapsed URL bar and causes jumpy
+     heroes. svh is the visible viewport; identical to vh on desktop. */
+  @supports (height: 100svh){
+    .hero{height:100svh}
+  }
+  
+  @media(max-width:760px){
+    /* safety net against accidental horizontal scroll */
+    body{overflow-x:hidden}
+  
+    /* hero: tighter tracking so the wordmark and slogan sit well at 390px */
+    .hero-title{letter-spacing:.12em}
+    .hero-slogan{letter-spacing:.28em}
+    .hero-cta{gap:12px}
+    .btn{padding:13px 26px}
+  
+    /* project detail hero: shorter on phones, content hugs the base */
+    .detail-hero{height:52vh;min-height:360px}
+    .detail-hero-inner{padding-bottom:28px}
+    .stat-bar{gap:8px 22px}
+  
+    /* gallery slider: taller ratio reads better in portrait */
+    .slider{aspect-ratio:4/3}
+    .sl-arrow{width:40px;height:40px}
+    .sl-caption{left:16px;bottom:16px;max-width:55%}
+    .sl-dots{right:16px;bottom:20px}
+  
+    /* single-column amenity list */
+    .amen-list{grid-template-columns:1fr}
+  
+    /* iOS zooms the page when a focused field is under 16px — prevent it */
+    .rail-form input,.rail-form select,.rail-form textarea,.fld select{font-size:16px}
+  
+    /* iPhone home-indicator safe area */
+    .action-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+    .lb-dl{bottom:calc(24px + env(safe-area-inset-bottom))}
+  
+    /* residences: name and price stack cleanly */
+    .res-head{flex-direction:column;align-items:flex-start;gap:4px}
+    .res-card{padding:40px 0 44px}
+    .plan-row{grid-template-columns:1fr 1fr}
+  
+    .map-wrap iframe{height:300px}
+    .footer-social{justify-content:center}
+    .footer-legal{margin-top:26px}
+    .contact-rail{padding:22px}
+  }
+  
+  @media(max-width:420px){
+    .plan-row{grid-template-columns:1fr}
+    .fact-row{gap:26px}
+    .dest-row{gap:30px}
+  }
+  @supports (height: 100svh){
+    @media(max-width:760px){
+      .detail-hero{height:52svh}
+    }
+  }
+  
+  /* ═══════════════════════════════════════════
+     OUR STORY
+     ═══════════════════════════════════════════ */
+  .story-wrap{max-width:1180px;margin:0 auto;padding:0 6vw 30px}
+  .story-lead{font-family:var(--font-display);font-weight:400;font-size:clamp(1.45rem,2.8vw,2.1rem);line-height:1.4;color:var(--navy);max-width:34ch;margin:2px 0 24px}
+  .story-row{display:grid;grid-template-columns:330px minmax(0,1fr);gap:46px;align-items:center;margin-bottom:28px}
+  .story-row.flip{grid-template-columns:minmax(0,1fr) 330px}
+  .story-row.flip .story-photo{order:2}
+  .story-photo{position:relative}
+  .story-photo.reveal{opacity:1;transform:none}  /* clip-path handles its entrance */
+  .story-photo figure{margin:0;overflow:hidden;border-radius:3px;clip-path:inset(0 100% 0 0);transition:clip-path 1.3s var(--ease)}
+  .story-photo.in figure{clip-path:inset(0 0 0 0)}
+  .story-photo img{width:100%;display:block;transform:scale(1.08);transition:transform 1.6s var(--ease)}
+  .story-photo.in img{transform:scale(1)}
+  .story-photo figcaption{margin-top:14px;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
+  .story-text p{color:var(--ink);font-size:.98rem;line-height:1.7;max-width:58ch}
+  .story-text p+p{margin-top:14px}
+  .story-text .story-mark{font-family:var(--font-display);font-size:1.25rem;color:var(--navy)}
+  .story-quote{text-align:center;padding:40px 6vw;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 40px}
+  .story-quote svg{width:22px;height:34px;margin-bottom:16px}
+  .story-quote p{font-family:var(--font-display);font-weight:400;font-size:clamp(1.2rem,2.3vw,1.7rem);line-height:1.5;color:var(--navy);max-width:44ch;margin:0 auto}
+  .story-cta{text-align:center;padding-bottom:20px}
+  .story-cta p{font-family:var(--font-display);font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--navy);margin-bottom:30px;max-width:34ch;margin-left:auto;margin-right:auto}
+  /* full-width team statement: the beat between the founders and the closing CTA */
+  .story-team{text-align:center;margin:34px auto 74px}
+  .story-team::before{content:"";display:block;width:44px;height:1px;background:var(--navy);margin:0 auto 26px}
+  .story-team p{color:var(--ink);font-size:.98rem;line-height:1.7;max-width:62ch;margin:0 auto}
+  .story-team p+p{margin-top:16px}
+  .story-team .team-lead{font-family:var(--font-display);font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.45;color:var(--navy);max-width:44ch;text-wrap:balance}
+  @media(max-width:900px){
+    .story-row,.story-row.flip{grid-template-columns:1fr;gap:34px;margin-bottom:64px}
+    .story-row.flip .story-photo{order:0}
+    .story-photo{max-width:420px}
+    .story-lead{margin-bottom:44px}
+    .story-quote{padding:60px 8vw;margin-bottom:64px}
+    .story-team{margin:0 auto 70px}
+  }
+  
+  /* ── project facts strip (status · delivery · sizes) ── */
+  .facts-strip{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line);border-radius:3px;background:#fff;margin-top:34px;overflow:hidden}
+  /* values wrap INSIDE their cell — nothing escapes the box */
+  /* cells center their content vertically, so single- and two-line values sit balanced */
+  .fact-cell{flex:1 1 170px;min-width:0;padding:18px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+  .fact-cell:last-child{border-right:0}
+  .fact-cell .fk{display:block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray);margin-bottom:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fact-cell .fv{display:block;font-family:var(--font-display);font-size:1.05rem;line-height:1.3;color:var(--navy);overflow-wrap:break-word}
+  @media(max-width:760px){.fact-cell{flex-basis:46%;border-bottom:1px solid var(--line)}}
+  
+  /* ── quick navigation bar beneath the hero ── */
+  .quick-nav{position:sticky;top:58px;z-index:30;background:rgba(242,239,233,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .quick-nav-inner{display:flex;gap:8px;overflow-x:auto;padding:0 5vw;max-width:1500px;margin:0 auto;scrollbar-width:none}
+  .quick-nav-inner::-webkit-scrollbar{display:none}
+  .quick-nav a{flex:none;padding:15px 14px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);border-bottom:2px solid transparent;transition:.3s;white-space:nowrap}
+  .quick-nav a:hover{color:var(--navy);border-bottom-color:var(--navy)}
+  
+  /* ── "On the Horizon" — premium navy cards ── */
+  .horizon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;margin-bottom:80px}
+  .horizon-card{position:relative;display:block;border-radius:3px;overflow:hidden;padding:42px 34px 38px;color:#fff;background:linear-gradient(150deg,#24428A 0%,#1B3270 55%,#131F45 100%);transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+  .horizon-card:hover{transform:translateY(-5px);box-shadow:0 34px 60px -34px rgba(19,31,69,.65)}
+  .hz-mark{position:absolute;right:-36px;bottom:-70px;width:190px;height:294px;opacity:.1;transition:transform 1s var(--ease),opacity .6s}
+  .hz-mark polygon{fill:#fff}
+  .hz-mark .g{fill:#B9BEC7}
+  .horizon-card:hover .hz-mark{transform:translateY(-12px) rotate(-3deg);opacity:.16}
+  .hc-soon{display:inline-block;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:#DCE3F4;margin-bottom:18px}
+  .horizon-card .hc-country{display:block;font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;color:#AAB6D6}
+  .horizon-card h3{font-family:var(--font-display);font-weight:400;font-size:clamp(1.8rem,3vw,2.4rem);color:#fff;margin:8px 0 10px}
+  .horizon-card p{font-size:.92rem;color:#C8D2EC;max-width:34ch}
+  .hc-link{display:inline-block;margin-top:22px;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:5px;transition:.4s}
+  .horizon-card:hover .hc-link{border-bottom-color:#fff;letter-spacing:.34em}
+  
+  /* ── FAQ accordion ── */
+  .faq-list{max-width:820px;margin:0 auto}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{width:100%;background:none;border:0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;padding:22px 2px;font-family:var(--font-display);font-size:clamp(1.05rem,2vw,1.3rem);color:var(--navy)}
+  .faq-q .fx{flex:none;width:14px;height:14px;position:relative;transition:transform .45s var(--ease)}
+  .faq-q .fx::before,.faq-q .fx::after{content:"";position:absolute;background:var(--navy);inset:auto}
+  .faq-q .fx::before{left:0;top:6px;width:14px;height:1.5px}
+  .faq-q .fx::after{left:6.25px;top:0;width:1.5px;height:14px;transition:opacity .3s}
+  .faq-item.open .fx{transform:rotate(180deg)}
+  .faq-item.open .fx::after{opacity:0}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .55s var(--ease)}
+  .faq-a p{padding:0 34px 22px 2px;color:var(--ink);max-width:64ch}
+  
+  /* ── finder bar: 9 selects + reset on a 5-column grid ── */
+  .finder-bar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+  @media(max-width:1100px){.finder-bar{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:640px){.finder-bar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:400px){.finder-bar{grid-template-columns:1fr}}
+  
+  /* "On the Horizon" project cards — navy field with the faint brand wedge */
+  .hz-media{display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,#24428A 0%,#1B3270 55%,#131F45 100%)}
+  .hz-media .hz-mini{width:54px;opacity:.26;transition:transform .8s var(--ease)}
+  .hz-media .hz-mini polygon{fill:#fff}
+  .hz-media .hz-mini .g{fill:#96A5CE}
+  .pcard:hover .hz-media .hz-mini{transform:translateY(-6px)}
+  .pcard-badge.hz{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.42);color:#fff}
+  
+  /* floor plans collapse behind a disclosure inside each residence */
+  .plans-toggle{display:inline-flex;align-items:center;gap:12px;cursor:pointer;
+    background:#fff;border:1px solid var(--line);border-radius:3px;padding:13px 20px;
+    font-family:var(--font-body);font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--navy);transition:border-color .3s,background .3s}
+  .plans-toggle:hover{border-color:var(--navy)}
+  .plans-toggle svg{width:15px;height:15px;transition:transform .4s var(--ease)}
+  .plans.open .plans-toggle svg{transform:rotate(180deg)}
+  .plans .plan-row{display:none;margin-top:16px}
+  .plans.open .plan-row{display:grid}
+  
+  .loc-illustration{display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .loc-illustration img{display:block;width:100%;transition:transform 1s var(--ease)}
+  .loc-illustration:hover img{transform:scale(1.02)}
+  .pcard-meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:2px}
+  .pcard-meta b{color:var(--navy);font-weight:500}
+  
+  /* story accents */
+  .story-eyebrow{font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+  .story-sign{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);max-width:280px}
+  .story-sign .sn{font-family:var(--font-display);font-size:1.2rem;color:var(--navy)}
+  .story-sign .sr{display:block;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gray);margin-top:4px}
+  /* faq numbering + tighter page head */
+  .fq-n{flex:none;font-family:var(--font-body);font-size:.68rem;letter-spacing:.24em;color:var(--gray);width:34px}
+  .fq-t{flex:1}
+  .faq-q{gap:14px}
+  .page-head .page-intro{margin-top:10px}
+  
+  /* ═══ Yarzeh page round 3 ═══ */
+  /* anchors land with the sticky bars accounted for */
+  .detail-section{scroll-margin-top:126px}
+  
+  /* bigger, clearer section headers */
+  .detail-eyebrow{font-size:.72rem;color:var(--navy);opacity:.75}
+  /* sized so titles like "Ten minutes from Beirut, a world away" hold one line on desktop */
+  .detail-section>h2{font-size:clamp(1.55rem,2.5vw,1.95rem) !important}
+  
+  /* hero brochure action */
+  .hero-actions{margin-top:20px}
+  .qn-brochure{color:var(--navy) !important;font-weight:600;border-bottom-color:transparent}
+  .qn-brochure:hover{border-bottom-color:var(--navy)}
+  
+  /* price basis note */
+  .price-note{margin-top:12px;font-size:.82rem;color:var(--gray);max-width:70ch}
+  
+  /* walkthrough cards */
+  .walk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .walk-card{position:relative;display:flex;flex-direction:column;gap:6px;padding:26px 24px 22px;border:1px solid var(--line);border-radius:3px;background:#fff;transition:.45s var(--ease);overflow:hidden}
+  .walk-card::after{content:"⟳";position:absolute;right:18px;top:20px;font-size:1.25rem;color:var(--gray);transition:.45s var(--ease)}
+  .walk-card:hover{border-color:var(--navy);transform:translateY(-3px);box-shadow:0 20px 40px -28px rgba(23,34,74,.45)}
+  .walk-card:hover::after{color:var(--navy);transform:rotate(45deg)}
+  .wk-n{font-size:.64rem;letter-spacing:.3em;color:var(--gray)}
+  .wk-t{font-family:var(--font-display);font-size:1.45rem;color:var(--navy)}
+  .wk-cta{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);margin-top:8px}
+  .walk-card:hover .wk-cta{color:var(--navy)}
+  
+  /* interiors strip */
+  .interiors{margin-top:26px}
+  .int-strip{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+  .int-thumb{flex:0 0 210px;scroll-snap-align:start;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:#fff;transition:.4s var(--ease)}
+  .int-thumb:hover{transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(23,34,74,.45)}
+  .int-thumb img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  .int-thumb span{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:9px 12px;border-top:1px solid var(--line)}
+  
+  /* lightbox group navigation */
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(12,17,32,.35);color:#fff;font-size:1.3rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:.3s;z-index:5}
+  .lb-nav:hover{background:#fff;color:var(--navy)}
+  .lightbox.has-group .lb-nav{display:flex}
+  .lb-prev{left:22px}.lb-next{right:22px}
+  .lb-count{position:absolute;top:26px;left:26px;color:#D8D5CD;font-size:.72rem;letter-spacing:.26em}
+  
+  /* email in the contact rail: visible, accentuated */
+  .rail-note{font-size:.9rem;color:var(--ink);margin-top:14px;line-height:1.5}
+  .rail-note a{font-weight:600;letter-spacing:.02em;border-bottom:1px solid var(--navy);padding-bottom:1px}
+  .rail-note a:hover{background:rgba(36,66,138,.07)}
+  
+  /* ═══ Daisy II interiors: floor → room hierarchy ═══ */
+  .floor-block{margin-bottom:44px}
+  .floor-label{display:inline-block;font-family:var(--font-display);font-size:1.25rem;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:8px;margin-bottom:24px}
+  .room-group{margin-bottom:26px}
+  .room-title{display:flex;align-items:baseline;gap:14px;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);font-weight:500;margin-bottom:12px}
+  .room-count{font-size:.64rem;letter-spacing:.2em;color:var(--gray);font-weight:400}
+  .room-group .int-thumb{flex:0 0 240px}
+  .room-group .int-thumb img{aspect-ratio:3/2}
+  @media(max-width:760px){.room-group .int-thumb{flex:0 0 190px}}
+  
+  /* interiors floor chips + lightbox caption */
+  .interior-nav{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+  .interior-nav a{padding:10px 20px;border:1px solid var(--line);border-radius:100px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);background:#fff;transition:.35s}
+  .interior-nav a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .floor-block{scroll-margin-top:126px}
+  .lb-cap{position:absolute;top:26px;left:50%;transform:translateX(-50%);color:#EDEBE5;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+  
+  /* ═══ Yarzeh polish pass ═══ */
+  /* clear hairline rhythm between sections for scannability */
+  .with-rail .detail-section + .detail-section{border-top:1px solid var(--line);padding-top:54px;margin-top:54px}
+  
+  /* floor strips: header, larger labeled thumbs, arrow controls */
+  .floor-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;margin-bottom:16px}
+  .floor-head .floor-label{margin-bottom:0}
+  .floor-sub{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray)}
+  .strip-wrap{position:relative}
+  .strip-wrap .int-strip{scroll-behavior:smooth;padding-right:30px}
+  .int-thumb{flex:0 0 264px}
+  .int-thumb img{aspect-ratio:3/2;width:100%;object-fit:cover;display:block}
+  .int-thumb span{display:block;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);padding:9px 12px;border-top:1px solid var(--line);background:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .st-btn{position:absolute;top:calc(50% - 22px);transform:translateY(-50%);z-index:6;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--navy);font-size:1.15rem;cursor:pointer;box-shadow:0 10px 26px -14px rgba(23,34,74,.4);transition:.3s;display:flex;align-items:center;justify-content:center}
+  .st-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .st-prev{left:-14px}.st-next{right:-14px}
+  @media(max-width:760px){.int-thumb{flex:0 0 210px}.st-btn{display:none}}
+  
+  /* quick-nav scroll-spy highlight */
+  .quick-nav a.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600}
+  
+  /* lightbox: image breathes, download sits clearly below it */
+  .lightbox img{max-height:74vh;margin-bottom:52px}
+  .lb-dl{bottom:18px}
+  @media(max-width:760px){.lb-dl{bottom:calc(14px + env(safe-area-inset-bottom))}}
+  
+  /* back to top */
+  .to-top{position:fixed;right:22px;bottom:84px;z-index:55;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:1.1rem;cursor:pointer;box-shadow:0 14px 30px -16px rgba(23,34,74,.45);opacity:0;visibility:hidden;transform:translateY(10px);transition:.4s var(--ease)}
+  .to-top.show{opacity:1;visibility:visible;transform:none}
+  .to-top:hover{background:var(--navy);color:#fff}
+  @media(min-width:1021px){.to-top{bottom:26px}}
+  
+  /* contact page layout */
+  .contact-grid{display:grid;grid-template-columns:400px minmax(0,1fr);gap:60px;max-width:1100px;margin:0 auto;padding:10px 6vw 90px;align-items:start}
+  .contact-card{box-shadow:0 24px 60px -34px rgba(23,34,74,.4)}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:44px}}
+  
+  .fv-nowrap{white-space:normal;font-size:1rem}
+  
+  /* ═══════════════════════════════════════════
+     BRAND MARK COLOURS
+     Kept last in the file so these win over the
+     generic fill:currentColor icon rules above.
+     ═══════════════════════════════════════════ */
+  /* WhatsApp green everywhere the mark appears */
+  .nav-links a.nav-wa svg,
+  .dest-details a.dest-wa svg,
+  .contact-rail a.rail-wa svg,
+  .action-bar a.ab-wa svg{fill:#25D366}
+  /* the phone handset stays brand navy / inherits on dark surfaces */
+  .dest-details a.dest-tel svg{fill:var(--navy)}
+  
+  
+  /* ── project page: actions under key facts — one shared height and baseline ── */
+  .detail-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}
+  .detail-actions .btn{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 28px;font-size:.72rem;letter-spacing:.24em;line-height:1;outline:none}
+  .btn-navy{background:var(--navy);border:1px solid var(--navy);color:#fff}
+  .btn-navy:hover{background:#1B3270;border-color:#1B3270}
+  
+  /* ── gallery sub-sections ── */
+  .gal-sub{margin-top:44px;margin-bottom:16px}
+  .gal-label{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gray)}
+  .gal-sub+.slider{margin-top:0}
+  
+  /* room + walkthrough tabs reuse the pill look, as buttons */
+  .interior-nav button{padding:10px 20px;border:1px solid var(--line);border-radius:100px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);background:#fff;cursor:pointer;font-family:var(--font-body);transition:.35s}
+  .interior-nav button:hover{border-color:var(--navy)}
+  .interior-nav button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .room-tabs{margin-bottom:20px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px}
+  .room-tabs::-webkit-scrollbar{display:none}
+  .room-tabs button{white-space:nowrap;padding:8px 15px;font-size:.62rem;letter-spacing:.14em;flex:none}
+  .room-group{display:none}
+  .room-group.on{display:block}
+  
+  /* embedded 360° walkthrough */
+  .walk-tabs{margin-bottom:16px}
+  .walk-embed{position:relative;aspect-ratio:16/9;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--night)}
+  .walk-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .walk-fallback{margin-top:12px;font-size:.78rem}
+  .walk-fallback a{color:var(--navy);letter-spacing:.14em;text-transform:uppercase;font-size:.68rem;border-bottom:1px solid var(--navy);padding-bottom:3px}
+  @media(max-width:760px){.walk-embed{aspect-ratio:4/3}}
+  
+  
+  /* ── /yarzeh-mansions/floor-plans/ : calm, editorial residence cards ── */
+  .plans-page .res-mansion{font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gray);margin:44px 0 16px}
+  .plans-page .res-mansion:first-child{margin-top:0}
+  .plans-page .res-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:38px 42px 36px;margin-bottom:28px;scroll-margin-top:110px}
+  .plans-page .res-card:last-of-type{margin-bottom:0}
+  .plans-page .res-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px}
+  .plans-page .res-head h3{font-family:var(--font-display);font-weight:400;font-size:1.8rem;color:var(--navy);letter-spacing:.01em}
+  .plans-page .res-type{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray)}
+  .plans-page .res-price{margin-left:auto;font-family:var(--font-display);font-size:1.25rem;color:var(--navy)}
+  /* one quiet spec line, values in navy — no pills, no boxes */
+  .plans-page .res-specs{display:flex;flex-wrap:wrap;gap:6px 30px;margin:18px 0 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .plans-page .res-specs span{font-size:.88rem;color:var(--ink);letter-spacing:.01em}
+  .plans-page .res-specs b{font-weight:500;color:var(--navy)}
+  .plans-page .res-card>p{max-width:78ch;color:var(--ink);font-size:.96rem;line-height:1.75;margin-top:20px}
+  .plans-page .plans{margin-top:26px}
+  .plans-page .plans-label{margin-bottom:14px}
+  .plans-page .plan-row{max-width:none}
+  @media(max-width:900px){.plans-page .res-card{padding:28px 26px 26px}}
+  @media(max-width:640px){.plans-page .res-price{margin-left:0;width:100%}}
+  
+  
+  /* back link on floor-plan pages */
+  .fp-back{display:inline-flex;align-items:center;gap:8px;font-size:.95rem;font-weight:500;color:var(--navy);margin-bottom:14px;transition:color .3s var(--ease)}
+  .fp-back:hover{color:#17224A}
+  .fp-back:hover svg{transform:translateX(-3px)}
+  .fp-back svg{width:15px;height:15px;transition:transform .35s var(--ease)}
+  .fp-back:hover svg{transform:translateX(-4px)}
+  
+  /* block-group unit lists (Louayzeh floor plans) */
+  .plans-page .res-units{margin-top:20px;border-top:1px solid var(--line)}
+  .plans-page .res-units .ru{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:13px 2px;border-bottom:1px solid var(--line)}
+  .plans-page .res-units .ru span{font-size:.92rem;color:var(--ink)}
+  .plans-page .res-units .ru b{font-weight:500;color:var(--navy);font-size:.92rem;text-align:right;white-space:nowrap}
+  .plans-page .res-note{margin-top:14px;font-size:.82rem;color:var(--gray)}
+  .plans-page .res-meta{margin-top:14px;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gray)}
+  .plans-page .page-intro{max-width:900px;line-height:1.8}
+  .plans-page .res-sub{margin-top:6px;font-size:.84rem;color:var(--gray);letter-spacing:.02em}
+  .plans-page .blocks-map{display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:34px}
+  .plans-page .blocks-map img{display:block;width:100%}
+  .plans-page .blocks-map figcaption{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);padding:12px 16px;border-top:1px solid var(--line);background:#fff}
+  @media(max-width:600px){.plans-page .res-units .ru{flex-direction:column;gap:3px}.plans-page .res-units .ru b{text-align:left;white-space:normal}}
+  
+  
+  /* ── sold-out apartment cards (delivered projects) ── */
+  .sold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .scard{position:relative;background:#fff;border:1px solid var(--line);border-radius:3px;padding:22px 22px 20px}
+  .scard-badge{position:absolute;top:16px;right:16px;background:#5C616B;color:#fff;font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;padding:5px 11px;border-radius:2px}
+  .scard h4{font-family:var(--font-display);font-weight:400;font-size:1.12rem;color:var(--navy);padding-right:64px;line-height:1.35}
+  .scard-floor{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);margin:7px 0 11px}
+  .scard p:not(.scard-floor){font-size:.85rem;color:var(--ink);line-height:1.6}
+  
+  
+  /* sold-out status reads loud and clear in the facts strip */
+  .fact-cell .fv-sold{color:#A8332C;font-size:1.05rem;letter-spacing:.04em;font-weight:400}
+  /* "Delivered but not Sold Out" — reserved for the CMS; no current project uses it yet */
+  .fact-cell .fv-delivered-not-sold{color:#2F6B50;font-size:1.05rem;letter-spacing:.04em;font-weight:400}
+  
+  /* ═══════════════════════════════════════════
+     SOCIAL LINKS — navbar, CTA band, contact rail
+     (LinkedIn + Instagram surfaced beyond the footer)
+     ═══════════════════════════════════════════ */
+  
+  /* ── Navbar: compact icon buttons after the contact pills ── */
+  .nav-social{display:flex;align-items:center;gap:15px;margin-left:4px;padding-left:16px;border-left:1px solid rgba(255,255,255,.28)}
+  .nav.solid .nav-social{border-left-color:var(--line)}
+  /* borderless glyphs in their brand colors from the start, footer-style */
+  .nav-soc{display:inline-flex;align-items:center;justify-content:center;flex:none;
+    transition:transform .35s var(--ease),filter .35s var(--ease)}
+  .nav-soc::after{display:none}   /* no underline animation on icon links */
+  .nav-soc svg{width:21px;height:21px;fill:currentColor;display:block}
+  /* LinkedIn: official blue on the solid bar, a lighter blue over dark photography */
+  .nav .nav-links .nav-li{color:#0A66C2}
+  .nav:not(.solid) .nav-links .nav-li{color:#5AA3EC}
+  /* Instagram: white glyph over the hero footage; on the solid bar it borrows the
+     footer's gradient def so it matches the footer exactly */
+  .nav:not(.solid) .nav-links .nav-ig{color:#fff}
+  .nav.solid .nav-social .nav-ig svg{fill:url(#igGrad)}
+  /* hover: lift and grow; a soft glow over the dark hero, a touch of extra pop when solid */
+  .nav-soc:hover{transform:translateY(-2px) scale(1.14)}
+  .nav.solid .nav-soc:hover{filter:brightness(1.1) saturate(1.12)}
+  .nav:not(.solid) .nav-soc:hover{filter:drop-shadow(0 0 7px rgba(255,255,255,.45))}
+  
+  /* ── CTA band: “Follow us” row under the buttons ── */
+  .cta-social{margin-top:34px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px}
+  .cta-soc{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;flex:none;
+    border:1px solid rgba(255,255,255,.42);border-radius:50%;color:#fff;background:rgba(255,255,255,.05);
+    transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease)}
+  .cta-soc svg{width:19px;height:19px;fill:currentColor;display:block}
+  .cta-soc:hover{transform:translateY(-2px)}
+  .cta-soc.cta-li:hover{background:#0A66C2;border-color:#0A66C2}
+  .cta-soc.cta-ig:hover{background:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);border-color:transparent}
+  
+  /* ── Contact rail card: quiet social row under “Or email …” ── */
+  .rail-social{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .rail-soc{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;flex:none;
+    border:1px solid var(--line);border-radius:50%;color:var(--navy);
+    transition:color .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease)}
+  .rail-soc svg{width:16px;height:16px;fill:currentColor;display:block}
+  .rail-soc.rail-li:hover{color:#fff;background:#0A66C2;border-color:#0A66C2}
+  .rail-soc.rail-ig:hover{color:#fff;background:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);border-color:transparent}
+  
+  /* focus parity with the rest of the site */
+  .nav-soc:focus-visible,.cta-soc:focus-visible,.rail-soc:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
+  .nav:not(.solid) .nav-soc:focus-visible,.cta-soc:focus-visible{outline-color:#fff}
+  
+  /* inside the fullscreen burger menu the icons become a centered row of large tap targets */
+  @media(max-width:1120px){
+    .nav-social{border-left:0;padding-left:0;margin-left:0;justify-content:center;gap:18px;margin-top:8px}
+    .nav-links .nav-soc{padding:10px}   /* glyph + padding keeps a ~46px tap target */
+    .nav-links .nav-soc svg{width:26px;height:26px}
+    .nav-links a.nav-li{color:#5AA3EC !important}   /* the overlay forces links white; LinkedIn keeps its blue */
+  }
+  
+  
+  /* ── Simple gallery pages (Alma Verde, Saint Paul) — client fills in details via the CMS ── */
+  .simple-gallery-wrap{padding:10px 8vw 80px;max-width:1500px}
+  .simple-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:18px}
+  .simple-gallery img{width:100%;height:100%;object-fit:cover;border-radius:3px;display:block;border:1px solid var(--line)}
+  
+  
+  /* ── Residence collections: cards link to their own floor-plan page ── */
+  .plans-page .res-card{position:relative;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+  .plans-page .res-card:hover{transform:translateY(-4px);box-shadow:0 26px 54px -34px rgba(23,34,74,.4)}
+  .res-cover{position:absolute;inset:0;z-index:2}
+  .res-kicker{font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:500;margin-bottom:6px}
+  .res-link{display:inline-block;margin-top:18px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:3px}
+  
+  /* floor-plan figures on collection pages */
+  .plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(430px,100%),1fr));gap:22px;margin-top:26px}
+  .plan-fig{background:#fff;border:1px solid var(--line);border-radius:3px;padding:14px;margin:0}
+  .plan-fig img{width:100%;display:block;border-radius:2px}
+  .plan-fig figcaption{padding:12px 4px 2px;font-size:.86rem;color:var(--ink)}
+  .plan-fig figcaption b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.15rem;color:var(--navy);margin-bottom:2px}
+  
+  
+  /* ── coming-soon cards are visibly inert ── */
+  .pcard.soon{cursor:default}
+  .pcard.soon:hover{transform:none;box-shadow:none}
+  .pcard.soon .pcard-media img{filter:grayscale(.55) brightness(.72)}
+  .pcard.soon:hover .pcard-media img{transform:none}
+  .pcard.soon .pcard-body{opacity:.72}
+  
+  /* ── collection pages: apartments grouped by tier ── */
+  .tier{margin-top:36px}
+  .tier-title{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px;
+    font-family:var(--font-display);font-weight:400;font-size:1.5rem;color:var(--navy);
+    border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:16px}
+  .tier-title span{font-size:.92rem;color:var(--ink);font-family:inherit;letter-spacing:.02em}
+  
+  /* ── floor-plan lightbox with close + download ── */
+  .plan-fig a{cursor:zoom-in;display:block}
+  .plan-lb{position:fixed;inset:0;z-index:200;background:rgba(12,17,32,.9);display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:4vh 4vw}
+  .plan-lb.on{display:flex}
+  .plan-lb img{max-width:min(1200px,92vw);max-height:80vh;background:#fff;border-radius:3px;display:block}
+  .plan-lb-bar{display:flex;justify-content:center}
+  .plan-lb-dl{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;border:1px solid rgba(255,255,255,.55);padding:9px 16px;border-radius:2px;transition:background .3s var(--ease),color .3s var(--ease)}
+  .plan-lb-dl:hover{background:#fff;color:var(--navy)}
+  .plan-lb-x{position:absolute;top:16px;right:22px;background:none;border:0;color:#fff;font-size:2.4rem;line-height:1;cursor:pointer;padding:4px}
+  
+  
+  /* ── coming-soon cards: inert label keeps card heights aligned ── */
+  .soon-note{display:inline-block;margin-top:auto;padding-bottom:3px;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);border-bottom:1px solid var(--line);align-self:flex-start;cursor:default}
+  
+  /* ── collection pages: one white card per apartment, plans inside ── */
+  .plan-card{background:#fff;border:1px solid var(--line);border-radius:3px;padding:30px 34px 34px;margin-top:26px}
+  .plan-card-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:10px}
+  .plan-card-head h3{font-family:var(--font-display);font-weight:400;font-size:1.6rem;color:var(--navy)}
+  .plan-card-area{font-family:var(--font-display);font-size:1.05rem;color:var(--navy);letter-spacing:.03em}
+  .plan-card-sub{margin-top:6px;font-size:.95rem;color:var(--ink);max-width:64ch}
+  .plan-viewer{position:relative;margin-top:20px}
+  .plan-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:0}
+  .plan-track::-webkit-scrollbar{display:none}
+  .plan-pane{flex:0 0 100%;scroll-snap-align:start;margin:0;padding:0;box-sizing:border-box}
+  .plan-pane figcaption{display:block;padding:0 2px 10px;max-width:620px;margin:0 auto;width:100%}
+  .plan-pane figcaption b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.15rem;color:var(--navy)}
+  .plan-pane figcaption span{display:block;margin-top:2px;font-size:.88rem;color:var(--ink)}
+  .plan-pane img{width:100%;max-width:620px;max-height:380px;object-fit:contain;display:block;margin:0 auto}
+  .pv-prev,.pv-next{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.94);color:var(--navy);font-size:1.5rem;line-height:1;cursor:pointer;z-index:2;transition:background .3s var(--ease)}
+  .pv-prev:hover,.pv-next:hover{background:var(--navy);color:#fff}
+  .pv-prev{left:-14px}
+  .pv-next{right:-14px}
+  @media(max-width:700px){.plan-card{padding:20px 16px 24px}.pv-prev{left:6px}.pv-next{right:6px}}
+  
+  
+  /* ── plans invite the click: quiet expand badge + soft hover ── */
+  .plan-open{position:relative;display:block;width:fit-content;margin:0 auto}
+  .plan-open img{transition:opacity .35s var(--ease)}
+  .plan-open::after{content:"";position:absolute;right:10px;bottom:10px;width:34px;height:34px;border-radius:50%;
+    background:rgba(23,34,74,.78) url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 3H3v6M15 3h6v6M9 21H3v-6M15 21h6v-6'/%3E%3C/svg%3E") center/16px 16px no-repeat;
+    opacity:1;transition:background-color .3s var(--ease)}
+  .plan-open:hover img{opacity:.93}
+  .plan-open:hover::after{background-color:rgba(23,34,74,.95)}
+  
+  
+  /* ── horizon cards carry their project photo, heavily faded under the navy ── */
+  .horizon-card.hc-photo{position:relative;overflow:hidden;background-size:cover;background-position:center}
+  .horizon-card.hc-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(23,34,74,.86) 0%,rgba(23,34,74,.8) 55%,rgba(30,45,96,.84) 100%)}
+  .horizon-card.hc-photo > *{position:relative;z-index:1}
+  
+  /* ── homepage CTA band sits on the brand navy ── */
+  .cta-band{background:var(--navy)}
+  .cta-band > img,.cta-band > video{display:none}
+  
+  /* ── contact page: quieter sales offices ── */
+  .offices-compact .dest-details{font-size:.88rem;gap:6px}
+  .offices-compact .dest-row{gap:20px}
+  
+  /* ── sold-project block tabs: rectangular, in the site's language ── */
+  
+  /* sold-project block tabs: rectangular, on-brand */
+  .room-tabs button{border-radius:2px;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:9px 16px}
+  .room-tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  
+  /* inert horizon cards: no hover motion */
+  .horizon-card.hc-photo{cursor:default}
+  .horizon-card.hc-photo:hover{transform:none;box-shadow:none}
+  
+  
+  /* ── mobile fit fixes (no desktop impact) ── */
+  @media(max-width:900px){
+    .loc-illustration img{max-width:100%;height:auto}
+  }
+  @media(max-width:380px){
+    .proj-grid{grid-template-columns:1fr}
+  }
+  
+  /* stacked with-rail columns must be allowed to shrink below content min-width */
+  @media(max-width:1020px){.with-rail > *{min-width:0}}
+  
+  
+  /* ── mobile polish pass (≤900/720px only — desktop untouched) ── */
+  @media(max-width:900px){
+    /* the section nav scrolls sideways: show a fade so it's obviously swipeable */
+    .quick-nav-inner{-webkit-overflow-scrolling:touch;padding-right:64px}
+    .quick-nav::after{content:"";position:absolute;top:0;right:0;bottom:0;width:64px;pointer-events:none;
+      background:linear-gradient(90deg,rgba(242,239,233,0),rgba(242,239,233,.97) 72%)}
+    .quick-nav a{padding:13px 11px;font-size:.64rem;letter-spacing:.16em}
+  }
+  @media(max-width:720px){
+    .page{padding-top:116px}
+    .page-head{padding-bottom:28px}
+    /* sales offices — homepage and contact page: tighter type, less air */
+    .destinations{padding-top:48px;padding-bottom:48px}
+    .dest-row{gap:22px}
+    .dest{gap:4px}
+    .dest-city{font-size:1.05rem !important;letter-spacing:.04em}
+    .dest-details{font-size:.84rem;gap:3px;line-height:1.45}
+    #offices .dest-row{gap:6px 24px}
+    #offices .dest-city{font-size:1rem}
+    #offices .dest-country{font-size:.58rem;padding-bottom:5px}
+    #offices .dest-details{margin-top:5px;font-size:.84rem;gap:3px}
+    .offices-compact .dest{border-top:1px solid var(--line);padding-top:12px}
+    .offices-compact .dest:first-child{border-top:0;padding-top:0}
+    .offices-compact{margin-top:4px}
+    /* contact rail breathes on a phone without towering */
+    .contact-rail{padding:26px 20px 30px}
+    /* maps don't need to be square-tall on a phone */
+    .map-wrap iframe{height:300px}
+  }
+  
+  
+  /* ── hub tables: open a specific floor plan straight from the row ── */
+  .illu-cap{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+  .plans-page .res-units .ru{flex-wrap:wrap}
+  .ru-view{position:relative;z-index:3;flex:none;font-family:inherit;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);background:none;border:0;border-bottom:1px solid var(--navy);padding:0 0 2px;cursor:pointer;white-space:nowrap;transition:opacity .3s var(--ease)}
+  .ru-view:hover{opacity:.65}
+  @media(max-width:560px){.plans-page .res-units .ru b{white-space:normal;text-align:left}}
+  
+  /* ── lightbox: multi-plan navigation ── */
+  .plan-lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:rgba(12,17,32,.35);color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;z-index:2;transition:background .3s var(--ease)}
+  .plan-lb-nav:hover{background:rgba(255,255,255,.18)}
+  .plan-lb-prev{left:18px}
+  .plan-lb-next{right:18px}
+  .plan-lb-nav[hidden]{display:none}
+  .plan-lb-meta{display:flex;align-items:baseline;gap:12px;color:#fff;min-height:1.2em}
+  .plan-lb-cap{font-family:var(--font-display);font-size:1.05rem;letter-spacing:.04em}
+  .plan-lb-count{font-size:.72rem;letter-spacing:.22em;opacity:.7}
+  
+  
+  /* ── Louayzeh hub: interactive collection map ── */
+  .blocks-map{position:relative;display:block;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:10px}
+  .blocks-map img{display:block;width:100%}
+  .blocks-map svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .bm-dim{fill:rgba(12,17,32,0);transition:fill .45s var(--ease);pointer-events:none}
+  .blocks-map.active .bm-dim{fill:rgba(12,17,32,.55)}
+  .bm-g{cursor:pointer;outline:none}
+  .bm-blk{fill:rgba(255,255,255,0);stroke:rgba(255,255,255,0);stroke-width:2.5;transition:fill .35s var(--ease),stroke .35s var(--ease)}
+  .bm-g.lit .bm-blk{fill:rgba(255,255,255,.28);stroke:#fff;stroke-width:3;filter:drop-shadow(0 0 16px rgba(255,255,255,.75))}
+  .bm-g:focus-visible .bm-blk{stroke:#fff;stroke-dasharray:6 5}
+  .bm-label{position:absolute;bottom:22px;left:50%;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:rgba(23,34,74,.95);color:#fff;padding:13px 30px 14px;border-radius:2px;text-align:center;box-shadow:0 20px 50px -16px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);transition:opacity .4s var(--ease),transform .4s var(--ease),background .3s var(--ease)}
+  .blocks-map.active .bm-label{pointer-events:auto}
+  .bm-label:hover{background:rgba(30,45,96,.98)}
+  .bm-label:hover i{transform:translateX(4px)}
+  .bm-label i{display:inline-block;font-style:normal;transition:transform .3s var(--ease)}
+  .blocks-map.active .bm-label{opacity:1;transform:translate(-50%,0)}
+  .bm-label b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.2rem;letter-spacing:.05em}
+  .bm-label span{display:block;margin-top:3px;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;opacity:.72}
+  @media(max-width:700px){.bm-label{padding:9px 16px 10px}.bm-label b{font-size:.98rem}.bm-label span{display:none}}
+  
+  
+  /* instruction chip lives on the image itself */
+  .vm-hint{position:absolute;top:16px;left:16px;z-index:2;background:rgba(23,34,74,.82);color:#fff;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;padding:9px 16px;border-radius:2px;pointer-events:none;backdrop-filter:blur(4px);transition:opacity .4s var(--ease)}
+  .blocks-map.active .vm-hint{opacity:0}
+  @media(max-width:700px){.vm-hint{font-size:.56rem;letter-spacing:.16em;padding:7px 11px;top:10px;left:10px}}

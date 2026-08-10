@@ -348,13 +348,27 @@
     toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   }
 
-  /* ── Contact rail form (front-end only for now) ── */
+  /* ── Contact rail form (submits to Netlify Forms) ── */
   document.querySelectorAll('.rail-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      form.style.display = 'none';
-      var ok = form.parentElement.querySelector('.rail-success');
-      if (ok) ok.style.display = 'block';
+      var btn = form.querySelector('button');
+      var err = form.parentElement.querySelector('.rail-error');
+      if (err) err.style.display = 'none';
+      btn.disabled = true;
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        form.style.display = 'none';
+        var ok = form.parentElement.querySelector('.rail-success');
+        if (ok) ok.style.display = 'block';
+      }).catch(function () {
+        btn.disabled = false;
+        if (err) err.style.display = 'block';
+      });
     });
   });
 

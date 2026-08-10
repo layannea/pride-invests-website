@@ -213,6 +213,10 @@ collections:
             label: "Paragraphs · part 3"
             widget: list
             fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
+          - name: copy_team
+            label: "Team statement (full-width block)"
+            widget: list
+            fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
           - name: copy4
             label: "Paragraphs · part 4"
             widget: list

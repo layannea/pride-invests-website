@@ -53,6 +53,10 @@
       </div>
     </div>
 
+    <div class="story-team">
+{% for p in copy_team %}      <p{% if p.cls %} class="{{ p.cls }}"{% endif %}>{{ p.html | safe }}</p>
+{% endfor %}    </div>
+
     <div class="story-cta">
 {% for p in copy4 %}        <p{% if p.cls %} class="{{ p.cls }}"{% endif %}>{{ p.html | safe }}</p>
 {% endfor %}      <a class="btn btn-navy reveal" href="/projects/">Explore our projects</a>
