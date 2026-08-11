@@ -498,6 +498,9 @@
   .tl-line::after{content:"";position:absolute;inset:0;background:var(--navy);transform:scaleX(0);transform-origin:left}
   .timeline.in .tl-line::after{transform:scaleX(1);transition:transform 2.2s var(--ease) .3s}
   .tl-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  /* 3-step variant (Louayzeh): same look, one fewer milestone; the 760px rule below still wins on phones */
+  .tl-cols-3{grid-template-columns:repeat(3,1fr)}
+  .tl-3 .tl-line{right:26%}
   .tl-step{position:relative;opacity:0;transform:translateY(14px)}
   .timeline.in .tl-step{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
   .timeline.in .tl-step:nth-child(1){transition-delay:.35s}
@@ -514,6 +517,8 @@
   .spec-row{display:grid;grid-template-columns:220px 1fr;gap:26px;padding:17px 2px;border-bottom:1px solid var(--line);align-items:baseline}
   .spec-row h4{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--navy);font-weight:500}
   .spec-row p{font-size:.95rem;color:var(--ink)}
+  /* multi-line specs (one paragraph per line inside .spec-body) */
+  .spec-row .spec-body p+p{margin-top:8px}
   @media(max-width:640px){.spec-row{grid-template-columns:1fr;gap:6px}}
   
   /* map */
@@ -563,6 +568,8 @@
     /* project detail hero: shorter on phones, content hugs the base */
     .detail-hero{height:52vh;min-height:360px}
     .detail-hero-inner{padding-bottom:28px}
+    /* project titles were shrinking to the clamp floor on phones — give them real presence */
+    .detail-hero h1{font-size:clamp(2.9rem,9vw,3.4rem)}
     .stat-bar{gap:8px 22px}
   
     /* gallery slider: taller ratio reads better in portrait */
@@ -947,6 +954,9 @@
     transition:transform .35s var(--ease),filter .35s var(--ease)}
   .nav-soc::after{display:none}   /* no underline animation on icon links */
   .nav-soc svg{width:21px;height:21px;fill:currentColor;display:block}
+  /* Facebook: official blue on the solid bar, a lighter blue over dark photography */
+  .nav .nav-links .nav-fb{color:#1877F2}
+  .nav:not(.solid) .nav-links .nav-fb{color:#6FA8F7}
   /* LinkedIn: official blue on the solid bar, a lighter blue over dark photography */
   .nav .nav-links .nav-li{color:#0A66C2}
   .nav:not(.solid) .nav-links .nav-li{color:#5AA3EC}
@@ -966,6 +976,7 @@
     transition:background .35s var(--ease),border-color .35s var(--ease),transform .35s var(--ease)}
   .cta-soc svg{width:19px;height:19px;fill:currentColor;display:block}
   .cta-soc:hover{transform:translateY(-2px)}
+  .cta-soc.cta-fb:hover{background:#1877F2;border-color:#1877F2}
   .cta-soc.cta-li:hover{background:#0A66C2;border-color:#0A66C2}
   .cta-soc.cta-ig:hover{background:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);border-color:transparent}
   
@@ -975,6 +986,7 @@
     border:1px solid var(--line);border-radius:50%;color:var(--navy);
     transition:color .35s var(--ease),background .35s var(--ease),border-color .35s var(--ease)}
   .rail-soc svg{width:16px;height:16px;fill:currentColor;display:block}
+  .rail-soc.rail-fb:hover{color:#fff;background:#1877F2;border-color:#1877F2}
   .rail-soc.rail-li:hover{color:#fff;background:#0A66C2;border-color:#0A66C2}
   .rail-soc.rail-ig:hover{color:#fff;background:radial-gradient(circle at 30% 107%,#FDF497 0%,#FDF497 5%,#FD5949 45%,#D6249F 60%,#285AEB 90%);border-color:transparent}
   
@@ -987,6 +999,7 @@
     .nav-social{border-left:0;padding-left:0;margin-left:0;justify-content:center;gap:18px;margin-top:8px}
     .nav-links .nav-soc{padding:10px}   /* glyph + padding keeps a ~46px tap target */
     .nav-links .nav-soc svg{width:26px;height:26px}
+    .nav-links a.nav-fb{color:#6FA8F7 !important}   /* the overlay forces links white; Facebook keeps its blue */
     .nav-links a.nav-li{color:#5AA3EC !important}   /* the overlay forces links white; LinkedIn keeps its blue */
   }
   
@@ -1071,9 +1084,9 @@
   .plan-open:hover::after{background-color:rgba(23,34,74,.95)}
   
   
-  /* ── horizon cards carry their project photo, heavily faded under the navy ── */
+  /* ── horizon cards carry their project photo, gently veiled under the navy so the render reads through ── */
   .horizon-card.hc-photo{position:relative;overflow:hidden;background-size:cover;background-position:center}
-  .horizon-card.hc-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(23,34,74,.86) 0%,rgba(23,34,74,.8) 55%,rgba(30,45,96,.84) 100%)}
+  .horizon-card.hc-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(23,34,74,.62) 0%,rgba(23,34,74,.5) 55%,rgba(30,45,96,.6) 100%)}
   .horizon-card.hc-photo > *{position:relative;z-index:1}
   
   /* ── homepage CTA band sits on the brand navy ── */

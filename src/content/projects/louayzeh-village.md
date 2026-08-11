@@ -6,6 +6,12 @@ title_tag: Louayzeh Village | Apartments &amp; Duplexes for Sale in Louayzeh |
 meta_desc: "Louayzeh Village: a gated community of garden apartments, duplexes
   and roof duplexes from 175 m² in Louayzeh, Lebanon. Pools, courts, nursery and
   clubhouse. Own from 15% down with monthly installments. Delivery 2032."
+gallery_title: "A first look"
+specs_eyebrow: "Craftsmanship"
+specs_title: "Built without shortcuts"
+payment_title: "Three steps to your new home"
+res_title: "Residences &amp; floor plans"
+res_text: "Blocks A to R share four apartment families: ground-floor gardens, first-floor simplexes, first duplexes and roof duplexes. See the sample floor plans per block group."
 intro_title: A village of your own
 intro:
   - Eighteen low-rise blocks step down a wooded hillside in Louayzeh, a gated
@@ -85,4 +91,47 @@ slides:
   - image: /media/projects/louayzeh/nightfall.jpg
     cap: Nightfall over the village
     alt: Louayzeh Village illuminated at night
+specs:
+  - title: "Structure"
+    text: "Reinforced concrete structure, foundations, retaining walls, shear walls, columns and slabs per zone II B for seismic design"
+  - title: "Envelope"
+    text: |-
+      All external elevations will be made of double walls
+      Waterproofing for roofs as well as thermal insulation
+      All external doors &amp; windows will be in aluminum with double glazing glass as well as electrical rolling shutters
+  - title: "Parking"
+    text: |-
+      2 underground parking spaces for each apartment
+      Electrical gate with remote control
+  - title: "Electricity"
+    text: |-
+      Grounding system
+      Provision for T.V. satellite system
+      Interphone
+      Wiring device: Vimar or equivalent
+  - title: "Water"
+    text: "Water tank and plumbing systems for domestic and potable water"
+  - title: "Flooring"
+    text: "High quality ceramic tiles"
+  - title: "Doors"
+    text: "All door frames are solid oak wood, the door leaf is oak veneer on MDF"
+  - title: "Painting"
+    text: "Quality paint"
+  - title: "Plumbing"
+    text: |-
+      Top European choice PPR piping
+      Sanitary fixtures: Ideal Standard or equivalent
+      Grohe mixers or equivalent
+  - title: "Kitchen"
+    text: |-
+      Melamine wood: Egger or equivalent with granite/marble top
+      Appliances not included
+  - title: "Heating"
+    text: "Radiators will be provided"
+  - title: "Air conditioning"
+    text: "Infrastructure will be provided"
+timeline:
+  - { pct: "15%", text: "Down payment upon contract signature" }
+  - { pct: "85%", text: "The balance in moderate monthly installments over six years" }
+  - { pct: "2032", text: "Delivery of your new home" }
 ---

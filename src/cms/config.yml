@@ -18,6 +18,7 @@ collections:
           - { name: wa_display, label: "WhatsApp (as shown)", widget: string }
           - { name: wa_number, label: "WhatsApp (digits only, e.g. 96171333769)", widget: string }
           - { name: email, label: "Sales email", widget: string }
+          - { name: facebook, label: "Facebook URL", widget: string }
           - { name: linkedin, label: "LinkedIn URL", widget: string }
           - { name: instagram, label: "Instagram URL", widget: string }
           - name: offices

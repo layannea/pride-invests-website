@@ -22,9 +22,21 @@
     </div>
   </section>
 
+  <nav class="quick-nav" aria-label="Page sections">
+    <div class="quick-nav-inner">
+      <a href="#facts">Key facts</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#specs">Specs</a>
+      <a href="#payment">Payment</a>
+      <a href="#location">Location</a>
+      <a href="/projects/louayzeh-village/floor-plans/">Residence collections</a>
+    </div>
+  </nav>
+
   <div class="with-rail" style="padding-top:0">
     <div>
-      <section class="detail-section" style="margin-top:44px">
+      <section class="detail-section" id="facts" style="margin-top:44px">
         <div class="facts-strip reveal">
           {% for f in facts %}<div class="fact-cell">
           <span class="fk">{{ f.k | safe }}</span>
@@ -59,11 +71,32 @@
         </div>
       </section>
 
-      <section class="detail-section">
+      <section class="detail-section" id="amenities">
         <h2 class="reveal">Amenities</h2>
         <ul class="amen-list reveal">
 {% for a in amenities %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
 {% endfor %}        </ul>
+      </section>
+
+      <!-- ══ craftsmanship ══ -->
+      <section class="detail-section" id="specs">
+        <p class="detail-eyebrow reveal">Craftsmanship</p>
+        <h2 class="reveal">Built without shortcuts</h2>
+        <div class="spec-list reveal">
+          {% for s in specs %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><div class="spec-body">{% for line in s.text | lines %}<p>{{ line | safe }}</p>{% endfor %}</div></div>
+          {% endfor %}</div>
+      </section>
+
+      <!-- ══ payment ══ -->
+      <section class="detail-section" id="payment">
+        <p class="detail-eyebrow reveal">Payment terms</p>
+        <h2 class="reveal">Three steps to your new home</h2>
+        <div class="timeline reveal tl-3">
+          <div class="tl-line"></div>
+          <div class="tl-steps tl-cols-3">
+            {% for t in timeline %}<div class="tl-step"><span class="pct">{{ t.pct }}</span><span class="tl-dot"></span><p>{{ t.text | safe }}</p></div>
+            {% endfor %}</div>
+        </div>
       </section>
 
       <section class="detail-section">
