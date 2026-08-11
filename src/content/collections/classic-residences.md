@@ -3,13 +3,11 @@ layout: layouts/collection.njk
 permalink: "/projects/louayzeh-village/floor-plans/classic-residences/index.html"
 ctitle: "The Classic Residences"
 blocks: "Blocks C · D · O · P · Q"
+range: "175 – 299 m²"
+hub_sub: "Five blocks, one shared set of apartments and floor plans · 2 apartments per floor"
+hub_order: 1
 meta_desc: "The Classic Residences at Louayzeh Village (Blocks C, D, O, P, Q): apartments of 175 – 299 m² with shared sample floor plans."
 intro: "Five blocks built to one set of plans. Homes from 175 to 299 m², two per floor."
-unit_rows:
-  - { label: "Ground floor apartment", value: "175 m² + 75 m² garden" }
-  - { label: "First floor apartment", value: "175 m²" }
-  - { label: "First duplex", value: "299 m² + 57 m² garden" }
-  - { label: "Roof duplex", value: "270 m²" }
 tiers:
   - name: "Ground floor apartment"
     area: "175 m² + 75 m² garden"

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title_tag | safe }}</title>
+<meta name="description" content="{{ meta_desc | safe }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
+</head>
+<body class="has-action-bar">
+
+{% set nav_solid = true %}{% include "nav.njk" %}
+
+<main class="page">
+  <div class="page-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Projects</nav>
+    <h1 class="page-title">{{ page_title | safe }}</h1>
+    <p class="page-intro">{{ page_intro | safe }}</p>
+  </div>
+
+  <div class="with-rail">
+    <div>
+      <!-- ══ project cards ══ -->
+      <div class="proj-grid">
+{% for c in cards %}{% if c.soon %}        <article class="pcard soon reveal" aria-label="{{ c.name | safe }} — coming soon">
+          <div class="pcard-media">
+            <img src="{{ c.image }}" alt="{{ c.alt | safe }}" loading="lazy">
+            <span class="pcard-badge{% if c.badge_sold %} sold{% endif %}">{{ c.badge | safe }}</span>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-loc">{{ c.loc | safe }}</span>
+            <h3>{{ c.name | safe }}</h3>
+            <p>{{ c.text | safe }}</p>
+            <span class="soon-note">{{ c.soon_note | safe }}</span>
+          </div>
+        </article>
+{% else %}        <article class="pcard reveal">
+          <a class="pcard-cover" href="{{ c.url }}" aria-label="View {{ c.name | safe }}"></a>
+          <a class="pcard-media" href="{{ c.url }}">
+            <img src="{{ c.image }}" alt="{{ c.alt | safe }}" loading="lazy">
+            <span class="pcard-badge{% if c.badge_sold %} sold{% endif %}">{{ c.badge | safe }}</span>
+          </a>
+          <div class="pcard-body">
+            <span class="pcard-loc">{{ c.loc | safe }}</span>
+            <h3>{{ c.name | safe }}</h3>
+{% if c.meta %}            <div class="pcard-meta">{% for m in c.meta %}<span>{{ m.label | safe }} <b>{{ m.value | safe }}</b></span>{% endfor %}</div>
+{% endif %}            <p>{{ c.text | safe }}</p>
+            <a class="text-link" href="{{ c.url }}">{{ c.cta | safe }}</a>
+          </div>
+        </article>
+{% endif %}{% if not loop.last %}
+{% endif %}{% endfor %}      </div>
+
+      <!-- ══ find your home — filters first, results appear on selection ══ -->
+      <section class="finder" id="finder" style="margin-top:70px">
+        <h2 class="section-title reveal" style="margin-bottom:8px">{{ finder_title | safe }}</h2>
+        <p class="finder-sub reveal">{{ finder_sub | safe }}</p>
+        <div class="finder-bar reveal">
+          <div class="fld">
+            <label class="sr-only" for="fLoc">Project</label>
+            <select id="fLoc">
+              <option value="all">All projects</option>
+              <option value="Yarzeh">The Yarzeh Mansions</option>
+              <option value="Louayzeh">Louayzeh Village</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fType">Property type</label>
+            <select id="fType">
+              <option value="all">All types</option>
+              <option value="Apartment">One-floor apartment</option>
+              <option value="Duplex">Duplex · two levels</option>
+              <option value="Roof duplex">Roof duplex · two levels</option>
+              <option value="Mansion residence">Mansion residence</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fBeds">Bedrooms</label>
+            <select id="fBeds">
+              <option value="all">Bedrooms · any</option>
+              <option value="3">3 bedrooms</option>
+              <option value="4">4 bedrooms</option>
+              <option value="5">5 bedrooms</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fSize">Interior size</label>
+            <select id="fSize">
+              <option value="all">Size · any</option>
+              <option value="s1">Under 200 m²</option>
+              <option value="s2">200 to 300 m²</option>
+              <option value="s3">300 to 400 m²</option>
+              <option value="s4">Over 400 m²</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fFloor">Floor</label>
+            <select id="fFloor">
+              <option value="all">Floor · any</option>
+              <option value="Ground">Ground floor</option>
+              <option value="First">First floor</option>
+              <option value="Second">Second floor</option>
+              <option value="Third">Third floor</option>
+              <option value="multi">Multi-level</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fGarden">Garden</label>
+            <select id="fGarden">
+              <option value="all">Garden · any</option>
+              <option value="yes">With garden</option>
+              <option value="no">Without garden</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fTerr">Terrace</label>
+            <select id="fTerr">
+              <option value="all">Terrace · any</option>
+              <option value="yes">With terrace</option>
+              <option value="no">Without terrace</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fSort">Sort by</label>
+            <select id="fSort">
+              <option value="size-asc">Sort · small to large</option>
+              <option value="size-desc">Sort · large to small</option>
+              <option value="price-asc">Sort · price low to high</option>
+              <option value="price-desc">Sort · price high to low</option>
+            </select>
+          </div>
+          <button type="button" class="finder-reset" id="fReset">Reset filters</button>
+        </div>
+        <p class="finder-count" id="finderCount" style="display:none"></p>
+        <div class="unit-grid" id="unitGrid" data-wait-for-filter></div>
+        <p class="finder-empty" id="finderEmpty" style="display:none">{{ finder_empty | safe }}</p>
+      </section>
+    </div>
+
+    <!-- ══ persistent contact rail ══ -->
+    {% include "rail.njk" %}
+  </div>
+</main>
+
+<!-- mobile action bar -->
+{% include "action-bar.njk" %}
+
+{% include "footer.njk" %}
+
+<script src="/js/units-data.js?v={{ build.time }}"></script>
+<script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
+</body>
+</html>

@@ -28,6 +28,20 @@ collections:
               - { name: city, label: City, widget: string }
               - { name: country, label: Country, widget: string }
               - { name: address, label: "Address (use <br> for a line break)", widget: text }
+          - name: ui
+            label: "Shared section labels"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: gallery_eyebrow, label: "Gallery eyebrow", widget: string }
+              - { name: amenities, label: "Amenities heading", widget: string }
+              - { name: film_eyebrow, label: "Film eyebrow", widget: string }
+              - { name: film_title, label: "Film heading", widget: string }
+              - { name: payment_eyebrow, label: "Payment eyebrow", widget: string }
+              - { name: location_eyebrow, label: "Location eyebrow", widget: string }
+              - { name: location_title, label: "Location heading", widget: string }
+              - { name: speak, label: "Speak with our team", widget: string }
+              - { name: footer_legal, label: "Footer legal line", widget: string }
 
   - name: inventory
     label: "Apartment inventory"
@@ -66,12 +80,9 @@ collections:
       - { name: blocks, label: "Blocks line (e.g. Blocks C · D · O · P · Q)", widget: string }
       - { name: intro, label: "Introduction", widget: text }
       - { name: meta_desc, label: "Search-engine description", widget: text }
-      - name: unit_rows
-        label: "Apartment types (spec table)"
-        widget: list
-        fields:
-          - { name: label, label: "Type", widget: string }
-          - { name: value, label: "Area", widget: string }
+      - { name: range, label: "Size range (hub card, e.g. 175 – 299 m²)", widget: string }
+      - { name: hub_sub, label: "Hub card subtitle", widget: string }
+      - { name: hub_order, label: "Order on the hub page (1 = first)", widget: number }
       - name: tiers
         label: "Floor-plan cards"
         widget: list
@@ -136,6 +147,39 @@ collections:
           - { name: pct, label: "Percentage", widget: string }
           - { name: text, label: "Milestone", widget: string }
       - { name: film_url, label: "Project film (YouTube embed URL)", widget: string, required: false }
+      - { name: gallery_title, label: "Gallery heading", widget: string, required: false }
+      - { name: amen_eyebrow, label: "Amenities eyebrow", widget: string, required: false }
+      - { name: specs_eyebrow, label: "Specifications eyebrow", widget: string, required: false }
+      - { name: specs_title, label: "Specifications heading", widget: string, required: false }
+      - { name: payment_title, label: "Payment heading", widget: string, required: false }
+      - { name: res_eyebrow, label: "Residences eyebrow", widget: string, required: false }
+      - { name: res_title, label: "Residences heading", widget: string, required: false }
+      - { name: res_text, label: "Residences paragraph", widget: text, required: false }
+      - { name: brochure, label: "Brochure (PDF)", widget: file, required: false }
+      - { name: exterior_label, label: "Gallery label: outside renders", widget: string, required: false }
+      - { name: interior_label, label: "Gallery label: inside renders", widget: string, required: false }
+      - { name: walk_label, label: "Gallery label: 360° walkthrough", widget: string, required: false }
+      - name: rooms
+        label: "Interior render strips (by room)"
+        widget: list
+        required: false
+        fields:
+          - { name: key, label: "Tab id (no spaces, e.g. bedrooms)", widget: string }
+          - { name: label, label: "Tab label", widget: string }
+          - name: images
+            label: "Images"
+            widget: list
+            fields:
+              - { name: file, label: "Photo", widget: image }
+              - { name: cap, label: "Caption", widget: string, required: false }
+              - { name: alt, label: "Alt text (accessibility)", widget: string }
+      - name: walk_tabs
+        label: "360° walkthrough tabs"
+        widget: list
+        required: false
+        fields:
+          - { name: label, label: "Tab label", widget: string }
+          - { name: src, label: "Walkthrough URL", widget: string }
       - name: blocks
         label: "Sold apartment blocks"
         widget: list
@@ -154,6 +198,88 @@ collections:
   - name: pages
     label: "Pages"
     files:
+      - file: "src/content/pages/projects.md"
+        name: projects
+        label: "Projects index"
+        fields:
+          - { name: layout, widget: hidden }
+          - { name: permalink, widget: hidden }
+          - { name: title_tag, label: "Browser-tab title", widget: string }
+          - { name: meta_desc, label: "Search-engine description", widget: text }
+          - { name: page_title, label: "Page title", widget: string }
+          - { name: page_intro, label: "Intro line", widget: text }
+          - name: cards
+            label: "Project cards"
+            widget: list
+            fields:
+              - { name: name, label: "Project name", widget: string }
+              - { name: loc, label: "Location line", widget: string }
+              - { name: image, label: "Photo", widget: image }
+              - { name: alt, label: "Alt text (accessibility)", widget: string }
+              - { name: badge, label: "Badge text", widget: string }
+              - { name: badge_sold, label: "Grey sold-out badge style", widget: boolean, required: false }
+              - { name: soon, label: "Coming soon (card without links)", widget: boolean, required: false }
+              - { name: soon_note, label: "Coming soon note", widget: string, required: false }
+              - { name: url, label: "Project page link", widget: string, required: false }
+              - name: meta
+                label: "Meta line (delivery, sizes)"
+                widget: list
+                required: false
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: value, label: "Value", widget: string }
+              - { name: text, label: "Description", widget: text }
+              - { name: cta, label: "Link text", widget: string, required: false }
+          - { name: finder_title, label: "Finder heading", widget: string }
+          - { name: finder_sub, label: "Finder subtitle", widget: string }
+          - { name: finder_empty, label: "Finder empty-state message", widget: text }
+      - file: "src/content/pages/louayzeh-floor-plans.md"
+        name: louayzeh_floor_plans
+        label: "Louayzeh residence collections (hub)"
+        fields:
+          - { name: layout, widget: hidden }
+          - { name: permalink, widget: hidden }
+          - { name: title_tag, label: "Browser-tab title", widget: string }
+          - { name: meta_desc, label: "Search-engine description", widget: text }
+          - { name: page_title, label: "Page title", widget: string }
+          - { name: page_intro, label: "Intro (use <br> for a line break)", widget: text }
+          - { name: map_hint, label: "Map hint line", widget: string }
+          - { name: finder_title, label: "Finder heading", widget: string }
+          - { name: finder_sub, label: "Finder subtitle", widget: string }
+          - { name: finder_empty, label: "Finder empty-state message", widget: text }
+      - file: "src/content/pages/yarzeh-floor-plans.md"
+        name: yarzeh_floor_plans
+        label: "Yarzeh Mansions floor plans"
+        fields:
+          - { name: layout, widget: hidden }
+          - { name: permalink, widget: hidden }
+          - { name: title_tag, label: "Browser-tab title", widget: string }
+          - { name: meta_desc, label: "Search-engine description", widget: text }
+          - { name: page_title, label: "Page title", widget: string }
+          - { name: page_intro, label: "Intro line", widget: text }
+          - name: residences
+            label: "Residences"
+            widget: list
+            fields:
+              - { name: mansion, label: "Mansion group label", widget: string }
+              - { name: slug, label: "Anchor id (no spaces, e.g. daisy-i)", widget: string }
+              - { name: name, label: "Residence name", widget: string }
+              - { name: type, label: "Type line", widget: string }
+              - { name: price, label: "Price line", widget: string }
+              - name: specs
+                label: "Spec chips (bold with <b>…</b>)"
+                widget: list
+                field: { name: s, label: "Spec", widget: string }
+              - { name: text, label: "Description", widget: text }
+              - name: plans
+                label: "Floor plan images"
+                widget: list
+                fields:
+                  - { name: file, label: "Plan image", widget: image }
+                  - { name: label, label: "Caption (e.g. Ground floor · 210 m²)", widget: string }
+                  - { name: alt, label: "Alt text (accessibility)", widget: string }
+              - { name: link_text, label: "Extra link text", widget: string, required: false }
+              - { name: link_url, label: "Extra link URL", widget: string, required: false }
       - file: "src/content/pages/home.md"
         name: home
         label: "Homepage"

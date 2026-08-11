@@ -1,0 +1,86 @@
+---
+layout: layouts/pages/projects.njk
+permalink: "/projects/index.html"
+title_tag: "Projects | Luxury Apartments &amp; Mansions in Yarzeh, Louayzeh &amp; Jamhour | Pride Invests"
+meta_desc: "Browse Pride Invests developments in Lebanon: The Yarzeh Mansions in Baabda, Louayzeh Village apartments and duplexes, and delivered communities in Jamhour and Martakla. Filter homes by location, price, size and bedrooms."
+page_title: "Our projects"
+page_intro: "Every community we build is designed, engineered and delivered by our own team."
+cards:
+  - name: "The Yarzeh Mansions"
+    loc: "Yarzeh · Baabda, Lebanon"
+    image: "/media/projects/yarzeh/facade-hd.jpg"
+    alt: "Stone facade of the Yarzeh Mansions on the hills of Yarzeh"
+    badge: "Ongoing"
+    url: "/projects/yarzeh-mansions/"
+    meta:
+      - { label: "Delivery", value: "Dec 2027" }
+      - { label: "Sizes", value: "445–690 m²" }
+    text: "Two stone mansions holding four grand residences of 445 to 690 m², ten minutes from Beirut. Private gardens, rooftop suites, and a shared pool, gym, sauna and steam room."
+    cta: "View residences"
+  - name: "Louayzeh Village"
+    loc: "Louayzeh, Lebanon"
+    image: "/media/projects/louayzeh/village-day.jpg"
+    alt: "Louayzeh Village on its wooded hillside in the daylight"
+    badge: "Upcoming"
+    url: "/projects/louayzeh-village/"
+    meta:
+      - { label: "Delivery", value: "2032" }
+      - { label: "Sizes", value: "175–390 m²" }
+    text: "A gated hillside community of garden apartments, duplexes and roof duplexes from 175 m². Pools, courts, a nursery and a clubhouse, owned from 15% down with monthly installments."
+    cta: "View residences"
+  - name: "Saint Paul Gardens"
+    loc: "France · Côte d'Azur"
+    image: "/media/projects/saintpaul/saint-paul-gardens.jpg"
+    alt: "Aerial render of Saint Paul Gardens among the trees of the Côte d'Azur"
+    badge: "Coming soon"
+    soon: true
+    soon_note: "Sales opening soon"
+    text: "A private collection of garden residences on the Côte d'Azur."
+  - name: "Alma Verde Residences"
+    loc: "Portugal"
+    image: "/media/projects/almaverde/pool.jpg"
+    alt: "Pool and sun deck at the heart of Alma Verde Residences"
+    badge: "Coming soon"
+    soon: true
+    soon_note: "Sales opening soon"
+    text: "Garden residences arranged around a central pool and private club."
+  - name: "Pride of Jamhour"
+    loc: "Jamhour, Lebanon"
+    image: "/media/projects/jamhour/facade.jpg"
+    alt: "The stone and white blocks of Pride of Jamhour"
+    badge: "Delivered &amp; Sold Out"
+    badge_sold: true
+    url: "/projects/pride-of-jamhour/"
+    text: "24,000 m² of greenery above Beirut with tennis, volleyball, basketball and mini football courts, two pools and a modern gym. Apartments of 96 m² and duplexes of 160 m²."
+    cta: "View residences"
+  - name: "The Yarzeh Townhouses"
+    loc: "Yarzeh · Baabda, Lebanon"
+    image: "/media/projects/townhouses/night-pools.jpg"
+    alt: "The lit pools between the two mansions of the Yarzeh Townhouses at night"
+    badge: "Delivered &amp; Sold Out"
+    badge_sold: true
+    url: "/projects/yarzeh-townhouses/"
+    text: "Six townhouses across two mansions, Redwood and Magnolia, each home with its own garden and character, plus a pool, jacuzzi, gym, sauna and steam room per mansion."
+    cta: "View residences"
+  - name: "Pride of Martakla 1"
+    loc: "Martakla, Lebanon"
+    image: "/media/projects/martakla/facade.jpg"
+    alt: "Pride of Martakla 1, stone facade with wooden bands above the valley"
+    badge: "Delivered &amp; Sold Out"
+    badge_sold: true
+    url: "/projects/pride-of-martakla-1/"
+    text: "A secure green community with open play spaces, sports courts, pools for children and adults, and a fully equipped gym, minutes from the capital."
+    cta: "View residences"
+  - name: "Pride of Martakla 2"
+    loc: "Martakla, Lebanon"
+    image: "/media/projects/martakla2/render-night.jpg"
+    alt: "Pride of Martakla 2 at night, stone and wood facade against the cliff"
+    badge: "Delivered &amp; Sold Out"
+    badge_sold: true
+    url: "/projects/pride-of-martakla-2/"
+    text: "An accessible gateway to luxury a few minutes from Beirut, from the marble reception in every apartment to the panoramic elevators."
+    cta: "View residences"
+finder_title: "Find your home"
+finder_sub: "Select your preferences and the matching homes appear below."
+finder_empty: "No homes match these filters yet. Try widening your search, or ask our team what is coming next."
+---

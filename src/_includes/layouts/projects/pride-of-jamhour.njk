@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
 </head>
 <body class="has-action-bar">
 
@@ -41,16 +42,16 @@
       </section>
 
       <section class="detail-section" id="film">
-        <p class="detail-eyebrow reveal">The film</p>
-        <h2 class="reveal">See it come to life</h2>
+        <p class="detail-eyebrow reveal">{{ site.ui.film_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.film_title | safe }}</h2>
         <div class="walk-embed reveal">
           <iframe src="{{ film_url }}" title="Pride of Jamhour — project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </section>
 
       <section class="detail-section" id="gallery">
-        <p class="detail-eyebrow reveal">Gallery</p>
-        <h2 class="reveal">The community</h2>
+        <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ gallery_title | safe }}</h2>
         <div class="slider reveal" id="gallerySlider">
 {% for s in slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
 {% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
@@ -61,8 +62,8 @@
       </section>
 
       <section class="detail-section" id="amenities">
-        <p class="detail-eyebrow reveal">Life at Jamhour</p>
-        <h2 class="reveal">Amenities</h2>
+        <p class="detail-eyebrow reveal">{{ amen_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
         <ul class="amen-list reveal">
 {% for a in amenities %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
 {% endfor %}        </ul>
@@ -96,5 +97,6 @@
 {% include "footer.njk" %}
 
 <script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
 </body>
 </html>

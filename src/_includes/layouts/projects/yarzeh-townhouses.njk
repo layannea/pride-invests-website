@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
 </head>
 <body class="has-action-bar">
 
@@ -41,16 +42,16 @@
       </section>
 
       <section class="detail-section" id="film">
-        <p class="detail-eyebrow reveal">The film</p>
-        <h2 class="reveal">See it come to life</h2>
+        <p class="detail-eyebrow reveal">{{ site.ui.film_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.film_title | safe }}</h2>
         <div class="walk-embed reveal">
           <iframe src="{{ film_url }}" title="The Yarzeh Townhouses project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </section>
 
       <section class="detail-section" id="gallery">
-        <p class="detail-eyebrow reveal">Gallery</p>
-        <h2 class="reveal">Inside the townhouses</h2>
+        <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ gallery_title | safe }}</h2>
         <div class="slider reveal" id="gallerySlider">
 {% for s in slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
 {% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
@@ -61,8 +62,8 @@
       </section>
 
       <section class="detail-section" id="residences">
-        <p class="detail-eyebrow reveal">The residences</p>
-        <h2 class="reveal">Inside the six townhouses</h2>
+        <p class="detail-eyebrow reveal">{{ res_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ res_title | safe }}</h2>
         <div class="interior-nav walk-tabs reveal" id="walkTabs">
           <button type="button" class="on" data-src="https://www.youtube.com/embed/kt9nj4Wmbhk">Redwood III</button>
           <button type="button" data-src="https://www.youtube.com/embed/JwnM_0JK2P0">Redwood II</button>
@@ -75,8 +76,8 @@
       </section>
 
       <section class="detail-section" id="specs">
-        <p class="detail-eyebrow reveal">Specifications</p>
-        <h2 class="reveal">Finished to the smallest detail</h2>
+        <p class="detail-eyebrow reveal">{{ specs_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ specs_title | safe }}</h2>
         <div class="spec-list reveal">
           {% for s in specs %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><p>{{ s.text | safe }}</p></div>
           {% endfor %}</div>
@@ -110,5 +111,6 @@
 {% include "footer.njk" %}
 
 <script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
 </body>
 </html>

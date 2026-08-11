@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title_tag | safe }}</title>
+<meta name="description" content="{{ meta_desc | safe }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
+</head>
+<body class="has-action-bar">
+
+{% set nav_solid = true %}{% include "nav.njk" %}
+
+{% set cClassic = (collections.residenceCollections | findSlug("classic-residences")).data %}{% set cSelect = (collections.residenceCollections | findSlug("select-residences")).data %}{% set cGrand = (collections.residenceCollections | findSlug("grand-residences")).data %}{% set cFull = (collections.residenceCollections | findSlug("full-floor-residences")).data %}
+<main class="page plans-page">
+  <div class="page-head">
+    <a class="fp-back" href="/projects/louayzeh-village/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to Louayzeh Village</span></a>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/louayzeh-village/">Louayzeh Village</a> / Residences</nav>
+    <h1 class="page-title">{{ page_title | safe }}</h1>
+    <p class="page-intro">{{ page_intro | safe }}</p>
+  </div>
+
+  <div class="with-rail">
+    <div>
+      <section class="detail-section" id="blocks" style="margin-top:0">
+        <div class="blocks-map reveal" id="blocksMap">
+          <img src="/media/projects/louayzeh/blocks-labeled.jpg" alt="Aerial render of Louayzeh Village with every block labeled from A to R">
+          <svg viewBox="0 0 1600 902" preserveAspectRatio="none" role="group" aria-label="Interactive village plan — choose a residence collection">
+            <rect class="bm-dim" x="0" y="0" width="1600" height="902"></rect>
+          <a href="/projects/louayzeh-village/floor-plans/classic-residences/" class="bm-g" data-collection="classic" data-title="{{ cClassic.ctitle | safe }}" aria-label="{{ cClassic.ctitle | safe }} · {{ cClassic.blocks | safe }}">
+            <rect class="bm-blk" x="428" y="153" width="140" height="79" rx="10"/>
+            <rect class="bm-blk" x="503" y="133" width="149" height="83" rx="10"/>
+            <rect class="bm-blk" x="308" y="230" width="134" height="117" rx="10"/>
+            <rect class="bm-blk" x="272" y="378" width="190" height="272" rx="10"/>
+            <rect class="bm-blk" x="438" y="418" width="284" height="224" rx="10"/>
+          </a>
+          <a href="/projects/louayzeh-village/floor-plans/select-residences/" class="bm-g" data-collection="select" data-title="{{ cSelect.ctitle | safe }}" aria-label="{{ cSelect.ctitle | safe }} · {{ cSelect.blocks | safe }}">
+            <rect class="bm-blk" x="538" y="270" width="184" height="132" rx="10"/>
+            <rect class="bm-blk" x="418" y="264" width="130" height="128" rx="10"/>
+          </a>
+          <a href="/projects/louayzeh-village/floor-plans/grand-residences/" class="bm-g" data-collection="grand" data-title="{{ cGrand.ctitle | safe }}" aria-label="{{ cGrand.ctitle | safe }} · {{ cGrand.blocks | safe }}">
+            <rect class="bm-blk" x="575" y="60" width="120" height="95" rx="10"/>
+            <rect class="bm-blk" x="690" y="53" width="90" height="92" rx="10"/>
+            <rect class="bm-blk" x="788" y="122" width="180" height="90" rx="10"/>
+            <rect class="bm-blk" x="972" y="140" width="176" height="80" rx="10"/>
+            <rect class="bm-blk" x="1118" y="128" width="150" height="80" rx="10"/>
+            <rect class="bm-blk" x="1268" y="193" width="200" height="95" rx="10"/>
+            <rect class="bm-blk" x="1102" y="231" width="210" height="97" rx="10"/>
+            <rect class="bm-blk" x="912" y="270" width="230" height="112" rx="10"/>
+          </a>
+          <a href="/projects/louayzeh-village/floor-plans/full-floor-residences/" class="bm-g" data-collection="full-floor" data-title="{{ cFull.ctitle | safe }}" aria-label="{{ cFull.ctitle | safe }} · {{ cFull.blocks | safe }}">
+            <rect class="bm-blk" x="628" y="108" width="104" height="79" rx="10"/>
+            <rect class="bm-blk" x="763" y="280" width="175" height="132" rx="10"/>
+            <rect class="bm-blk" x="818" y="438" width="224" height="250" rx="10"/>
+          </a>
+          </svg>
+          <span class="vm-hint">{{ map_hint | safe }}</span>
+          <a class="bm-label" href="/projects/louayzeh-village/floor-plans/"><b></b><span>View floor plans <i>&rarr;</i></span></a>
+        </div>
+
+{% for c in collections.residenceCollections %}        <article class="res-card reveal" id="{{ c.fileSlug }}">
+          <div class="res-head">
+            <div><p class="res-kicker">{{ c.data.blocks | safe }}</p><h3>{{ c.data.ctitle | safe }}</h3></div>
+            <span class="res-price">{{ c.data.range | safe }}</span>
+          </div>
+          <p class="res-sub">{{ c.data.hub_sub | safe }}</p>
+          <div class="res-units">
+{% for t in c.data.tiers %}            <div class="ru"><span>{{ t.name | safe }}{% if (t.plans | length) > 1 %} · two levels{% endif %}</span><b>{{ t.area | safe }}</b><button type="button" class="ru-view" data-plans="{% for p in t.plans %}{{ p.file }}{% if not loop.last %}|{% endif %}{% endfor %}" data-caps="{% for p in t.plans %}{{ p.cap | safe }}{% if not loop.last %}|{% endif %}{% endfor %}" aria-label="View the {{ t.name | lower }} floor plan">View floor plan</button></div>
+{% endfor %}          </div>
+        </article>
+{% if not loop.last %}
+{% endif %}{% endfor %}      </section>
+
+      <!-- ══ louayzeh-only apartment finder ══ -->
+      <section class="finder" id="finder" style="margin-top:64px">
+        <h2 class="section-title reveal" style="margin-bottom:10px">{{ finder_title | safe }}</h2>
+        <p class="finder-sub reveal">{{ finder_sub | safe }}</p>
+        <div class="finder-bar reveal">
+          <div class="fld">
+            <label class="sr-only" for="fType">Apartment type</label>
+            <select id="fType">
+              <option value="all">All types</option>
+              <option value="Apartment">One-floor apartment</option>
+              <option value="Duplex">Duplex · two levels</option>
+              <option value="Roof duplex">Roof duplex · two levels</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fBeds">Bedrooms</label>
+            <select id="fBeds">
+              <option value="all">Bedrooms · any</option>
+              <option value="3">3 bedrooms</option>
+              <option value="4">4 bedrooms</option>
+              <option value="5">5 bedrooms</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fSize">Interior size</label>
+            <select id="fSize">
+              <option value="all">Size · any</option>
+              <option value="s1">Under 200 m²</option>
+              <option value="s2">200 to 300 m²</option>
+              <option value="s3">300 to 400 m²</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fFloor">Floor</label>
+            <select id="fFloor">
+              <option value="all">Floor · any</option>
+              <option value="Ground">Ground floor</option>
+              <option value="First">First floor</option>
+              <option value="Second">Second floor</option>
+              <option value="Third">Third floor</option>
+              <option value="multi">Duplex · multi-level</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fGarden">Garden</label>
+            <select id="fGarden">
+              <option value="all">Garden · any</option>
+              <option value="yes">With garden</option>
+              <option value="no">Without garden</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fTerr">Terrace</label>
+            <select id="fTerr">
+              <option value="all">Terrace · any</option>
+              <option value="yes">With terrace</option>
+              <option value="no">Without terrace</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label class="sr-only" for="fSort">Sort by</label>
+            <select id="fSort">
+              <option value="size-asc">Sort · small to large</option>
+              <option value="size-desc">Sort · large to small</option>
+            </select>
+          </div>
+          <button type="button" class="finder-reset" id="fReset">Reset filters</button>
+        </div>
+        <p class="finder-count" id="finderCount" style="display:none"></p>
+        <div class="unit-grid" id="unitGrid" data-location="Louayzeh" data-wait-for-filter></div>
+        <p class="finder-empty" id="finderEmpty" style="display:none">{{ finder_empty | safe }}</p>
+      </section>
+    </div>
+
+    {% include "rail.njk" %}
+  </div>
+</main>
+
+{% include "action-bar.njk" %}
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+
+{% include "footer.njk" %}
+
+<script src="/js/units-data.js?v={{ build.time }}"></script>
+<script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
+</body>
+</html>

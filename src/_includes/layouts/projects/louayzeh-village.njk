@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
 </head>
 <body class="has-action-bar">
 
@@ -60,8 +61,8 @@
 
       <!-- ══ gallery ══ -->
       <section class="detail-section" id="gallery">
-        <p class="detail-eyebrow reveal">Gallery</p>
-        <h2 class="reveal">A first look</h2>
+        <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ gallery_title | safe }}</h2>
         <div class="slider reveal" id="gallerySlider">
 {% for s in slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
 {% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
@@ -72,7 +73,7 @@
       </section>
 
       <section class="detail-section" id="amenities">
-        <h2 class="reveal">Amenities</h2>
+        <h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
         <ul class="amen-list reveal">
 {% for a in amenities %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
 {% endfor %}        </ul>
@@ -80,8 +81,8 @@
 
       <!-- ══ craftsmanship ══ -->
       <section class="detail-section" id="specs">
-        <p class="detail-eyebrow reveal">Craftsmanship</p>
-        <h2 class="reveal">Built without shortcuts</h2>
+        <p class="detail-eyebrow reveal">{{ specs_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ specs_title | safe }}</h2>
         <div class="spec-list reveal">
           {% for s in specs %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><div class="spec-body">{% for line in s.text | lines %}<p>{{ line | safe }}</p>{% endfor %}</div></div>
           {% endfor %}</div>
@@ -89,8 +90,8 @@
 
       <!-- ══ payment ══ -->
       <section class="detail-section" id="payment">
-        <p class="detail-eyebrow reveal">Payment terms</p>
-        <h2 class="reveal">Three steps to your new home</h2>
+        <p class="detail-eyebrow reveal">{{ site.ui.payment_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ payment_title | safe }}</h2>
         <div class="timeline reveal tl-3">
           <div class="tl-line"></div>
           <div class="tl-steps tl-cols-3">
@@ -100,9 +101,9 @@
       </section>
 
       <section class="detail-section">
-        <h2 class="reveal">Residences &amp; floor plans</h2>
+        <h2 class="reveal">{{ res_title | safe }}</h2>
         <div class="detail-prose reveal">
-          <p>Blocks A to R share four apartment families: ground-floor gardens, first-floor simplexes, first duplexes and roof duplexes. See the sample floor plans per block group.</p>
+          <p>{{ res_text | safe }}</p>
         </div>
         <p class="reveal" style="margin-top:22px"><a class="btn btn-navy" href="/projects/louayzeh-village/floor-plans/">Residence collections</a></p>
       </section>
@@ -134,5 +135,6 @@
 {% include "footer.njk" %}
 
 <script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
 </body>
 </html>

@@ -22,6 +22,7 @@
     }
   });
 </script>
+{% include "pixels-head.njk" %}
 </head>
 <body>
 
@@ -154,7 +155,7 @@
 <!-- ══════════ CTA ══════════ -->
 <section class="cta-band">
   <div class="cta-inner">
-    <p class="eyebrow reveal">Speak with our team</p>
+    <p class="eyebrow reveal">{{ site.ui.speak | safe }}</p>
     <h2 class="reveal">Ready to find your address?</h2>
     <p class="reveal">Book a private site visit or request a brochure. Our team replies within one working day.</p>
     <div class="hero-cta reveal">
@@ -174,5 +175,6 @@
 {% include "footer.njk" %}
 
 <script src="/js/main.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
 </body>
 </html>

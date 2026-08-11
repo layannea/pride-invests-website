@@ -3,6 +3,9 @@ layout: layouts/projects/pride-of-martakla-1.njk
 permalink: "/projects/pride-of-martakla-1/index.html"
 title_tag: "Pride of Martakla 1 | Delivered &amp; Sold Out | Pride Invests"
 meta_desc: "Pride of Martakla 1: a delivered, fully sold community ten minutes from Beirut. Contemporary stone architecture in harmony with its surroundings, across blocks A, B and C."
+gallery_title: "The community"
+res_eyebrow: "The apartments"
+res_title: "The residences"
 facts:
   - { k: "Project status</span><span class=\"fv fv-sold\">Delivered &amp; Sold Out</span></div>
           <div class=\"fact-cell\"><span class=\"fk\">Location", v: "Martakla, Lebanon" }

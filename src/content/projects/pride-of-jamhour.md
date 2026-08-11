@@ -3,6 +3,8 @@ layout: layouts/projects/pride-of-jamhour.njk
 permalink: "/projects/pride-of-jamhour/index.html"
 title_tag: "Pride of Jamhour | Delivered &amp; Sold Out | Pride Invests"
 meta_desc: "Pride of Jamhour: 24,000 m² of natural beauty and unique architecture above Beirut, delivered and fully sold. 96 m² apartments and 160 m² duplexes with pools, sports courts, gym and round-the-clock security."
+gallery_title: "The community"
+amen_eyebrow: "Life at Jamhour"
 facts:
   - { k: "Project status</span><span class=\"fv fv-sold\">Delivered &amp; Sold Out</span></div>
           <div class=\"fact-cell\"><span class=\"fk\">Location", v: "Jamhour, Lebanon" }

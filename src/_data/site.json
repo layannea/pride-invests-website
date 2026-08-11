@@ -23,5 +23,16 @@
       "country": "Portugal",
       "address": "Rua Ricardo Espírito Santo, nº9, cv. dta., 1200-790 Lisboa"
     }
-  ]
+  ],
+  "ui": {
+    "gallery_eyebrow": "Gallery",
+    "amenities": "Amenities",
+    "film_eyebrow": "The film",
+    "film_title": "See it come to life",
+    "payment_eyebrow": "Payment terms",
+    "location_eyebrow": "Location",
+    "location_title": "Where you'll find us",
+    "speak": "Speak with our team",
+    "footer_legal": "© 2026 Pride Invests · Beirut · Cannes · Lisbon"
+  }
 }

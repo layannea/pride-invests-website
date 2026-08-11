@@ -537,12 +537,10 @@
   var label = map.querySelector('.bm-label');
   var labelName = label.querySelector('b');
   var groups = Array.prototype.slice.call(map.querySelectorAll('.bm-g'));
-  var NAMES = { classic: 'The Classic Residences', select: 'The Select Residences',
-                grand: 'The Grand Residences', 'full-floor': 'The Full-Floor Residences' };
   function activate(g) {
     map.classList.add('active');
     groups.forEach(function (x) { x.classList.toggle('lit', x === g); });
-    labelName.textContent = NAMES[g.getAttribute('data-collection')] || '';
+    labelName.textContent = g.getAttribute('data-title') || '';
     label.setAttribute('href', g.getAttribute('href'));
   }
   function clearAll() {

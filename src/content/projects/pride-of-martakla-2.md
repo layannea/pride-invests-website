@@ -3,6 +3,11 @@ layout: layouts/projects/pride-of-martakla-2.njk
 permalink: "/projects/pride-of-martakla-2/index.html"
 title_tag: "Pride of Martakla 2 | Delivered &amp; Sold Out | Pride Invests"
 meta_desc: "Pride of Martakla 2: an affordable gateway to luxury minutes from Beirut, delivered and fully sold. Marble receptions, panoramic elevators and premium specifications across blocks A and B."
+gallery_title: "Built, delivered, lived in"
+specs_eyebrow: "Specifications"
+specs_title: "Selected to the highest standard"
+res_eyebrow: "The apartments"
+res_title: "The residences"
 facts:
   - { k: "Project status</span><span class=\"fv fv-sold\">Delivered &amp; Sold Out</span></div>
           <div class=\"fact-cell\"><span class=\"fk\">Location", v: "Martakla, Lebanon" }

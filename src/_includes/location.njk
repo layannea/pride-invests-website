@@ -1,6 +1,6 @@
 <section class="detail-section" id="location">
-        <p class="detail-eyebrow reveal">Location</p>
-        <h2 class="reveal">Where you'll find us</h2>{% if loc_illu %}
+        <p class="detail-eyebrow reveal">{{ site.ui.location_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.location_title | safe }}</h2>{% if loc_illu %}
 {{ loc_illu | safe }}{% endif %}
         <div class="map-wrap reveal" style="margin-top:16px">
           <iframe title="Map of {{ loc_name }}" src="https://maps.google.com/maps?q={{ loc_q }}&z={{ loc_z }}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

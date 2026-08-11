@@ -3,13 +3,11 @@ layout: layouts/collection.njk
 permalink: "/projects/louayzeh-village/floor-plans/grand-residences/index.html"
 ctitle: "The Grand Residences"
 blocks: "Blocks A · B · F · G · H · I · J · K"
+range: "190 – 327 m²"
+hub_sub: "Eight blocks, one shared set of apartments and floor plans · 2 apartments per floor"
+hub_order: 3
 meta_desc: "The Grand Residences at Louayzeh Village (Blocks A, B, F, G, H, I, J, K): apartments of 190 – 327 m² with shared sample floor plans."
 intro: "Eight blocks built to one set of plans. The widest standard homes in the village, from 190 to 327 m², two per floor."
-unit_rows:
-  - { label: "Ground floor apartment", value: "190 m² + 81 m² garden" }
-  - { label: "First floor apartment", value: "190 m²" }
-  - { label: "First duplex", value: "327 m² + 96 m² garden" }
-  - { label: "Roof duplex", value: "289 m²" }
 tiers:
   - name: "Ground floor apartment"
     area: "190 m² + 81 m² garden"

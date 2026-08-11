@@ -3,6 +3,86 @@ layout: layouts/projects/yarzeh-mansions.njk
 permalink: "/projects/yarzeh-mansions/index.html"
 title_tag: "The Yarzeh Mansions | Luxury Homes for Sale in Yarzeh, Baabda | Pride Invests"
 meta_desc: "The Yarzeh Mansions: four residences of 445 to 690 m² in two stone mansions on the hills of Yarzeh, Baabda, ten minutes from Beirut. Private gardens, rooftop suites, pool, gym, sauna. US$ 4,500 per m² with staged payments. Delivery December 2027."
+gallery_title: "A first look"
+amen_eyebrow: "Life at the Mansions"
+specs_eyebrow: "Craftsmanship"
+specs_title: "Built without shortcuts"
+payment_title: "Four steps to your title deed"
+brochure: "/media/projects/yarzeh/The-Yarzeh-Mansions-Brochure.pdf"
+exterior_label: "Outside renders"
+interior_label: "Inside renders · Residence Daisy II"
+walk_label: "360° walkthrough · Residence Daisy II"
+rooms:
+  - key: "bedrooms"
+    label: "Bedrooms"
+    images:
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed1-a.jpg", cap: "Bedroom I", alt: "Daisy II, bedroom i" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed1-b.jpg", cap: "Bedroom I", alt: "Daisy II, bedroom i" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed2-a.jpg", cap: "Bedroom II", alt: "Daisy II, bedroom ii" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed2-b.jpg", cap: "Bedroom II", alt: "Daisy II, bedroom ii" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed2-c.jpg", cap: "Bedroom II", alt: "Daisy II, bedroom ii" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed3-a.jpg", cap: "Bedroom III", alt: "Daisy II, bedroom iii" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bed3-b.jpg", cap: "Bedroom III", alt: "Daisy II, bedroom iii" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-sleep-a.jpg", cap: "Sleeping area", alt: "Daisy II, sleeping area" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-sleep-b.jpg", cap: "Sleeping area", alt: "Daisy II, sleeping area" }
+  - key: "bathrooms"
+    label: "Bathrooms"
+    images:
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-a.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-b.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-c.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-d.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-e.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-f.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-g.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-bath-h.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-wc.jpg", cap: "Guest WC", alt: "Daisy II, guest wc" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-bath-a.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-bath-b.jpg", cap: "Bathroom", alt: "Daisy II, bathroom" }
+  - key: "salons"
+    label: "Salons &amp; living"
+    images:
+      - { file: "/media/projects/yarzeh/interiors/d2gf-tv-a.jpg", cap: "TV room", alt: "Daisy II, tv room" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-tv-b.jpg", cap: "TV room", alt: "Daisy II, tv room" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-salon-a.jpg", cap: "Grand salons &amp; dining", alt: "Daisy II, grand salons &amp; dining" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-salon-b.jpg", cap: "Grand salons &amp; dining", alt: "Daisy II, grand salons &amp; dining" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-salon-c.jpg", cap: "Grand salons &amp; dining", alt: "Daisy II, grand salons &amp; dining" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-living-a.jpg", cap: "Living &amp; lounge", alt: "Daisy II, living &amp; lounge" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-living-b.jpg", cap: "Living &amp; lounge", alt: "Daisy II, living &amp; lounge" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-living-c.jpg", cap: "Living &amp; lounge", alt: "Daisy II, living &amp; lounge" }
+  - key: "kitchens"
+    label: "Kitchens &amp; dining"
+    images:
+      - { file: "/media/projects/yarzeh/interiors/d2gf-kitchenette.jpg", cap: "Kitchenette", alt: "Daisy II, kitchenette" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-kitchen.jpg", cap: "Kitchen", alt: "Daisy II, kitchen" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-kitch-a.jpg", cap: "Kitchenette &amp; dining", alt: "Daisy II, kitchenette &amp; dining" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-kitch-b.jpg", cap: "Kitchenette &amp; dining", alt: "Daisy II, kitchenette &amp; dining" }
+  - key: "lobbies"
+    label: "Lobbies &amp; arrival"
+    images:
+      - { file: "/media/projects/yarzeh/interiors/d2gf-lobby-a.jpg", cap: "Private lobby", alt: "Daisy II, private lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-lobby-b.jpg", cap: "Private lobby", alt: "Daisy II, private lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-lobby-c.jpg", cap: "Private lobby", alt: "Daisy II, private lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-lobby-a.jpg", cap: "Entrance lobby", alt: "Daisy II, entrance lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-lobby-b.jpg", cap: "Entrance lobby", alt: "Daisy II, entrance lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-lobby-c.jpg", cap: "Entrance lobby", alt: "Daisy II, entrance lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-lobby-d.jpg", cap: "Entrance lobby", alt: "Daisy II, entrance lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-lobby-e.jpg", cap: "Entrance lobby", alt: "Daisy II, entrance lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2ff-lobby-f.jpg", cap: "Entrance lobby", alt: "Daisy II, entrance lobby" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-lift-a.jpg", cap: "Private lift landing", alt: "Daisy II, private lift landing" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-lift-b.jpg", cap: "Private lift landing", alt: "Daisy II, private lift landing" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-lift-c.jpg", cap: "Private lift landing", alt: "Daisy II, private lift landing" }
+  - key: "closets"
+    label: "Walk-in closets"
+    images:
+      - { file: "/media/projects/yarzeh/interiors/d2gf-wic-a.jpg", cap: "Master walk-in closet", alt: "Daisy II, master walk-in closet" }
+      - { file: "/media/projects/yarzeh/interiors/d2gf-wic-b.jpg", cap: "Master walk-in closet", alt: "Daisy II, master walk-in closet" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-wic-a.jpg", cap: "Walk-in closet", alt: "Daisy II, walk-in closet" }
+      - { file: "/media/projects/yarzeh/interiors/d2rf-wic-b.jpg", cap: "Walk-in closet", alt: "Daisy II, walk-in closet" }
+walk_tabs:
+  - { label: "Lower floor", src: "https://www.coohom.com/pub/tool/panorama/show?obsPlanId=3FO3H6GF15MJ&locale=en_US" }
+  - { label: "Main floor", src: "https://www.coohom.com/pub/tool/panorama/show?obsPlanId=3FO3H6PIP68E&locale=en_US" }
+  - { label: "Roof floor", src: "https://www.coohom.com/pub/tool/panorama/show?obsPlanId=3FO3H97BAP1F&locale=en_US" }
 facts:
   - { k: "Project status", v: "Under construction" }
   - { k: "Expected delivery", v: "December 2027" }

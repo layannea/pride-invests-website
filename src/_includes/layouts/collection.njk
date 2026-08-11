@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
 </head>
 <body class="has-action-bar">
 
@@ -26,7 +27,7 @@
     <div>
       <section class="detail-section" style="margin-top:0">
         <div class="res-units" style="max-width:780px">
-            {% for u in unit_rows %}<div class="ru"><span>{{ u.label }}</span><b>{{ u.value }}</b></div>
+            {% for t in tiers %}<div class="ru"><span>{{ t.name }}</span><b>{{ t.area }}</b></div>
 {% endfor %}
         </div>
         <h2 class="reveal" style="font-family:var(--font-display);font-weight:400;color:var(--navy);margin-top:44px">Floor plans</h2>
@@ -73,5 +74,6 @@
 
 <script src="/js/units-data.js?v={{ build.time }}"></script>
 <script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
 </body>
 </html>
