@@ -193,7 +193,6 @@ collections:
         collapsed: true
         allow_add: false
         summary: '{{ fields.label }}'
-        hint: 'Edit the wording of any filter or its options, reorder them, or delete a filter with its x. The small value codes are wired to the search: change only the visible text.'
         fields: &id001
         - name: id
           label: Filter code (do not change)
@@ -211,7 +210,6 @@ collections:
           - name: text
             label: Visible text
             widget: string
-      hint: The filter options themselves are wired to the search and are managed by the developer.
     - name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
@@ -346,7 +344,7 @@ collections:
     description: The heading and intro line of the Contact page. The blue banner, phone numbers and Sales offices shown on this page are edited once for the whole site under Site settings.
 - name: projects
   label: Projects
-  description: One entry per development, listed by name. Each section of the page has its own group below. Fill a section in and it appears on the page; empty it and it disappears. Use the top-right New button to create a page for a new project.
+  description: One entry per development, listed by name.
   identifier_field: page_name
   folder: src/content/projects
   create: true
@@ -673,7 +671,6 @@ collections:
         collapsed: true
         allow_add: false
         summary: '{{ fields.label }}'
-        hint: 'Edit the wording of any filter or its options, reorder them, or delete a filter with its x. The small value codes are wired to the search: change only the visible text.'
         fields: *id001
     - *id002
     - *id003

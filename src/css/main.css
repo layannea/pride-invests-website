@@ -842,15 +842,15 @@
   @media(min-width:1021px){.to-top{bottom:26px}}
   
   /* contact page layout */
-  .contact-grid{display:block;max-width:1100px;margin:0 auto;padding:16px 6vw 90px}
+  .contact-grid{display:block;max-width:1100px;margin:0 auto;padding:0 6vw 90px}
   .contact-card{max-width:760px;margin:0 auto}
-  .offices-strip{padding:0 6vw 38px;background:none}
-  .offices-strip .section-title{font-size:.98rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
-  .offices-strip .dest-row{gap:18px}
-  .offices-strip .dest{gap:4px}
-  .offices-strip .dest-city{font-size:1.28rem}
-  .offices-strip .dest-country{font-size:.72rem;letter-spacing:.22em}
-  .offices-strip .dest-details{font-size:.92rem;gap:7px;margin-top:4px}
+  .offices-strip{padding:10px 6vw 16px;background:none;margin-top:0}
+  .offices-strip .section-title{font-size:.95rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:5px}
+  .offices-strip .dest-row{gap:0}
+  .offices-strip .dest{gap:2px}
+  .offices-strip .dest-city{font-size:1.26rem}
+  .offices-strip .dest-country{font-size:.7rem;letter-spacing:.22em}
+  .offices-strip .dest-details{font-size:.92rem;gap:6px;margin-top:2px}
   /* office strip (legacy) */
   .office-strip{max-width:1100px;margin:0 auto;padding:0 6vw}
   .office-strip .os-inner{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 30px;text-align:center}
