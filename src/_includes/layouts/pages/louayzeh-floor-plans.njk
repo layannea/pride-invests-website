@@ -14,8 +14,21 @@
 
 {% set nav_solid = true %}{% include "nav.njk" %}
 
+  <nav class="quick-nav" aria-label="Page sections">
+    <div class="quick-nav-inner">
+      <a href="/projects/louayzeh-village/#facts">Key facts</a>
+      <a href="/projects/louayzeh-village/#gallery">Gallery</a>
+      <a href="/projects/louayzeh-village/#amenities">Amenities</a>
+      <a href="/projects/louayzeh-village/#specs">Specs</a>
+      <a href="/projects/louayzeh-village/#payment">Payment</a>
+      <a href="/projects/louayzeh-village/#location">Location</a>
+      <a href="/projects/louayzeh-village/floor-plans/" class="active">Residence collections</a>
+      {% if lv.brochure %}<a class="qn-brochure" href="{{ lv.brochure }}" download>Brochure ↓</a>{% endif %}
+    </div>
+  </nav>
+
 {% set cClassic = (lv.families | bySlug("classic-residences")) %}{% set cSelect = (lv.families | bySlug("select-residences")) %}{% set cGrand = (lv.families | bySlug("grand-residences")) %}{% set cFull = (lv.families | bySlug("full-floor-residences")) %}
-<main class="page plans-page">
+<main class="page plans-page qn-page">
   <div class="page-head">
     <a class="fp-back" href="/projects/louayzeh-village/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to Louayzeh Village</span></a>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/louayzeh-village/">Louayzeh Village</a> / Residences</nav>

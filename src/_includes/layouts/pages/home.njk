@@ -95,36 +95,24 @@
 
 <!-- ══════════ FEATURED PROJECTS ══════════ -->
 <section class="projects" id="projects">
-  <p class="eyebrow eyebrow-strong reveal">Ongoing developments</p>
-  <h2 class="section-title reveal">Addresses of pride</h2>
+  <p class="eyebrow eyebrow-strong reveal">{{ featured.eyebrow | safe }}</p>
+  <h2 class="section-title reveal">{{ featured.title | safe }}</h2>
 
-  <article class="project reveal">
-    <a class="project-media" href="/projects/yarzeh-mansions/" style="background-image:url('/media/projects/yarzeh/facade-hd.jpg')">
-      <span class="project-status">Delivery · Dec 2027</span>
+{% for c in featured.cards %}  <article class="project{% if not loop.first %} flip{% endif %} reveal">
+    <a class="project-media" href="{{ c.url }}" style="background-image:url('{{ c.image }}')">
+      <span class="project-status">{{ c.status | safe }}</span>
     </a>
     <div class="project-info">
-      <span class="project-loc">Yarzeh · Baabda, Lebanon</span>
-      <h3><a href="/projects/yarzeh-mansions/">The Yarzeh Mansions</a></h3>
-      <p>Four grand residences of 445 to 690 m², set within two private mansions on the hills of Yarzeh, only ten minutes from Beirut. Wake up to views that sweep from the Mediterranean to Mount Lebanon, then unwind in your own pool, gym, sauna and steam room. Premium materials and refined finishing in every detail.</p>
-      <a class="text-link" href="/projects/yarzeh-mansions/">View residences</a>
+      <span class="project-loc">{{ c.loc | safe }}</span>
+      <h3><a href="{{ c.url }}">{{ c.name | safe }}</a></h3>
+      <p>{{ c.text | safe }}</p>
+      <a class="text-link" href="{{ c.url }}">{{ c.cta | safe }}</a>
     </div>
   </article>
 
-  <p class="eyebrow eyebrow-strong reveal" style="margin-top:30px">Upcoming</p>
+{% if not loop.last %}  <p class="eyebrow eyebrow-strong reveal" style="margin-top:30px">{{ c.next_kicker | safe }}</p>
 
-  <article class="project flip reveal">
-    <a class="project-media" href="/projects/louayzeh-village/" style="background-image:url('/media/projects/louayzeh/village-day.jpg')">
-      <span class="project-status">Delivery · 2032</span>
-    </a>
-    <div class="project-info">
-      <span class="project-loc">Louayzeh, Lebanon</span>
-      <h3><a href="/projects/louayzeh-village/">Louayzeh Village</a></h3>
-      <p>A gated hillside community of garden apartments, duplexes and roof duplexes starting at 175 m². Pools, sports courts, a nursery and a private clubhouse bring resort living to your doorstep. Own your home with just 15% down and comfortable monthly installments over six years.</p>
-      <a class="text-link" href="/projects/louayzeh-village/">View apartments</a>
-    </div>
-  </article>
-
-  <p class="eyebrow eyebrow-strong reveal" style="margin-top:30px">On the Horizon</p>
+{% endif %}{% endfor %}  <p class="eyebrow eyebrow-strong reveal" style="margin-top:30px">{{ horizon_kicker | safe }}</p>
   <div class="horizon-grid">
     {% for h in horizon %}<article class="horizon-card hc-photo" style="background-image:url('{{ h.image }}')">
       <span class="hc-soon">{{ h.badge | safe }}</span>
