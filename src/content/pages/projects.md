@@ -92,9 +92,6 @@ cards:
     cta: View residences
     badge_sold: true
     image: /media/projects/martakla2/render-night.jpg
-  - name: pride of jounieh
-    url: /projects/pride-of-jounieh/
-    text: testttt
 finder:
   title: Find your home
   sub: Select your preferences and the matching homes appear below.
