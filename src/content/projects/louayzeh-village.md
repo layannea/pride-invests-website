@@ -2,6 +2,7 @@
 layout: layouts/projects/louayzeh-village.njk
 permalink: /projects/louayzeh-village/index.html
 page_name: "Louayzeh Village"
+brochure: "/media/projects/louayzeh/Louayzeh-Village-Brochure.pdf"
 title_tag: Louayzeh Village | Apartments &amp; Duplexes for Sale in Louayzeh |
   Pride Invests
 meta_desc: "Louayzeh Village: a gated community of garden apartments, duplexes
