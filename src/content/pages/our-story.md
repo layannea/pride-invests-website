@@ -27,7 +27,7 @@ copy2:
       handover."
 copy3:
   - cls: reveal
-    html: Alongside him, his wife Abir Ramadan El Assaad, a lawyer, brought the same
+    html: Alongside him, his wife Abir Ramadan, a lawyer, brought the same
       commitment to integrity, precision and excellence.
   - cls: reveal
     html: "Together, they continue to dream bigger and shape the next chapter of
