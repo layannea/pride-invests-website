@@ -899,7 +899,7 @@ collections:
   files:
   - file: src/_data/site.json
     name: general
-    label: Contact, social links, labels & newsletter
+    label: Contact, social links, labels & Mailchimp
     fields:
     - name: phone_display
       label: Phone (as shown)
@@ -975,16 +975,7 @@ collections:
       widget: object
       collapsed: true
       fields:
-      - name: title
-        label: Footer signup heading
-        widget: string
-      - name: sub
-        label: Footer signup subtitle
-        widget: string
-      - name: button
-        label: Footer signup button
-        widget: string
       - name: action
-        label: Mailchimp form URL
+        label: Mailchimp form URL (used to send contact-form leads to Mailchimp)
         widget: string
         required: false
