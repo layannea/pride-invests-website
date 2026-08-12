@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>{{ ctitle }} | Louayzeh Village | Pride Invests</title>
-<meta name="description" content="{{ meta_desc }}">
+<title>{{ fam.ctitle }} | Louayzeh Village | Pride Invests</title>
+<meta name="description" content="{{ fam.meta_desc }}">
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
@@ -17,21 +17,21 @@
 <main class="page plans-page">
   <div class="page-head">
     <a class="fp-back" href="/projects/louayzeh-village/floor-plans/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to Residences</span></a>
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/louayzeh-village/">Louayzeh Village</a> / <a href="/projects/louayzeh-village/floor-plans/">Residences</a> / {{ ctitle }}</nav>
-    <p class="res-kicker" style="margin-bottom:4px">{{ blocks }}</p>
-    <h1 class="page-title">{{ ctitle }}</h1>
-    <p class="page-intro">{{ intro }}</p>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/louayzeh-village/">Louayzeh Village</a> / <a href="/projects/louayzeh-village/floor-plans/">Residences</a> / {{ fam.ctitle }}</nav>
+    <p class="res-kicker" style="margin-bottom:4px">{{ fam.blocks }}</p>
+    <h1 class="page-title">{{ fam.ctitle }}</h1>
+    <p class="page-intro">{{ fam.intro }}</p>
   </div>
 
   <div class="with-rail">
     <div>
       <section class="detail-section" style="margin-top:0">
         <div class="res-units" style="max-width:780px">
-            {% for t in tiers %}<div class="ru"><span>{{ t.name }}</span><b>{{ t.area }}</b></div>
+            {% for t in fam.tiers %}<div class="ru"><span>{{ t.name }}</span><b>{{ t.area }}</b></div>
 {% endfor %}
         </div>
         <h2 class="reveal" style="font-family:var(--font-display);font-weight:400;color:var(--navy);margin-top:44px">Floor plans</h2>
-{% for t in tiers %}
+{% for t in fam.tiers %}
         <article class="plan-card reveal">
           <div class="plan-card-head">
             <h3>{{ t.name }}</h3>

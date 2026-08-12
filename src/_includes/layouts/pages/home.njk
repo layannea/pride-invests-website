@@ -70,8 +70,8 @@
 
   <div class="hero-content">
     <svg viewBox="0 0 148 229" class="hero-mark" aria-hidden="true"><polygon class="navy" points="0,0 125,0 88,229 49,229"/><polygon class="gray" points="68,89 148,89 132,229 99,229"/></svg>
-    <h1 class="hero-title"><span class="w1">PRIDE</span><span class="w2">INVESTS</span></h1>
-    <p class="hero-slogan">Pride in every detail.</p>
+    <h1 class="hero-title"><span class="w1">{{ hero_word_1 | safe }}</span><span class="w2">{{ hero_word_2 | safe }}</span></h1>
+    <p class="hero-slogan">{{ slogan | safe }}</p>
     <div class="hero-cta">
       <a class="btn btn-ghost" href="/projects/">Explore our projects</a>
       <a class="btn btn-line" href="/contact/">Book a viewing</a>
@@ -137,7 +137,7 @@
 
 <!-- ══════════ SALES OFFICES ══════════ -->
 <section class="destinations" id="offices">
-  <h2 class="section-title reveal">Sales offices</h2>
+  <h2 class="section-title reveal">{{ offices_title | safe }}</h2>
   <div class="dest-row">
     {% for o in site.offices %}<div class="dest reveal">
       <span class="dest-city">{{ o.city }}</span>

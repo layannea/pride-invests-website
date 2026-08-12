@@ -844,7 +844,9 @@
   /* contact page layout */
   .contact-grid{display:block;max-width:1100px;margin:0 auto;padding:16px 6vw 90px}
   .contact-card{max-width:760px;margin:0 auto}
-  /* office strip: slim horizontal band between the intro and the form */
+  .offices-strip{padding:8px 6vw 44px;background:none}
+  .offices-strip .section-title{font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px}
+  /* office strip (legacy) */
   .office-strip{max-width:1100px;margin:0 auto;padding:0 6vw}
   .office-strip .os-inner{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 30px;text-align:center}
   .office-strip h2{font-family:var(--font-display);font-weight:400;color:var(--navy);font-size:1.02rem;letter-spacing:.14em;text-transform:uppercase}

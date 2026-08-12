@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title_tag | safe }}</title>
+<meta name="description" content="{{ meta_desc | safe }}">
+<link rel="icon" type="image/png" href="/media/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
+{% include "pixels-head.njk" %}
+</head>
+<body class="has-action-bar">
+
+{% set nav_solid = false %}{% include "nav.njk" %}
+
+<main>
+  <section class="detail-hero" {% if gallery.slides %}style="background-image:url('{{ gallery.slides[0].image }}')"{% endif %}>
+    <div class="detail-hero-inner">
+      <nav class="crumbs crumbs-light" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / {{ page_name | safe }}</nav>
+      <h1>{{ page_name | safe }}</h1>
+    </div>
+  </section>
+
+  <div class="with-rail" style="padding-top:0">
+    <div>
+      <section class="detail-section" id="facts" style="margin-top:44px">
+{% if facts %}        <div class="facts reveal">
+{% for f in facts %}          <div class="fact"><span class="k">{{ f.k | safe }}</span><span class="v">{{ f.v | safe }}</span></div>
+{% endfor %}        </div>
+{% endif %}{% if intro_title %}        <p class="detail-eyebrow reveal" style="margin-top:34px">Overview</p>
+        <h2 class="reveal">{{ intro_title | safe }}</h2>
+{% endif %}{% for p in intro %}        <p class="detail-copy reveal">{{ p | safe }}</p>
+{% endfor %}{% if brochure %}        <div class="detail-actions reveal">
+          <a class="btn btn-navy" href="{{ brochure }}" download>Download brochure</a>
+        </div>
+{% endif %}      </section>
+
+{% if gallery.slides %}      <!-- ══ gallery ══ -->
+      <section class="detail-section" id="gallery">
+        <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ gallery.title | safe }}</h2>
+        <div class="slider reveal" id="gallerySlider">
+{% for s in gallery.slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
+{% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
+          <button class="sl-arrow sl-next" aria-label="Next image">›</button>
+          <span class="sl-caption"></span>
+          <div class="sl-dots" role="tablist"></div>
+        </div>
+      </section>
+{% endif %}{% if film_url %}      <!-- ══ film ══ -->
+      <section class="detail-section">
+        <p class="detail-eyebrow reveal">{{ site.ui.film_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.film_title | safe }}</h2>
+        <div class="walk-embed reveal">
+          <iframe src="{{ film_url }}" title="{{ page_name | safe }} project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </section>
+{% endif %}{% if amenities.items %}      <!-- ══ amenities ══ -->
+      <section class="detail-section" id="amenities">
+        {% if amenities.eyebrow %}<p class="detail-eyebrow reveal">{{ amenities.eyebrow | safe }}</p>
+        {% endif %}<h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
+        <ul class="amen-list reveal">
+{% for a in amenities.items %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
+{% endfor %}        </ul>
+      </section>
+{% endif %}{% if specs.groups %}      <!-- ══ specifications ══ -->
+      <section class="detail-section" id="specs">
+        <p class="detail-eyebrow reveal">{{ specs.eyebrow | safe }}</p>
+        <h2 class="reveal">{{ specs.title | safe }}</h2>
+        <div class="spec-list reveal">
+          {% for s in specs.groups %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><div class="spec-body">{% for line in s.text | lines %}<p>{{ line | safe }}</p>{% endfor %}</div></div>
+          {% endfor %}</div>
+      </section>
+{% endif %}{% if payment.steps %}      <!-- ══ payment ══ -->
+      <section class="detail-section" id="payment">
+        <p class="detail-eyebrow reveal">{{ site.ui.payment_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ payment.title | safe }}</h2>
+        <div class="timeline reveal{% if (payment.steps | length) == 3 %} tl-3{% endif %}">
+          <div class="tl-line"></div>
+          <div class="tl-steps{% if (payment.steps | length) == 3 %} tl-cols-3{% endif %}">
+            {% for t in payment.steps %}<div class="tl-step"><span class="pct">{{ t.pct }}</span><span class="tl-dot"></span><p>{{ t.text | safe }}</p></div>
+            {% endfor %}</div>
+        </div>
+      </section>
+{% endif %}{% if map_query %}      <!-- ══ location ══ -->
+      {% set loc_name = page_name %}{% set loc_q = map_query %}{% set loc_z = "16" %}{% set loc_illu = false %}{% include "location.njk" %}
+{% endif %}    </div>
+
+    {% include "rail.njk" %}
+  </div>
+</main>
+
+{% include "action-bar.njk" %}
+
+{% include "footer.njk" %}
+
+<script src="/js/projects.js?v={{ build.time }}"></script>
+{% include "pixels-body.njk" %}
+</body>
+</html>

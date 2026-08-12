@@ -14,7 +14,7 @@
 
 {% set nav_solid = true %}{% include "nav.njk" %}
 
-{% set cClassic = (collections.residenceCollections | findSlug("classic-residences")).data %}{% set cSelect = (collections.residenceCollections | findSlug("select-residences")).data %}{% set cGrand = (collections.residenceCollections | findSlug("grand-residences")).data %}{% set cFull = (collections.residenceCollections | findSlug("full-floor-residences")).data %}
+{% set cClassic = (lv.families | bySlug("classic-residences")) %}{% set cSelect = (lv.families | bySlug("select-residences")) %}{% set cGrand = (lv.families | bySlug("grand-residences")) %}{% set cFull = (lv.families | bySlug("full-floor-residences")) %}
 <main class="page plans-page">
   <div class="page-head">
     <a class="fp-back" href="/projects/louayzeh-village/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to Louayzeh Village</span></a>
@@ -61,14 +61,14 @@
           <a class="bm-label" href="/projects/louayzeh-village/floor-plans/"><b></b><span>View floor plans <i>&rarr;</i></span></a>
         </div>
 
-{% for c in collections.residenceCollections %}        <article class="res-card reveal" id="{{ c.fileSlug }}">
+{% for c in lv.families %}        <article class="res-card reveal" id="{{ c.slug }}">
           <div class="res-head">
-            <div><p class="res-kicker">{{ c.data.blocks | safe }}</p><h3>{{ c.data.ctitle | safe }}</h3></div>
-            <span class="res-price">{{ c.data.range | safe }}</span>
+            <div><p class="res-kicker">{{ c.blocks | safe }}</p><h3>{{ c.ctitle | safe }}</h3></div>
+            <span class="res-price">{{ c.range | safe }}</span>
           </div>
-          <p class="res-sub">{{ c.data.hub_sub | safe }}</p>
+          <p class="res-sub">{{ c.hub_sub | safe }}</p>
           <div class="res-units">
-{% for t in c.data.tiers %}            <div class="ru"><span>{{ t.name | safe }}{% if (t.plans | length) > 1 %} · two levels{% endif %}</span><b>{{ t.area | safe }}</b><button type="button" class="ru-view" data-plans="{% for p in t.plans %}{{ p.file }}{% if not loop.last %}|{% endif %}{% endfor %}" data-caps="{% for p in t.plans %}{{ p.cap | safe }}{% if not loop.last %}|{% endif %}{% endfor %}" aria-label="View the {{ t.name | lower }} floor plan">View floor plan</button></div>
+{% for t in c.tiers %}            <div class="ru"><span>{{ t.name | safe }}{% if (t.plans | length) > 1 %} · two levels{% endif %}</span><b>{{ t.area | safe }}</b><button type="button" class="ru-view" data-plans="{% for p in t.plans %}{{ p.file }}{% if not loop.last %}|{% endif %}{% endfor %}" data-caps="{% for p in t.plans %}{{ p.cap | safe }}{% if not loop.last %}|{% endif %}{% endfor %}" aria-label="View the {{ t.name | lower }} floor plan">View floor plan</button></div>
 {% endfor %}          </div>
         </article>
 {% if not loop.last %}

@@ -40,4 +40,8 @@ featured:
     text: A gated hillside community of garden apartments, duplexes and roof duplexes starting at 175 m². Pools, sports courts, a nursery and a private clubhouse bring resort living to your doorstep. Own your home with just 15% down and comfortable monthly installments over six years.
     cta: View apartments
 horizon_kicker: On the Horizon
+hero_word_1: PRIDE
+hero_word_2: INVESTS
+slogan: Pride in every detail.
+offices_title: Sales office
 ---

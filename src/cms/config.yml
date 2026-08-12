@@ -16,6 +16,18 @@ collections:
       widget: hidden
     - name: permalink
       widget: hidden
+    - name: hero_word_1
+      label: Hero title, first word
+      widget: string
+    - name: hero_word_2
+      label: Hero title, second word
+      widget: string
+    - name: slogan
+      label: Hero slogan
+      widget: string
+    - name: offices_title
+      label: Sales office heading
+      widget: string
     - name: statement
       label: Statement line
       widget: text
@@ -310,10 +322,10 @@ collections:
     description: The heading and intro line of the Contact page. The blue banner, phone numbers and Sales offices shown on this page are edited once for the whole site under Site settings.
 - name: projects
   label: Projects
-  description: One entry per development, listed by name. Each section of the page has its own group below. Fill a section in and it appears on the page; empty it and it disappears.
+  description: One entry per development, listed by name. Each section of the page has its own group below. Fill a section in and it appears on the page; empty it and it disappears. Use the top-right New button to create a page for a new project.
   identifier_field: page_name
   folder: src/content/projects
-  create: false
+  create: true
   delete: false
   fields:
   - name: layout
@@ -633,6 +645,66 @@ collections:
         widget: text
     - *id001
     - *id002
+  - name: families
+    label: Apartment families (Louayzeh)
+    widget: list
+    collapsed: true
+    required: false
+    summary: '{{ fields.ctitle }}'
+    fields:
+    - name: slug
+      label: Page address name (do not change once live)
+      widget: string
+    - name: ctitle
+      label: Collection title
+      widget: string
+    - name: blocks
+      label: Blocks line (e.g. Blocks C · D · O · P · Q)
+      widget: string
+    - name: intro
+      label: Introduction
+      widget: text
+    - name: range
+      label: Size range (hub card, e.g. 175, 299 m²)
+      widget: string
+    - name: hub_sub
+      label: Hub card subtitle
+      widget: string
+    - name: tiers
+      label: Floor-plan cards
+      widget: list
+      fields:
+      - name: name
+        label: Apartment
+        widget: string
+      - name: area
+        label: Total area
+        widget: string
+      - name: plans
+        label: Plan images
+        widget: list
+        fields:
+        - name: file
+          label: Plan image
+          widget: image
+        - name: cap
+          label: Level caption (duplexes only)
+          widget: string
+          required: false
+        - name: area
+          label: Level area (duplexes only)
+          widget: string
+          required: false
+        - name: alt
+          label: Image alt text
+          widget: string
+    - name: meta_desc
+      label: Google result description (SEO, not shown on the page)
+      widget: text
+  - name: map_query
+    label: Google Maps search for the Location section (new projects)
+    widget: string
+    required: false
   - name: brochure
     label: Brochure (PDF)
     widget: file
@@ -640,68 +712,6 @@ collections:
   - name: title_tag
     label: Google result title (SEO, not shown on the page)
     widget: string
-  - name: meta_desc
-    label: Google result description (SEO, not shown on the page)
-    widget: text
-- name: collections
-  label: Louayzeh Village · apartment families
-  description: The four apartment families sold at Louayzeh Village (the project page itself is under Projects → Louayzeh Village). Titles, sizes and floor-plan images here update the family pages, the Residence collections overview page and the interactive village map together.
-  identifier_field: ctitle
-  folder: src/content/collections
-  create: false
-  delete: false
-  fields:
-  - name: layout
-    widget: hidden
-    default: layouts/collection.njk
-  - name: permalink
-    widget: hidden
-  - name: ctitle
-    label: Collection title
-    widget: string
-  - name: blocks
-    label: Blocks line (e.g. Blocks C · D · O · P · Q)
-    widget: string
-  - name: intro
-    label: Introduction
-    widget: text
-  - name: range
-    label: Size range (hub card, e.g. 175, 299 m²)
-    widget: string
-  - name: hub_sub
-    label: Hub card subtitle
-    widget: string
-  - name: hub_order
-    label: Order on the hub page (1 = first)
-    widget: number
-  - name: tiers
-    label: Floor-plan cards
-    widget: list
-    fields:
-    - name: name
-      label: Apartment
-      widget: string
-    - name: area
-      label: Total area
-      widget: string
-    - name: plans
-      label: Plan images
-      widget: list
-      fields:
-      - name: file
-        label: Plan image
-        widget: image
-      - name: cap
-        label: Level caption (duplexes only)
-        widget: string
-        required: false
-      - name: area
-        label: Level area (duplexes only)
-        widget: string
-        required: false
-      - name: alt
-        label: Image alt text
-        widget: string
   - name: meta_desc
     label: Google result description (SEO, not shown on the page)
     widget: text

@@ -132,4 +132,181 @@ families_page:
     title: Find your apartment
     sub: Select your preferences and the matching apartments appear below.
     empty: No apartments match these filters yet. Try widening your search, or ask our team what is coming next.
+families:
+- slug: classic-residences
+  ctitle: The Classic Residences
+  blocks: Blocks C · D · O · P · Q
+  range: 175 – 299 m²
+  hub_sub: Five blocks, one shared set of apartments and floor plans · 2 apartments per floor
+  meta_desc: 'The Classic Residences at Louayzeh Village (Blocks C, D, O, P, Q): apartments of 175 – 299 m² with shared sample floor plans.'
+  intro: Five blocks built to one set of plans. Homes from 175 to 299 m², two per floor.
+  tiers:
+  - name: Ground floor apartment
+    area: 175 m² + 75 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/classic/gf.jpg
+      cap: ''
+      area: ''
+      alt: The Classic Residences · Ground floor floor plan
+  - name: First floor apartment
+    area: 175 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/classic/f1.jpg
+      cap: ''
+      area: ''
+      alt: The Classic Residences · First floor floor plan
+  - name: First duplex
+    area: 299 m² + 57 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/classic/fd_lower.jpg
+      cap: Lower level
+      area: 175 m²
+      alt: The Classic Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/classic/fd_upper.jpg
+      cap: Upper level
+      area: 124 m²
+      alt: The Classic Residences · Upper level floor plan
+  - name: Roof duplex
+    area: 270 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/classic/rd_lower.jpg
+      cap: Lower level
+      area: 175 m²
+      alt: The Classic Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/classic/rd_upper.jpg
+      cap: Upper level
+      area: 95 m²
+      alt: The Classic Residences · Upper level floor plan
+- slug: select-residences
+  ctitle: The Select Residences
+  blocks: Blocks M · N
+  range: 180 – 309 m²
+  hub_sub: Two blocks, one shared set of apartments and floor plans · 2 apartments per floor
+  meta_desc: 'The Select Residences at Louayzeh Village (Blocks M, N): apartments of 180 – 309 m² with shared sample floor plans.'
+  intro: Blocks M and N built to one set of plans. Homes from 180 to 309 m², two per floor.
+  tiers:
+  - name: Ground floor apartment
+    area: 180 m² + 87 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/select/gf.jpg
+      cap: ''
+      area: ''
+      alt: The Select Residences · Ground floor floor plan
+  - name: First floor apartment
+    area: 180 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/select/f1.jpg
+      cap: ''
+      area: ''
+      alt: The Select Residences · First floor floor plan
+  - name: First duplex
+    area: 309 m² + 54 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/select/fd_lower.jpg
+      cap: Lower level
+      area: 180 m²
+      alt: The Select Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/select/fd_upper.jpg
+      cap: Upper level
+      area: 129 m²
+      alt: The Select Residences · Upper level floor plan
+  - name: Roof duplex
+    area: 277 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/select/rd_lower.jpg
+      cap: Lower level
+      area: 180 m²
+      alt: The Select Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/select/rd_upper.jpg
+      cap: Upper level
+      area: 97 m²
+      alt: The Select Residences · Upper level floor plan
+- slug: grand-residences
+  ctitle: The Grand Residences
+  blocks: Blocks A · B · F · G · H · I · J · K
+  range: 190 – 327 m²
+  hub_sub: Eight blocks, one shared set of apartments and floor plans · 2 apartments per floor
+  meta_desc: 'The Grand Residences at Louayzeh Village (Blocks A, B, F, G, H, I, J, K): apartments of 190 – 327 m² with shared sample floor plans.'
+  intro: Eight blocks built to one set of plans. The widest standard homes in the village, from 190 to 327 m², two per floor.
+  tiers:
+  - name: Ground floor apartment
+    area: 190 m² + 81 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/grand/gf.jpg
+      cap: ''
+      area: ''
+      alt: The Grand Residences · Ground floor floor plan
+  - name: First floor apartment
+    area: 190 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/grand/f1.jpg
+      cap: ''
+      area: ''
+      alt: The Grand Residences · First floor floor plan
+  - name: First duplex
+    area: 327 m² + 96 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/grand/fd_lower.jpg
+      cap: Lower level
+      area: 190 m²
+      alt: The Grand Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/grand/fd_upper.jpg
+      cap: Upper level
+      area: 137 m²
+      alt: The Grand Residences · Upper level floor plan
+  - name: Roof duplex
+    area: 289 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/grand/rd_lower.jpg
+      cap: Lower level
+      area: 190 m²
+      alt: The Grand Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/grand/rd_upper.jpg
+      cap: Upper level
+      area: 99 m²
+      alt: The Grand Residences · Upper level floor plan
+- slug: full-floor-residences
+  ctitle: The Full-Floor Residences
+  blocks: Blocks E · L · R
+  range: 227 – 390 m²
+  hub_sub: Three blocks, one shared set of apartments and floor plans · one full-floor apartment per level
+  meta_desc: 'The Full-Floor Residences at Louayzeh Village (Blocks E, L, R): apartments of 227 – 390 m² with shared sample floor plans.'
+  intro: One private home per level. The most exclusive residences in the village, from 227 to 390 m².
+  tiers:
+  - name: Ground floor apartment
+    area: 227 m² + 159 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/full-floor/gf.jpg
+      cap: ''
+      area: ''
+      alt: The Full-Floor Residences · Ground floor floor plan
+  - name: Second floor apartment
+    area: 227 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/full-floor/f2.jpg
+      cap: ''
+      area: ''
+      alt: The Full-Floor Residences · Second floor floor plan
+  - name: First duplex
+    area: 390 m² + 96 m² garden
+    plans:
+    - file: /media/projects/louayzeh/plans/full-floor/fd_lower.jpg
+      cap: Lower level
+      area: 227 m²
+      alt: The Full-Floor Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/full-floor/fd_upper.jpg
+      cap: Upper level
+      area: 163 m²
+      alt: The Full-Floor Residences · Upper level floor plan
+  - name: Roof duplex
+    area: 322 m²
+    plans:
+    - file: /media/projects/louayzeh/plans/full-floor/rd_lower.jpg
+      cap: Lower level
+      area: 227 m²
+      alt: The Full-Floor Residences · Lower level floor plan
+    - file: /media/projects/louayzeh/plans/full-floor/rd_upper.jpg
+      cap: Upper level
+      area: 95 m²
+      alt: The Full-Floor Residences · Upper level floor plan
 ---
