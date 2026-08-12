@@ -59,24 +59,30 @@ collections:
         - name: name
           label: Project name
           widget: string
+          required: false
         - name: status
           label: Badge on the photo (e.g. Delivery · Dec 2027)
           widget: string
+          required: false
         - name: loc
           label: Location line
           widget: string
+          required: false
         - name: image
           label: Photo
           widget: image
+          required: false
         - name: url
           label: Project page link
           widget: string
+          required: false
         - name: text
           label: Description
           widget: text
         - name: cta
           label: Link text
           widget: string
+          required: false
         - name: next_kicker
           label: Small line before the next card (optional)
           widget: string
@@ -127,18 +133,23 @@ collections:
       - name: name
         label: Project name
         widget: string
+        required: false
       - name: loc
         label: Location line
         widget: string
+        required: false
       - name: image
         label: Card photo (shown on this Projects page; the project page itself uses its Gallery photos)
         widget: image
+        required: false
       - name: alt
         label: Alt text (accessibility)
         widget: string
+        required: false
       - name: badge
         label: Badge text
         widget: string
+        required: false
       - name: badge_sold
         label: Grey sold-out badge style
         widget: boolean
@@ -152,7 +163,7 @@ collections:
         widget: string
         required: false
       - name: url
-        label: Project page link
+        label: Project page link (needed unless Coming soon is on)
         widget: string
         required: false
       - name: meta
