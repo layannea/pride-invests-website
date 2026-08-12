@@ -6,7 +6,7 @@ public_folder: /media/uploads
 collections:
 - name: pages
   label: Pages
-  description: The homepage, projects index, our story, FAQ and contact.
+  description: The homepage, projects index, our story, FAQ and contact. Each project page and its floor-plan pages are edited under Projects.
   files:
   - file: src/content/pages/home.md
     name: home
@@ -197,9 +197,11 @@ collections:
         - name: id
           label: Filter code (do not change)
           widget: string
+          required: false
         - name: label
           label: Filter name
           widget: string
+          required: false
         - name: options
           label: Options
           widget: list
@@ -207,9 +209,12 @@ collections:
           - name: value
             label: Value code (do not change)
             widget: string
+            required: false
           - name: text
             label: Visible text
             widget: string
+            required: false
+          required: false
     - name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
@@ -360,6 +365,7 @@ collections:
   - name: intro_title
     label: Intro heading
     widget: string
+    required: false
   - name: intro
     label: Introduction paragraphs
     widget: list
@@ -368,6 +374,7 @@ collections:
       name: p
       label: Paragraph
       widget: text
+      required: false
   - name: facts
     label: Key facts strip
     widget: list
@@ -376,9 +383,11 @@ collections:
     - name: k
       label: Label
       widget: string
+      required: false
     - name: v
       label: Value
       widget: string
+      required: false
   - name: gallery
     label: Gallery section
     widget: object
@@ -388,6 +397,7 @@ collections:
     - name: title
       label: Gallery heading
       widget: string
+      required: false
     - name: exterior_label
       label: Label above the photos (optional)
       widget: string
@@ -400,12 +410,15 @@ collections:
       - name: image
         label: Photo
         widget: image
+        required: false
       - name: cap
         label: Caption
         widget: string
+        required: false
       - name: alt
         label: Alt text (accessibility)
         widget: string
+        required: false
   - name: film_url
     label: 'Film section: YouTube embed URL'
     widget: string
@@ -419,6 +432,7 @@ collections:
     - name: label
       label: Section label (e.g. Inside renders · Residence Daisy II)
       widget: string
+      required: false
     - name: rooms
       label: Rooms
       widget: list
@@ -426,9 +440,11 @@ collections:
       - name: key
         label: Tab id (no spaces, e.g. bedrooms)
         widget: string
+        required: false
       - name: label
         label: Tab label
         widget: string
+        required: false
       - name: images
         label: Images
         widget: list
@@ -436,6 +452,7 @@ collections:
         - name: file
           label: Photo
           widget: image
+          required: false
         - name: cap
           label: Caption
           widget: string
@@ -443,6 +460,9 @@ collections:
         - name: alt
           label: Alt text (accessibility)
           widget: string
+          required: false
+        required: false
+      required: false
   - name: walkthrough
     label: 360° walkthrough section
     widget: object
@@ -452,6 +472,7 @@ collections:
     - name: label
       label: Section label (e.g. 360° walkthrough · Residence Daisy II)
       widget: string
+      required: false
     - name: tabs
       label: Tabs
       widget: list
@@ -459,9 +480,12 @@ collections:
       - name: label
         label: Tab label
         widget: string
+        required: false
       - name: src
         label: Walkthrough URL
         widget: string
+        required: false
+      required: false
   - name: amenities
     label: Amenities section
     widget: object
@@ -480,9 +504,11 @@ collections:
       - name: label
         label: Amenity
         widget: string
+        required: false
       - name: icon
         label: Icon (SVG code, advanced)
         widget: text
+        required: false
   - name: specs
     label: Specifications section
     widget: object
@@ -492,9 +518,11 @@ collections:
     - name: eyebrow
       label: Small line above the heading (e.g. Craftsmanship)
       widget: string
+      required: false
     - name: title
       label: Section heading (e.g. Built without shortcuts)
       widget: string
+      required: false
     - name: groups
       label: Specification groups
       widget: list
@@ -503,9 +531,11 @@ collections:
       - name: title
         label: Heading
         widget: string
+        required: false
       - name: text
         label: Text
         widget: text
+        required: false
   - name: payment
     label: Payment section
     widget: object
@@ -515,6 +545,7 @@ collections:
     - name: title
       label: Section heading (e.g. Three steps to your new home)
       widget: string
+      required: false
     - name: steps
       label: Steps
       widget: list
@@ -523,9 +554,11 @@ collections:
       - name: pct
         label: Percentage
         widget: string
+        required: false
       - name: text
         label: Milestone
         widget: string
+        required: false
   - name: residences
     label: Residences section
     widget: object
@@ -539,6 +572,7 @@ collections:
     - name: title
       label: Section heading
       widget: string
+      required: false
     - name: text
       label: Paragraph (optional)
       widget: text
@@ -551,9 +585,11 @@ collections:
     - name: key
       label: Tab id (no spaces)
       widget: string
+      required: false
     - name: label
       label: Tab label
       widget: string
+      required: false
     - name: cards
       label: Apartments
       widget: list
@@ -561,12 +597,16 @@ collections:
       - name: name
         label: Apartment
         widget: string
+        required: false
       - name: floor
         label: Floor
         widget: string
+        required: false
       - name: text
         label: Description
         widget: text
+        required: false
+      required: false
   - name: plans_page
     label: Floor plans page
     widget: object
@@ -576,9 +616,11 @@ collections:
     - name: title
       label: Page title
       widget: string
+      required: false
     - name: intro
       label: Intro line
       widget: text
+      required: false
     - name: residences
       label: Residences
       widget: list
@@ -586,18 +628,23 @@ collections:
       - name: mansion
         label: Mansion group label
         widget: string
+        required: false
       - name: slug
         label: Anchor id (no spaces, e.g. daisy-i)
         widget: string
+        required: false
       - name: name
         label: Residence name
         widget: string
+        required: false
       - name: type
         label: Type line
         widget: string
+        required: false
       - name: price
         label: Price line
         widget: string
+        required: false
       - name: specs
         label: Spec chips (bold with <b>…</b>)
         widget: list
@@ -605,9 +652,12 @@ collections:
           name: s
           label: Spec
           widget: string
+          required: false
+        required: false
       - name: text
         label: Description
         widget: text
+        required: false
       - name: plans
         label: Floor plan images
         widget: list
@@ -615,12 +665,16 @@ collections:
         - name: file
           label: Plan image
           widget: image
+          required: false
         - name: label
           label: Caption (e.g. Ground floor · 210 m²)
           widget: string
+          required: false
         - name: alt
           label: Alt text (accessibility)
           widget: string
+          required: false
+        required: false
       - name: link_text
         label: Extra link text
         widget: string
@@ -629,14 +683,17 @@ collections:
         label: Extra link URL
         widget: string
         required: false
+      required: false
     - &id002
       name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
+      required: false
     - &id003
       name: meta_desc
       label: Google result description (SEO, not shown on the page)
       widget: text
+      required: false
   - name: families_page
     label: Residence collections overview page
     widget: object
@@ -646,12 +703,15 @@ collections:
     - name: title
       label: Page title
       widget: string
+      required: false
     - name: intro
       label: Intro (use <br> for a line break)
       widget: text
+      required: false
     - name: map_hint
       label: Hint line on the village map
       widget: string
+      required: false
     - name: finder
       label: Find your apartment section
       widget: object
@@ -659,12 +719,15 @@ collections:
       - name: title
         label: Heading
         widget: string
+        required: false
       - name: sub
         label: Subtitle
         widget: string
+        required: false
       - name: empty
         label: Message when no apartments match
         widget: text
+        required: false
       - name: filters
         label: Filters
         widget: list
@@ -672,6 +735,8 @@ collections:
         allow_add: false
         summary: '{{ fields.label }}'
         fields: *id001
+        required: false
+      required: false
     - *id002
     - *id003
   - name: families
@@ -684,21 +749,27 @@ collections:
     - name: slug
       label: Page address name (do not change once live)
       widget: string
+      required: false
     - name: ctitle
       label: Collection title
       widget: string
+      required: false
     - name: blocks
       label: Blocks line (e.g. Blocks C · D · O · P · Q)
       widget: string
+      required: false
     - name: intro
       label: Introduction
       widget: text
+      required: false
     - name: range
       label: Size range (hub card, e.g. 175, 299 m²)
       widget: string
+      required: false
     - name: hub_sub
       label: Hub card subtitle
       widget: string
+      required: false
     - name: tiers
       label: Floor-plan cards
       widget: list
@@ -706,9 +777,11 @@ collections:
       - name: name
         label: Apartment
         widget: string
+        required: false
       - name: area
         label: Total area
         widget: string
+        required: false
       - name: plans
         label: Plan images
         widget: list
@@ -716,6 +789,7 @@ collections:
         - name: file
           label: Plan image
           widget: image
+          required: false
         - name: cap
           label: Level caption (duplexes only)
           widget: string
@@ -727,9 +801,13 @@ collections:
         - name: alt
           label: Image alt text
           widget: string
+          required: false
+        required: false
+      required: false
     - name: meta_desc
       label: Google result description (SEO, not shown on the page)
       widget: text
+      required: false
   - name: map_query
     label: Google Maps search for the Location section (new projects)
     widget: string
@@ -741,9 +819,11 @@ collections:
   - name: title_tag
     label: Google result title (SEO, not shown on the page)
     widget: string
+    required: false
   - name: meta_desc
     label: Google result description (SEO, not shown on the page)
     widget: text
+    required: false
 - name: inventory
   label: Apartment inventory
   description: The homes shown in the find your home search (one row per apartment).
