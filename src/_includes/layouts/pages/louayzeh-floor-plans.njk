@@ -79,68 +79,13 @@
         <h2 class="section-title reveal" style="margin-bottom:10px">{{ lv.families_page.finder.title | safe }}</h2>
         <p class="finder-sub reveal">{{ lv.families_page.finder.sub | safe }}</p>
         <div class="finder-bar reveal">
-          <div class="fld">
-            <label class="sr-only" for="fType">Apartment type</label>
-            <select id="fType">
-              <option value="all">All types</option>
-              <option value="Apartment">One-floor apartment</option>
-              <option value="Duplex">Duplex · two levels</option>
-              <option value="Roof duplex">Roof duplex · two levels</option>
-            </select>
+          {% for f in lv.families_page.finder.filters %}<div class="fld">
+            <label class="sr-only" for="{{ f.id }}">{{ f.label | safe }}</label>
+            <select id="{{ f.id }}">
+              {% for o in f.options %}<option value="{{ o.value }}">{{ o.text | safe }}</option>
+              {% endfor %}</select>
           </div>
-          <div class="fld">
-            <label class="sr-only" for="fBeds">Bedrooms</label>
-            <select id="fBeds">
-              <option value="all">Bedrooms · any</option>
-              <option value="3">3 bedrooms</option>
-              <option value="4">4 bedrooms</option>
-              <option value="5">5 bedrooms</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label class="sr-only" for="fSize">Interior size</label>
-            <select id="fSize">
-              <option value="all">Size · any</option>
-              <option value="s1">Under 200 m²</option>
-              <option value="s2">200 to 300 m²</option>
-              <option value="s3">300 to 400 m²</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label class="sr-only" for="fFloor">Floor</label>
-            <select id="fFloor">
-              <option value="all">Floor · any</option>
-              <option value="Ground">Ground floor</option>
-              <option value="First">First floor</option>
-              <option value="Second">Second floor</option>
-              <option value="Third">Third floor</option>
-              <option value="multi">Duplex · multi-level</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label class="sr-only" for="fGarden">Garden</label>
-            <select id="fGarden">
-              <option value="all">Garden · any</option>
-              <option value="yes">With garden</option>
-              <option value="no">Without garden</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label class="sr-only" for="fTerr">Terrace</label>
-            <select id="fTerr">
-              <option value="all">Terrace · any</option>
-              <option value="yes">With terrace</option>
-              <option value="no">Without terrace</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label class="sr-only" for="fSort">Sort by</label>
-            <select id="fSort">
-              <option value="size-asc">Sort · small to large</option>
-              <option value="size-desc">Sort · large to small</option>
-            </select>
-          </div>
-          <button type="button" class="finder-reset" id="fReset">Reset filters</button>
+          {% endfor %}<button type="button" class="finder-reset" id="fReset">Reset filters</button>
         </div>
         <p class="finder-count" id="finderCount" style="display:none"></p>
         <div class="unit-grid" id="unitGrid" data-location="Louayzeh" data-wait-for-filter></div>

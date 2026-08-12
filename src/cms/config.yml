@@ -187,6 +187,30 @@ collections:
       - name: empty
         label: Message when no homes match
         widget: text
+      - name: filters
+        label: Filters
+        widget: list
+        collapsed: true
+        allow_add: false
+        summary: '{{ fields.label }}'
+        hint: 'Edit the wording of any filter or its options, reorder them, or delete a filter with its x. The small value codes are wired to the search: change only the visible text.'
+        fields: &id001
+        - name: id
+          label: Filter code (do not change)
+          widget: string
+        - name: label
+          label: Filter name
+          widget: string
+        - name: options
+          label: Options
+          widget: list
+          fields:
+          - name: value
+            label: Value code (do not change)
+            widget: string
+          - name: text
+            label: Visible text
+            widget: string
       hint: The filter options themselves are wired to the search and are managed by the developer.
     - name: title_tag
       label: Google result title (SEO, not shown on the page)
@@ -607,11 +631,11 @@ collections:
         label: Extra link URL
         widget: string
         required: false
-    - &id001
+    - &id002
       name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
-    - &id002
+    - &id003
       name: meta_desc
       label: Google result description (SEO, not shown on the page)
       widget: text
@@ -643,8 +667,16 @@ collections:
       - name: empty
         label: Message when no apartments match
         widget: text
-    - *id001
+      - name: filters
+        label: Filters
+        widget: list
+        collapsed: true
+        allow_add: false
+        summary: '{{ fields.label }}'
+        hint: 'Edit the wording of any filter or its options, reorder them, or delete a filter with its x. The small value codes are wired to the search: change only the visible text.'
+        fields: *id001
     - *id002
+    - *id003
   - name: families
     label: Apartment families (Louayzeh)
     widget: list

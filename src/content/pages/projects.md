@@ -88,4 +88,95 @@ finder:
   title: Find your home
   sub: Select your preferences and the matching homes appear below.
   empty: No homes match these filters yet. Try widening your search, or ask our team what is coming next.
+  filters:
+  - id: fLoc
+    label: Project
+    options:
+    - value: all
+      text: All projects
+    - value: Yarzeh
+      text: The Yarzeh Mansions
+    - value: Louayzeh
+      text: Louayzeh Village
+  - id: fType
+    label: Property type
+    options:
+    - value: all
+      text: All types
+    - value: Apartment
+      text: One-floor apartment
+    - value: Duplex
+      text: Duplex · two levels
+    - value: Roof duplex
+      text: Roof duplex · two levels
+    - value: Mansion residence
+      text: Mansion residence
+  - id: fBeds
+    label: Bedrooms
+    options:
+    - value: all
+      text: Bedrooms · any
+    - value: '3'
+      text: 3 bedrooms
+    - value: '4'
+      text: 4 bedrooms
+    - value: '5'
+      text: 5 bedrooms
+  - id: fSize
+    label: Interior size
+    options:
+    - value: all
+      text: Size · any
+    - value: s1
+      text: Under 200 m²
+    - value: s2
+      text: 200 to 300 m²
+    - value: s3
+      text: 300 to 400 m²
+    - value: s4
+      text: Over 400 m²
+  - id: fFloor
+    label: Floor
+    options:
+    - value: all
+      text: Floor · any
+    - value: Ground
+      text: Ground floor
+    - value: First
+      text: First floor
+    - value: Second
+      text: Second floor
+    - value: Third
+      text: Third floor
+    - value: multi
+      text: Multi-level
+  - id: fGarden
+    label: Garden
+    options:
+    - value: all
+      text: Garden · any
+    - value: 'yes'
+      text: With garden
+    - value: 'no'
+      text: Without garden
+  - id: fTerr
+    label: Terrace
+    options:
+    - value: all
+      text: Terrace · any
+    - value: 'yes'
+      text: With terrace
+    - value: 'no'
+      text: Without terrace
+  - id: fSort
+    label: Sort by
+    options:
+    - value: size-asc
+      text: Sort · small to large
+    - value: size-desc
+      text: Sort · large to small
+    - value: price-asc
+      text: Sort · price low to high
+    - value: price-desc
+      text: Sort · price high to low
 ---
