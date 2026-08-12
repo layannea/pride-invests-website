@@ -1,44 +1,34 @@
 {
-  "phone_display": "+961 25 920 920",
+  "facebook": "https://www.facebook.com/prideinvests/",
   "phone_tel": "+96125920920",
   "wa_display": "+961 71 333 769",
-  "wa_number": "96171333769",
-  "email": "sales@prideinvests.com",
-  "facebook": "https://www.facebook.com/prideinvests/",
-  "linkedin": "https://www.linkedin.com/company/pride-invests",
+  "phone_display": "+961 25 920 920",
   "instagram": "https://www.instagram.com/prideinvests/",
+  "ui": {
+    "film_eyebrow": "The film",
+    "location_title": "Where you'll find us",
+    "payment_eyebrow": "Payment terms",
+    "speak": "Speak with our team",
+    "footer_legal": "© 2026 Pride Invests · Beirut · Cannes · Lisbon",
+    "amenities": "Amenities",
+    "gallery_eyebrow": "Gallery",
+    "film_title": "See it come to life",
+    "location_eyebrow": "Location"
+  },
   "offices": [
     {
       "city": "Beirut",
       "country": "Lebanon",
       "address": "Redwood Mansion, Level&nbsp;III, Yarzeh Main Road, Beirut"
-    },
-    {
-      "city": "Cannes",
-      "country": "France",
-      "address": "89 Rue d'Antibes, 2ème étage,<br>06400 Cannes"
-    },
-    {
-      "city": "Lisbon",
-      "country": "Portugal",
-      "address": "Rua Ricardo Espírito Santo, nº9, cv. dta., 1200-790 Lisboa"
     }
   ],
-  "ui": {
-    "gallery_eyebrow": "Gallery",
-    "amenities": "Amenities",
-    "film_eyebrow": "The film",
-    "film_title": "See it come to life",
-    "payment_eyebrow": "Payment terms",
-    "location_eyebrow": "Location",
-    "location_title": "Where you'll find us",
-    "speak": "Speak with our team",
-    "footer_legal": "© 2026 Pride Invests · Beirut · Cannes · Lisbon"
-  },
   "newsletter": {
     "title": "Join our mailing list",
     "sub": "Project launches, construction milestones and offers, straight to your inbox.",
     "button": "Subscribe",
     "action": ""
-  }
+  },
+  "email": "sales@prideinvests.com",
+  "linkedin": "https://www.linkedin.com/company/pride-invests",
+  "wa_number": "96171333769"
 }
