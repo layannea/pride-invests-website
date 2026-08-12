@@ -6,7 +6,7 @@ public_folder: /media/uploads
 collections:
 - name: pages
   label: Pages
-  description: The homepage, projects index, our story, FAQ and contact. Each project page and its floor-plan pages are edited under Projects.
+  description: The homepage, projects index, our story, FAQ and contact.
   files:
   - file: src/content/pages/home.md
     name: home
@@ -348,7 +348,7 @@ collections:
   identifier_field: page_name
   folder: src/content/projects
   create: true
-  delete: false
+  delete: true
   fields:
   - name: layout
     widget: hidden
