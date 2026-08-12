@@ -8,7 +8,7 @@ public_folder: "/media/uploads"
 collections:
   - name: settings
     label: "Site settings"
-    description: "Phone numbers, social links, office addresses, shared section labels and the footer newsletter box."
+    description: "Phone numbers, social media links, office addresses, shared section labels (location, payment, amenities, ...) and footer newsletter box (mailchimp)."
     files:
       - file: "src/_data/site.json"
         name: general
@@ -55,7 +55,7 @@ collections:
 
   - name: inventory
     label: "Apartment inventory"
-    description: "The homes shown in the Find-your-home search. One row per apartment."
+    description: "The homes shown in the find your home search (one row per apartment)."
     files:
       - file: "src/_data/units.json"
         name: units
@@ -81,7 +81,7 @@ collections:
 
   - name: collections
     label: "Louayzeh collections"
-    description: "The four apartment families at Louayzeh Village. Titles, sizes and floor-plan images here update the collection pages, the hub page and the interactive map together."
+    description: "The 4 block groups for Louayzeh Village. Titles, sizes and floor-plan images here update the collection pages and the louayzeh floor plans page (prideinvests.com/projects/louayzeh-village/floor-plans/)."
     identifier_field: ctitle
     folder: "src/content/collections"
     create: false
@@ -113,7 +113,7 @@ collections:
 
   - name: projects
     label: "Projects"
-    description: "One entry per development. Photos, text, key facts, amenities, specifications and payment terms for each project page."
+    description: "For each project page: photos, text, key facts, amenities, specifications and payment terms."
     identifier_field: page_name
     folder: "src/content/projects"
     create: false
