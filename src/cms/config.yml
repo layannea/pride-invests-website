@@ -139,11 +139,11 @@ collections:
         widget: string
         required: false
       - name: image
-        label: Card photo (shown on this Projects page; the project page itself uses its Gallery photos)
+        label: Card photo
         widget: image
         required: false
       - name: alt
-        label: Alt text (accessibility)
+        label: Alt text
         widget: string
         required: false
       - name: badge
@@ -151,11 +151,11 @@ collections:
         widget: string
         required: false
       - name: badge_sold
-        label: Grey sold-out badge style
+        label: Sold-out badge style
         widget: boolean
         required: false
       - name: soon
-        label: Coming soon (card without links)
+        label: Coming soon card
         widget: boolean
         required: false
       - name: soon_note
@@ -163,11 +163,11 @@ collections:
         widget: string
         required: false
       - name: url
-        label: Project page link (needed unless Coming soon is on)
+        label: Project page link
         widget: string
         required: false
       - name: meta
-        label: Meta line (delivery, sizes)
+        label: Meta line
         widget: list
         required: false
         fields:
@@ -427,7 +427,7 @@ collections:
         widget: string
         required: false
       - name: alt
-        label: Alt text (accessibility)
+        label: Alt text
         widget: string
         required: false
   - name: film_url
@@ -469,7 +469,7 @@ collections:
           widget: string
           required: false
         - name: alt
-          label: Alt text (accessibility)
+          label: Alt text
           widget: string
           required: false
         required: false
@@ -682,7 +682,7 @@ collections:
           widget: string
           required: false
         - name: alt
-          label: Alt text (accessibility)
+          label: Alt text
           widget: string
           required: false
         required: false
