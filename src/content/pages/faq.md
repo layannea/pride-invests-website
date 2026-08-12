@@ -9,7 +9,7 @@ faqs:
   - n: "01"
     q: What types of properties does Pride Invests offer?
     a: <p>Pride Invests offers a selection of apartments, duplexes, townhouses and
-      private mansions across its developments.</p>
+      private mansions across its developments. [TEST]</p>
   - n: "02"
     q: Where are your current projects located?
     a: <p>Our current projects are located in selected residential areas including
