@@ -971,20 +971,20 @@ collections:
         label: Footer legal line
         widget: string
     - name: newsletter
-      label: Newsletter signup (Mailchimp)
+      label: Mailchimp
       widget: object
       collapsed: true
       fields:
       - name: title
-        label: Heading
+        label: Footer signup heading
         widget: string
       - name: sub
-        label: Subtitle
+        label: Footer signup subtitle
         widget: string
       - name: button
-        label: Button label
+        label: Footer signup button
         widget: string
       - name: action
-        label: Mailchimp form URL (Audience → Signup forms → Embedded forms, leave empty to hide the box)
+        label: Mailchimp form URL
         widget: string
         required: false

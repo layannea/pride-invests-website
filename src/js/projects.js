@@ -362,6 +362,19 @@
         body: new URLSearchParams(new FormData(form)).toString()
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
+        var mc = form.getAttribute('data-mc');
+        if (mc) {
+          try {
+            var fd = new FormData(form);
+            var mcBody = new URLSearchParams();
+            mcBody.append('EMAIL', fd.get('email') || '');
+            mcBody.append('FNAME', fd.get('name') || '');
+            mcBody.append('INTEREST', fd.get('interest') || '');
+            fetch(mc, { method: 'POST', mode: 'no-cors',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: mcBody.toString() }).catch(function () {});
+          } catch (e) {}
+        }
         form.style.display = 'none';
         var ok = form.parentElement.querySelector('.rail-success');
         if (ok) ok.style.display = 'block';
