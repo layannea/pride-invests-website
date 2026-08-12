@@ -51,9 +51,9 @@
 
       <section class="detail-section" id="gallery">
         <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
-        <h2 class="reveal">{{ gallery_title | safe }}</h2>
+        <h2 class="reveal">{{ gallery.title | safe }}</h2>
         <div class="slider reveal" id="gallerySlider">
-{% for s in slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
+{% for s in gallery.slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
 {% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
           <button class="sl-arrow sl-next" aria-label="Next image">›</button>
           <span class="sl-caption"></span>
@@ -62,8 +62,8 @@
       </section>
 
       <section class="detail-section" id="apartments">
-        <p class="detail-eyebrow reveal">{{ res_eyebrow | safe }}</p>
-        <h2 class="reveal">{{ res_title | safe }}</h2>
+        <p class="detail-eyebrow reveal">{{ residences.eyebrow | safe }}</p>
+        <h2 class="reveal">{{ residences.title | safe }}</h2>
         <nav class="interior-nav room-tabs reveal" id="roomTabs" aria-label="Blocks">
           {% for b in blocks %}<button type="button"{% if loop.first %} class="on"{% endif %} data-room="{{ b.key }}">{{ b.label | safe }}</button>
           {% endfor %}</nav>
@@ -78,7 +78,70 @@
 {% endfor %}          </div>
         </div>
         {% endfor %}</section>
-      <!-- ══ location ══ -->
+{% if interiors.rooms %}
+      <!-- ══ interior renders ══ -->
+      <section class="detail-section">
+        <div class="gal-sub reveal">
+          <p class="gal-label">{{ interiors.label | safe }}</p>
+        </div>
+        <nav class="interior-nav room-tabs reveal" id="roomTabs" aria-label="Rooms">
+{% for r in interiors.rooms %}          <button type="button"{% if loop.first %} class="on"{% endif %} data-room="{{ r.key }}">{{ r.label | safe }}</button>
+{% endfor %}        </nav>
+{% for r in interiors.rooms %}        <div class="room-group{% if loop.first %} on{% endif %}" id="room-{{ r.key }}">
+          <div class="strip-wrap">
+            <button class="st-btn st-prev" aria-label="Scroll back">‹</button>
+            <div class="int-strip">
+{% for i in r.images %}              <a class="int-thumb" data-group="rm-{{ r.key }}" data-cap="{{ i.cap | safe }}" href="{{ i.file }}"><img src="{{ i.file }}" alt="{{ i.alt | safe }}" loading="lazy"></a>
+{% endfor %}            </div>
+            <button class="st-btn st-next" aria-label="Scroll forward">›</button>
+          </div>
+        </div>
+{% endfor %}
+      </section>
+{% endif %}{% if walkthrough.tabs %}
+      <!-- ══ 360° walkthrough ══ -->
+      <section class="detail-section">
+        <div class="gal-sub reveal">
+          <p class="gal-label">{{ walkthrough.label | safe }}</p>
+        </div>
+        <div class="interior-nav walk-tabs reveal" id="walkTabs">
+{% for w in walkthrough.tabs %}          <button type="button"{% if loop.first %} class="on"{% endif %} data-src="{{ w.src }}">{{ w.label | safe }}</button>
+{% endfor %}        </div>
+        <div class="walk-embed reveal">
+          <iframe id="walkFrame" src="{{ walkthrough.tabs[0].src }}" title="360° walkthrough of Daisy II" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </section>
+{% endif %}{% if amenities.items %}
+      <!-- ══ amenities ══ -->
+      <section class="detail-section" id="amenities">
+        {% if amenities.eyebrow %}<p class="detail-eyebrow reveal">{{ amenities.eyebrow | safe }}</p>
+        {% endif %}<h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
+        <ul class="amen-list reveal">
+{% for a in amenities.items %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
+{% endfor %}        </ul>
+      </section>
+{% endif %}{% if specs.groups %}
+      <!-- ══ specifications ══ -->
+      <section class="detail-section" id="specs">
+        <p class="detail-eyebrow reveal">{{ specs.eyebrow | safe }}</p>
+        <h2 class="reveal">{{ specs.title | safe }}</h2>
+        <div class="spec-list reveal">
+          {% for s in specs.groups %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><div class="spec-body">{% for line in s.text | lines %}<p>{{ line | safe }}</p>{% endfor %}</div></div>
+          {% endfor %}</div>
+      </section>
+{% endif %}{% if payment.steps %}
+      <!-- ══ payment ══ -->
+      <section class="detail-section" id="payment">
+        <p class="detail-eyebrow reveal">{{ site.ui.payment_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ payment.title | safe }}</h2>
+        <div class="timeline reveal{% if (payment.steps | length) == 3 %} tl-3{% endif %}">
+          <div class="tl-line"></div>
+          <div class="tl-steps{% if (payment.steps | length) == 3 %} tl-cols-3{% endif %}">
+            {% for t in payment.steps %}<div class="tl-step"><span class="pct">{{ t.pct }}</span><span class="tl-dot"></span><p>{{ t.text | safe }}</p></div>
+            {% endfor %}</div>
+        </div>
+      </section>
+{% endif %}      <!-- ══ location ══ -->
       {% set loc_name = "Pride of Martakla 1" %}{% set loc_q = "VH34%2B57X+La+Vista+5311,+Baabda" %}{% set loc_z = "16" %}{% set loc_illu = false %}{% include "location.njk" %}
 
     </div>

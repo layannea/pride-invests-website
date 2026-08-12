@@ -67,12 +67,12 @@
       <!-- ══ gallery ══ -->
       <section class="detail-section" id="gallery">
         <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
-        <h2 class="reveal">{{ gallery_title | safe }}</h2>
+        <h2 class="reveal">{{ gallery.title | safe }}</h2>
         <div class="gal-sub reveal">
-          <p class="gal-label">{{ exterior_label | safe }}</p>
+          <p class="gal-label">{{ gallery.exterior_label | safe }}</p>
         </div>
         <div class="slider reveal" id="gallerySlider">
-{% for s in slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
+{% for s in gallery.slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
 {% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
           <button class="sl-arrow sl-next" aria-label="Next image">›</button>
           <span class="sl-caption"></span>
@@ -80,12 +80,12 @@
         </div>
       
         <div class="gal-sub reveal">
-          <p class="gal-label">{{ interior_label | safe }}</p>
+          <p class="gal-label">{{ interiors.label | safe }}</p>
         </div>
         <nav class="interior-nav room-tabs reveal" id="roomTabs" aria-label="Rooms">
-{% for r in rooms %}          <button type="button"{% if loop.first %} class="on"{% endif %} data-room="{{ r.key }}">{{ r.label | safe }}</button>
+{% for r in interiors.rooms %}          <button type="button"{% if loop.first %} class="on"{% endif %} data-room="{{ r.key }}">{{ r.label | safe }}</button>
 {% endfor %}        </nav>
-{% for r in rooms %}        <div class="room-group{% if loop.first %} on{% endif %}" id="room-{{ r.key }}">
+{% for r in interiors.rooms %}        <div class="room-group{% if loop.first %} on{% endif %}" id="room-{{ r.key }}">
           <div class="strip-wrap">
             <button class="st-btn st-prev" aria-label="Scroll back">‹</button>
             <div class="int-strip">
@@ -96,23 +96,23 @@
         </div>
 {% endfor %}
         <div class="gal-sub reveal">
-          <p class="gal-label">{{ walk_label | safe }}</p>
+          <p class="gal-label">{{ walkthrough.label | safe }}</p>
         </div>
         <div class="interior-nav walk-tabs reveal" id="walkTabs">
-{% for w in walk_tabs %}          <button type="button"{% if loop.first %} class="on"{% endif %} data-src="{{ w.src }}">{{ w.label | safe }}</button>
+{% for w in walkthrough.tabs %}          <button type="button"{% if loop.first %} class="on"{% endif %} data-src="{{ w.src }}">{{ w.label | safe }}</button>
 {% endfor %}        </div>
         <div class="walk-embed reveal">
-          <iframe id="walkFrame" src="{{ walk_tabs[0].src }}" title="360° walkthrough of Daisy II" loading="lazy" allowfullscreen></iframe>
+          <iframe id="walkFrame" src="{{ walkthrough.tabs[0].src }}" title="360° walkthrough of Daisy II" loading="lazy" allowfullscreen></iframe>
         </div>
-        <p class="walk-fallback reveal"><a id="walkExt" href="{{ walk_tabs[0].src }}" target="_blank" rel="noopener">Open the walkthrough full screen ↗</a></p>
+        <p class="walk-fallback reveal"><a id="walkExt" href="{{ walkthrough.tabs[0].src }}" target="_blank" rel="noopener">Open the walkthrough full screen ↗</a></p>
       </section>
 
       <!-- ══ amenities ══ -->
       <section class="detail-section" id="amenities">
-        <p class="detail-eyebrow reveal">{{ amen_eyebrow | safe }}</p>
+        <p class="detail-eyebrow reveal">{{ amenities.eyebrow | safe }}</p>
         <h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
         <ul class="amen-list reveal">
-{% for a in amenities %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
+{% for a in amenities.items %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
 {% endfor %}        </ul>
       </section>
 
@@ -120,26 +120,35 @@
 
       <!-- ══ craftsmanship ══ -->
       <section class="detail-section" id="specs">
-        <p class="detail-eyebrow reveal">{{ specs_eyebrow | safe }}</p>
-        <h2 class="reveal">{{ specs_title | safe }}</h2>
+        <p class="detail-eyebrow reveal">{{ specs.eyebrow | safe }}</p>
+        <h2 class="reveal">{{ specs.title | safe }}</h2>
         <div class="spec-list reveal">
-          {% for s in specs %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><p>{{ s.text | safe }}</p></div>
+          {% for s in specs.groups %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><p>{{ s.text | safe }}</p></div>
           {% endfor %}</div>
       </section>
 
       <!-- ══ payment ══ -->
       <section class="detail-section" id="payment">
         <p class="detail-eyebrow reveal">{{ site.ui.payment_eyebrow | safe }}</p>
-        <h2 class="reveal">{{ payment_title | safe }}</h2>
+        <h2 class="reveal">{{ payment.title | safe }}</h2>
         <div class="timeline reveal">
           <div class="tl-line"></div>
           <div class="tl-steps">
-            {% for t in timeline %}<div class="tl-step"><span class="pct">{{ t.pct }}</span><span class="tl-dot"></span><p>{{ t.text | safe }}</p></div>
+            {% for t in payment.steps %}<div class="tl-step"><span class="pct">{{ t.pct }}</span><span class="tl-dot"></span><p>{{ t.text | safe }}</p></div>
             {% endfor %}</div>
         </div>
       </section>
     
-      <!-- ══ location ══ -->
+{% if film_url %}
+      <!-- ══ film ══ -->
+      <section class="detail-section">
+        <p class="detail-eyebrow reveal">{{ site.ui.film_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.film_title | safe }}</h2>
+        <div class="walk-embed reveal">
+          <iframe src="{{ film_url }}" title="{{ page_name | safe }} — project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </section>
+{% endif %}      <!-- ══ location ══ -->
       {% set loc_name = "The Yarzeh Mansions" %}{% set loc_q = "33%C2%B050%2718.3%22N+35%C2%B033%2704.6%22E" %}{% set loc_z = "17" %}{% set loc_illu %}
         <a class="loc-illustration reveal" href="/media/projects/yarzeh/location-map.jpg" data-lightbox>
           <img src="/media/projects/yarzeh/location-map.jpg" alt="Illustrated map of Yarzeh showing the Mansions, the road to Beirut, the Yarzeh Country Club and Alyarz Leisure Club" loading="lazy">

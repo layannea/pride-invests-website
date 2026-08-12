@@ -1,377 +1,799 @@
 backend:
   name: git-gateway
   branch: main
-
-media_folder: "src/media/uploads"
-public_folder: "/media/uploads"
-
+media_folder: src/media/uploads
+public_folder: /media/uploads
 collections:
-  - name: settings
-    label: "Site settings"
-    description: "Phone numbers, social media links, office addresses, shared section labels (location, payment, amenities, ...) and footer newsletter box (mailchimp)."
-    files:
-      - file: "src/_data/site.json"
-        name: general
-        label: "Contact, social links, labels & newsletter"
-        fields:
-          - { name: phone_display, label: "Phone (as shown)", widget: string }
-          - { name: phone_tel, label: "Phone (digits for dialing, e.g. +96125920920)", widget: string }
-          - { name: wa_display, label: "WhatsApp (as shown)", widget: string }
-          - { name: wa_number, label: "WhatsApp (digits only, e.g. 96171333769)", widget: string }
-          - { name: email, label: "Sales email", widget: string }
-          - { name: facebook, label: "Facebook URL", widget: string }
-          - { name: linkedin, label: "LinkedIn URL", widget: string }
-          - { name: instagram, label: "Instagram URL", widget: string }
-          - name: offices
-            label: "Sales offices"
-            widget: list
-            fields:
-              - { name: city, label: City, widget: string }
-              - { name: country, label: Country, widget: string }
-              - { name: address, label: "Address (use <br> for a line break)", widget: text }
-          - name: ui
-            label: "Shared section labels"
-            widget: object
-            collapsed: true
-            fields:
-              - { name: gallery_eyebrow, label: "Gallery eyebrow", widget: string }
-              - { name: amenities, label: "Amenities heading", widget: string }
-              - { name: film_eyebrow, label: "Film eyebrow", widget: string }
-              - { name: film_title, label: "Film heading", widget: string }
-              - { name: payment_eyebrow, label: "Payment eyebrow", widget: string }
-              - { name: location_eyebrow, label: "Location eyebrow", widget: string }
-              - { name: location_title, label: "Location heading", widget: string }
-              - { name: speak, label: "Speak with our team", widget: string }
-              - { name: footer_legal, label: "Footer legal line", widget: string }
-          - name: newsletter
-            label: "Newsletter signup (Mailchimp)"
-            widget: object
-            collapsed: true
-            fields:
-              - { name: title, label: "Heading", widget: string }
-              - { name: sub, label: "Subtitle", widget: string }
-              - { name: button, label: "Button label", widget: string }
-              - { name: action, label: "Mailchimp form URL (Audience → Signup forms → Embedded forms — leave empty to hide the box)", widget: string, required: false }
-
-  - name: inventory
-    label: "Apartment inventory"
-    description: "The homes shown in the find your home search (one row per apartment)."
-    files:
-      - file: "src/_data/units.json"
-        name: units
-        label: "All homes (powers the Find-your-home search)"
-        fields:
-          - name: units
-            label: Units
-            widget: list
-            fields:
-              - { name: id, label: "ID (unique, no spaces)", widget: string }
-              - { name: name, label: "Name", widget: string }
-              - { name: project, label: "Project", widget: string }
-              - { name: location, label: "Location", widget: string }
-              - { name: type, label: "Type", widget: select, options: ["Apartment", "Duplex", "Roof duplex", "Mansion residence"] }
-              - { name: size, label: "Interior size (m²)", widget: number }
-              - { name: garden, label: "Garden (m², 0 if none)", widget: number }
-              - { name: terrace, label: "Terrace (m², 0 if none)", widget: number }
-              - { name: beds, label: "Bedrooms", widget: number }
-              - { name: floor, label: "Floor", widget: string }
-              - { name: price, label: "Price (US$, empty = on request)", widget: number, required: false }
-              - { name: url, label: "Link", widget: string }
-              - { name: sold, label: "Sold", widget: boolean, required: false }
-
-  - name: collections
-    label: "Louayzeh collections"
-    description: "The 4 block groups for Louayzeh Village. Titles, sizes and floor-plan images here update the collection pages and the louayzeh floor plans page (prideinvests.com/projects/louayzeh-village/floor-plans/)."
-    identifier_field: ctitle
-    folder: "src/content/collections"
-    create: false
-    delete: false
+- name: pages
+  label: Pages
+  description: 'Every other page: homepage, projects index, floor-plan pages, our story, FAQ and contact.'
+  files:
+  - file: src/content/pages/home.md
+    name: home
+    label: Homepage
     fields:
-      - { name: layout, widget: hidden, default: "layouts/collection.njk" }
-      - { name: permalink, widget: hidden }
-      - { name: ctitle, label: "Collection title", widget: string }
-      - { name: blocks, label: "Blocks line (e.g. Blocks C · D · O · P · Q)", widget: string }
-      - { name: intro, label: "Introduction", widget: text }
-      - { name: meta_desc, label: "Search-engine description", widget: text }
-      - { name: range, label: "Size range (hub card, e.g. 175 – 299 m²)", widget: string }
-      - { name: hub_sub, label: "Hub card subtitle", widget: string }
-      - { name: hub_order, label: "Order on the hub page (1 = first)", widget: number }
-      - name: tiers
-        label: "Floor-plan cards"
-        widget: list
-        fields:
-          - { name: name, label: "Apartment", widget: string }
-          - { name: area, label: "Total area", widget: string }
-          - name: plans
-            label: "Plan images"
-            widget: list
-            fields:
-              - { name: file, label: "Plan image", widget: image }
-              - { name: cap, label: "Level caption (duplexes only)", widget: string, required: false }
-              - { name: area, label: "Level area (duplexes only)", widget: string, required: false }
-              - { name: alt, label: "Image alt text", widget: string }
-
-  - name: projects
-    label: "Projects"
-    description: "For each project page: photos, text, key facts, amenities, specifications and payment terms."
-    identifier_field: page_name
-    folder: "src/content/projects"
-    create: false
-    delete: false
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: statement
+      label: Statement line
+      widget: text
+    - name: stats
+      label: Numbers strip
+      widget: list
+      fields:
+      - name: k
+        label: Number
+        widget: string
+      - name: l
+        label: Label
+        widget: string
+    - name: horizon
+      label: On the Horizon cards
+      widget: list
+      fields:
+      - name: image
+        label: Background photo
+        widget: image
+      - name: badge
+        label: Badge
+        widget: string
+      - name: country
+        label: Country line
+        widget: string
+      - name: name
+        label: Project name
+        widget: string
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+  - file: src/content/pages/projects.md
+    name: projects
+    label: Projects index
     fields:
-      - { name: layout, widget: hidden }
-      - { name: permalink, widget: hidden }
-      - { name: page_name, label: "Project name", widget: string }
-      - { name: title_tag, label: "Browser-tab title", widget: string }
-      - { name: meta_desc, label: "Search-engine description", widget: text }
-      - { name: intro_title, label: "Introduction heading", widget: string, required: false }
-      - { name: intro, label: "Introduction paragraphs", widget: list, required: false, field: { name: p, label: Paragraph, widget: text } }
-      - name: amenities
-        label: "Amenities"
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: page_title
+      label: Page title
+      widget: string
+    - name: page_intro
+      label: Intro line
+      widget: text
+    - name: cards
+      label: Project cards
+      widget: list
+      fields:
+      - name: name
+        label: Project name
+        widget: string
+      - name: loc
+        label: Location line
+        widget: string
+      - name: image
+        label: Photo
+        widget: image
+      - name: alt
+        label: Alt text (accessibility)
+        widget: string
+      - name: badge
+        label: Badge text
+        widget: string
+      - name: badge_sold
+        label: Grey sold-out badge style
+        widget: boolean
+        required: false
+      - name: soon
+        label: Coming soon (card without links)
+        widget: boolean
+        required: false
+      - name: soon_note
+        label: Coming soon note
+        widget: string
+        required: false
+      - name: url
+        label: Project page link
+        widget: string
+        required: false
+      - name: meta
+        label: Meta line (delivery, sizes)
         widget: list
         required: false
         fields:
-          - { name: label, label: "Amenity", widget: string }
-          - { name: icon, label: "Icon (SVG code — advanced)", widget: text }
-      - name: facts
-        label: "Key facts strip"
-        widget: list
+        - name: label
+          label: Label
+          widget: string
+        - name: value
+          label: Value
+          widget: string
+      - name: text
+        label: Description
+        widget: text
+      - name: cta
+        label: Link text
+        widget: string
         required: false
-        fields:
-          - { name: k, label: "Label", widget: string }
-          - { name: v, label: "Value", widget: string }
-      - name: slides
-        label: "Gallery slides"
-        widget: list
-        required: false
-        fields:
-          - { name: image, label: "Photo", widget: image }
-          - { name: cap, label: "Caption", widget: string }
-          - { name: alt, label: "Alt text (accessibility)", widget: string }
+    - name: finder_title
+      label: Finder heading
+      widget: string
+    - name: finder_sub
+      label: Finder subtitle
+      widget: string
+    - name: finder_empty
+      label: Finder empty-state message
+      widget: text
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+  - file: src/content/pages/louayzeh-floor-plans.md
+    name: louayzeh_floor_plans
+    label: Louayzeh residence collections (hub)
+    fields:
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: page_title
+      label: Page title
+      widget: string
+    - name: page_intro
+      label: Intro (use <br> for a line break)
+      widget: text
+    - name: map_hint
+      label: Map hint line
+      widget: string
+    - name: finder_title
+      label: Finder heading
+      widget: string
+    - name: finder_sub
+      label: Finder subtitle
+      widget: string
+    - name: finder_empty
+      label: Finder empty-state message
+      widget: text
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+  - file: src/content/pages/yarzeh-floor-plans.md
+    name: yarzeh_floor_plans
+    label: Yarzeh Mansions floor plans
+    fields:
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: page_title
+      label: Page title
+      widget: string
+    - name: page_intro
+      label: Intro line
+      widget: text
+    - name: residences
+      label: Residences
+      widget: list
+      fields:
+      - name: mansion
+        label: Mansion group label
+        widget: string
+      - name: slug
+        label: Anchor id (no spaces, e.g. daisy-i)
+        widget: string
+      - name: name
+        label: Residence name
+        widget: string
+      - name: type
+        label: Type line
+        widget: string
+      - name: price
+        label: Price line
+        widget: string
       - name: specs
-        label: "Specifications"
+        label: Spec chips (bold with <b>…</b>)
         widget: list
-        required: false
-        fields:
-          - { name: title, label: "Heading", widget: string }
-          - { name: text, label: "Text", widget: text }
-      - name: timeline
-        label: "Payment timeline"
+        field:
+          name: s
+          label: Spec
+          widget: string
+      - name: text
+        label: Description
+        widget: text
+      - name: plans
+        label: Floor plan images
         widget: list
-        required: false
         fields:
-          - { name: pct, label: "Percentage", widget: string }
-          - { name: text, label: "Milestone", widget: string }
-      - { name: film_url, label: "Project film (YouTube embed URL)", widget: string, required: false }
-      - { name: gallery_title, label: "Gallery heading", widget: string, required: false }
-      - { name: amen_eyebrow, label: "Amenities eyebrow", widget: string, required: false }
-      - { name: specs_eyebrow, label: "Specifications eyebrow", widget: string, required: false }
-      - { name: specs_title, label: "Specifications heading", widget: string, required: false }
-      - { name: payment_title, label: "Payment heading", widget: string, required: false }
-      - { name: res_eyebrow, label: "Residences eyebrow", widget: string, required: false }
-      - { name: res_title, label: "Residences heading", widget: string, required: false }
-      - { name: res_text, label: "Residences paragraph", widget: text, required: false }
-      - { name: brochure, label: "Brochure (PDF)", widget: file, required: false }
-      - { name: exterior_label, label: "Gallery label: outside renders", widget: string, required: false }
-      - { name: interior_label, label: "Gallery label: inside renders", widget: string, required: false }
-      - { name: walk_label, label: "Gallery label: 360° walkthrough", widget: string, required: false }
-      - name: rooms
-        label: "Interior render strips (by room)"
+        - name: file
+          label: Plan image
+          widget: image
+        - name: label
+          label: Caption (e.g. Ground floor · 210 m²)
+          widget: string
+        - name: alt
+          label: Alt text (accessibility)
+          widget: string
+      - name: link_text
+        label: Extra link text
+        widget: string
+        required: false
+      - name: link_url
+        label: Extra link URL
+        widget: string
+        required: false
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+  - file: src/content/pages/our-story.md
+    name: our-story
+    label: Our story
+    fields:
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: story_eyebrow
+      label: Eyebrow line
+      widget: string
+    - name: story_lead
+      label: Lead line
+      widget: text
+    - name: copy1
+      label: Paragraphs · part 1
+      widget: list
+      fields:
+      - name: cls
+        widget: hidden
+      - name: html
+        label: Paragraph (HTML allowed)
+        widget: text
+    - name: copy2
+      label: Paragraphs · part 2
+      widget: list
+      fields:
+      - name: cls
+        widget: hidden
+      - name: html
+        label: Paragraph (HTML allowed)
+        widget: text
+    - name: copy3
+      label: Paragraphs · part 3
+      widget: list
+      fields:
+      - name: cls
+        widget: hidden
+      - name: html
+        label: Paragraph (HTML allowed)
+        widget: text
+    - name: copy_team
+      label: Team statement (full-width block)
+      widget: list
+      fields:
+      - name: cls
+        widget: hidden
+      - name: html
+        label: Paragraph (HTML allowed)
+        widget: text
+    - name: copy4
+      label: Paragraphs · part 4
+      widget: list
+      fields:
+      - name: cls
+        widget: hidden
+      - name: html
+        label: Paragraph (HTML allowed)
+        widget: text
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+  - file: src/content/pages/faq.md
+    name: faq
+    label: FAQ
+    fields:
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: faqs
+      label: Questions
+      widget: list
+      fields:
+      - name: n
+        label: Number (e.g. 01)
+        widget: string
+      - name: q
+        label: Question
+        widget: string
+      - name: a
+        label: Answer (HTML allowed)
+        widget: text
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+  - file: src/content/pages/contact.md
+    name: contact
+    label: Contact
+    fields:
+    - name: layout
+      widget: hidden
+    - name: permalink
+      widget: hidden
+    - name: page_title
+      label: Page title
+      widget: string
+    - name: page_intro
+      label: Intro line
+      widget: text
+    - name: title_tag
+      label: Google result title (SEO — not shown on the page)
+      widget: string
+    - name: meta_desc
+      label: Google result description (SEO — not shown on the page)
+      widget: text
+- name: projects
+  label: Projects
+  description: One entry per development, listed by name. Each section of the page has its own group below — fill a section in and it appears on the page, empty it and it disappears.
+  identifier_field: page_name
+  folder: src/content/projects
+  create: false
+  delete: false
+  fields:
+  - name: layout
+    widget: hidden
+  - name: permalink
+    widget: hidden
+  - name: page_name
+    label: Project name
+    widget: string
+  - name: intro_title
+    label: Intro heading
+    widget: string
+  - name: intro
+    label: Introduction paragraphs
+    widget: list
+    required: false
+    field:
+      name: p
+      label: Paragraph
+      widget: text
+  - name: facts
+    label: Key facts strip
+    widget: list
+    required: false
+    fields:
+    - name: k
+      label: Label
+      widget: string
+    - name: v
+      label: Value
+      widget: string
+  - name: gallery
+    label: Gallery section
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: title
+      label: Gallery heading
+      widget: string
+    - name: exterior_label
+      label: Label above the photos (optional)
+      widget: string
+      required: false
+    - name: slides
+      label: Photos
+      widget: list
+      required: false
+      fields:
+      - name: image
+        label: Photo
+        widget: image
+      - name: cap
+        label: Caption
+        widget: string
+      - name: alt
+        label: Alt text (accessibility)
+        widget: string
+  - name: film_url
+    label: Film section — YouTube embed URL (leave empty for no film)
+    widget: string
+    required: false
+  - name: interiors
+    label: Interior renders section (leave empty to hide)
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: label
+      label: Section label (e.g. Inside renders · Residence Daisy II)
+      widget: string
+    - name: rooms
+      label: Rooms
+      widget: list
+      fields:
+      - name: key
+        label: Tab id (no spaces, e.g. bedrooms)
+        widget: string
+      - name: label
+        label: Tab label
+        widget: string
+      - name: images
+        label: Images
         widget: list
+        fields:
+        - name: file
+          label: Photo
+          widget: image
+        - name: cap
+          label: Caption
+          widget: string
+          required: false
+        - name: alt
+          label: Alt text (accessibility)
+          widget: string
+  - name: walkthrough
+    label: 360° walkthrough section (leave empty to hide)
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: label
+      label: Section label (e.g. 360° walkthrough · Residence Daisy II)
+      widget: string
+    - name: tabs
+      label: Tabs
+      widget: list
+      fields:
+      - name: label
+        label: Tab label
+        widget: string
+      - name: src
+        label: Walkthrough URL
+        widget: string
+  - name: amenities
+    label: Amenities section (leave empty to hide)
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: eyebrow
+      label: Small line above the heading (optional)
+      widget: string
+      required: false
+    - name: items
+      label: Amenities list
+      widget: list
+      required: false
+      fields:
+      - name: label
+        label: Amenity
+        widget: string
+      - name: icon
+        label: Icon (SVG code — advanced)
+        widget: text
+  - name: specs
+    label: Specifications section (leave empty to hide)
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: eyebrow
+      label: Small line above the heading (e.g. Craftsmanship)
+      widget: string
+    - name: title
+      label: Section heading (e.g. Built without shortcuts)
+      widget: string
+    - name: groups
+      label: Specification groups
+      widget: list
+      required: false
+      fields:
+      - name: title
+        label: Heading
+        widget: string
+      - name: text
+        label: Text
+        widget: text
+  - name: payment
+    label: Payment section (leave empty to hide)
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: title
+      label: Section heading (e.g. Three steps to your new home)
+      widget: string
+    - name: steps
+      label: Steps
+      widget: list
+      required: false
+      fields:
+      - name: pct
+        label: Percentage
+        widget: string
+      - name: text
+        label: Milestone
+        widget: string
+  - name: residences
+    label: Residences section (heading over the floor-plans link or block list)
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: eyebrow
+      label: Small line above the heading (optional)
+      widget: string
+      required: false
+    - name: title
+      label: Section heading
+      widget: string
+    - name: text
+      label: Paragraph (optional)
+      widget: text
+      required: false
+  - name: blocks
+    label: Sold apartment blocks
+    widget: list
+    required: false
+    fields:
+    - name: key
+      label: Tab id (no spaces)
+      widget: string
+    - name: label
+      label: Tab label
+      widget: string
+    - name: cards
+      label: Apartments
+      widget: list
+      fields:
+      - name: name
+        label: Apartment
+        widget: string
+      - name: floor
+        label: Floor
+        widget: string
+      - name: text
+        label: Description
+        widget: text
+  - name: brochure
+    label: Brochure (PDF)
+    widget: file
+    required: false
+  - name: title_tag
+    label: Google result title (SEO — not shown on the page)
+    widget: string
+  - name: meta_desc
+    label: Google result description (SEO — not shown on the page)
+    widget: text
+- name: collections
+  label: Louayzeh Village · apartment families
+  description: The four apartment families sold at Louayzeh Village (the project page itself is under Projects → Louayzeh Village). Titles, sizes and floor-plan images here update the family pages, the Residence collections overview page and the interactive village map together.
+  identifier_field: ctitle
+  folder: src/content/collections
+  create: false
+  delete: false
+  fields:
+  - name: layout
+    widget: hidden
+    default: layouts/collection.njk
+  - name: permalink
+    widget: hidden
+  - name: ctitle
+    label: Collection title
+    widget: string
+  - name: blocks
+    label: Blocks line (e.g. Blocks C · D · O · P · Q)
+    widget: string
+  - name: intro
+    label: Introduction
+    widget: text
+  - name: range
+    label: Size range (hub card, e.g. 175 – 299 m²)
+    widget: string
+  - name: hub_sub
+    label: Hub card subtitle
+    widget: string
+  - name: hub_order
+    label: Order on the hub page (1 = first)
+    widget: number
+  - name: tiers
+    label: Floor-plan cards
+    widget: list
+    fields:
+    - name: name
+      label: Apartment
+      widget: string
+    - name: area
+      label: Total area
+      widget: string
+    - name: plans
+      label: Plan images
+      widget: list
+      fields:
+      - name: file
+        label: Plan image
+        widget: image
+      - name: cap
+        label: Level caption (duplexes only)
+        widget: string
         required: false
-        fields:
-          - { name: key, label: "Tab id (no spaces, e.g. bedrooms)", widget: string }
-          - { name: label, label: "Tab label", widget: string }
-          - name: images
-            label: "Images"
-            widget: list
-            fields:
-              - { name: file, label: "Photo", widget: image }
-              - { name: cap, label: "Caption", widget: string, required: false }
-              - { name: alt, label: "Alt text (accessibility)", widget: string }
-      - name: walk_tabs
-        label: "360° walkthrough tabs"
-        widget: list
+      - name: area
+        label: Level area (duplexes only)
+        widget: string
         required: false
-        fields:
-          - { name: label, label: "Tab label", widget: string }
-          - { name: src, label: "Walkthrough URL", widget: string }
-      - name: blocks
-        label: "Sold apartment blocks"
-        widget: list
+      - name: alt
+        label: Image alt text
+        widget: string
+  - name: meta_desc
+    label: Google result description (SEO — not shown on the page)
+    widget: text
+- name: inventory
+  label: Apartment inventory
+  description: The homes shown in the find your home search (one row per apartment).
+  files:
+  - file: src/_data/units.json
+    name: units
+    label: All homes (powers the Find-your-home search)
+    fields:
+    - name: units
+      label: Units
+      widget: list
+      fields:
+      - name: id
+        label: ID (unique, no spaces)
+        widget: string
+      - name: name
+        label: Name
+        widget: string
+      - name: project
+        label: Project
+        widget: string
+      - name: location
+        label: Location
+        widget: string
+      - name: type
+        label: Type
+        widget: select
+        options:
+        - Apartment
+        - Duplex
+        - Roof duplex
+        - Mansion residence
+      - name: size
+        label: Interior size (m²)
+        widget: number
+      - name: garden
+        label: Garden (m², 0 if none)
+        widget: number
+      - name: terrace
+        label: Terrace (m², 0 if none)
+        widget: number
+      - name: beds
+        label: Bedrooms
+        widget: number
+      - name: floor
+        label: Floor
+        widget: string
+      - name: price
+        label: Price (US$, empty = on request)
+        widget: number
         required: false
-        fields:
-          - { name: key, label: "Tab id (no spaces)", widget: string }
-          - { name: label, label: "Tab label", widget: string }
-          - name: cards
-            label: "Apartments"
-            widget: list
-            fields:
-              - { name: name, label: "Apartment", widget: string }
-              - { name: floor, label: "Floor", widget: string }
-              - { name: text, label: "Description", widget: text }
-
-  - name: pages
-    label: "Pages"
-    description: "Every other page: homepage, projects index, floor-plan pages, our story, FAQ and contact."
-    files:
-      - file: "src/content/pages/home.md"
-        name: home
-        label: "Homepage"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: statement, label: "Statement line", widget: text }
-          - name: stats
-            label: "Numbers strip"
-            widget: list
-            fields:
-              - { name: k, label: "Number", widget: string }
-              - { name: l, label: "Label", widget: string }
-          - name: horizon
-            label: "On the Horizon cards"
-            widget: list
-            fields:
-              - { name: image, label: "Background photo", widget: image }
-              - { name: badge, label: "Badge", widget: string }
-              - { name: country, label: "Country line", widget: string }
-              - { name: name, label: "Project name", widget: string }
-      - file: "src/content/pages/projects.md"
-        name: projects
-        label: "Projects index"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: page_title, label: "Page title", widget: string }
-          - { name: page_intro, label: "Intro line", widget: text }
-          - name: cards
-            label: "Project cards"
-            widget: list
-            fields:
-              - { name: name, label: "Project name", widget: string }
-              - { name: loc, label: "Location line", widget: string }
-              - { name: image, label: "Photo", widget: image }
-              - { name: alt, label: "Alt text (accessibility)", widget: string }
-              - { name: badge, label: "Badge text", widget: string }
-              - { name: badge_sold, label: "Grey sold-out badge style", widget: boolean, required: false }
-              - { name: soon, label: "Coming soon (card without links)", widget: boolean, required: false }
-              - { name: soon_note, label: "Coming soon note", widget: string, required: false }
-              - { name: url, label: "Project page link", widget: string, required: false }
-              - name: meta
-                label: "Meta line (delivery, sizes)"
-                widget: list
-                required: false
-                fields:
-                  - { name: label, label: "Label", widget: string }
-                  - { name: value, label: "Value", widget: string }
-              - { name: text, label: "Description", widget: text }
-              - { name: cta, label: "Link text", widget: string, required: false }
-          - { name: finder_title, label: "Finder heading", widget: string }
-          - { name: finder_sub, label: "Finder subtitle", widget: string }
-          - { name: finder_empty, label: "Finder empty-state message", widget: text }
-      - file: "src/content/pages/louayzeh-floor-plans.md"
-        name: louayzeh_floor_plans
-        label: "Louayzeh residence collections (hub)"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: page_title, label: "Page title", widget: string }
-          - { name: page_intro, label: "Intro (use <br> for a line break)", widget: text }
-          - { name: map_hint, label: "Map hint line", widget: string }
-          - { name: finder_title, label: "Finder heading", widget: string }
-          - { name: finder_sub, label: "Finder subtitle", widget: string }
-          - { name: finder_empty, label: "Finder empty-state message", widget: text }
-      - file: "src/content/pages/yarzeh-floor-plans.md"
-        name: yarzeh_floor_plans
-        label: "Yarzeh Mansions floor plans"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: page_title, label: "Page title", widget: string }
-          - { name: page_intro, label: "Intro line", widget: text }
-          - name: residences
-            label: "Residences"
-            widget: list
-            fields:
-              - { name: mansion, label: "Mansion group label", widget: string }
-              - { name: slug, label: "Anchor id (no spaces, e.g. daisy-i)", widget: string }
-              - { name: name, label: "Residence name", widget: string }
-              - { name: type, label: "Type line", widget: string }
-              - { name: price, label: "Price line", widget: string }
-              - name: specs
-                label: "Spec chips (bold with <b>…</b>)"
-                widget: list
-                field: { name: s, label: "Spec", widget: string }
-              - { name: text, label: "Description", widget: text }
-              - name: plans
-                label: "Floor plan images"
-                widget: list
-                fields:
-                  - { name: file, label: "Plan image", widget: image }
-                  - { name: label, label: "Caption (e.g. Ground floor · 210 m²)", widget: string }
-                  - { name: alt, label: "Alt text (accessibility)", widget: string }
-              - { name: link_text, label: "Extra link text", widget: string, required: false }
-              - { name: link_url, label: "Extra link URL", widget: string, required: false }
-      - file: "src/content/pages/our-story.md"
-        name: our-story
-        label: "Our story"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: story_eyebrow, label: "Eyebrow line", widget: string }
-          - { name: story_lead, label: "Lead line", widget: text }
-          - name: copy1
-            label: "Paragraphs · part 1"
-            widget: list
-            fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
-          - name: copy2
-            label: "Paragraphs · part 2"
-            widget: list
-            fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
-          - name: copy3
-            label: "Paragraphs · part 3"
-            widget: list
-            fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
-          - name: copy_team
-            label: "Team statement (full-width block)"
-            widget: list
-            fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
-          - name: copy4
-            label: "Paragraphs · part 4"
-            widget: list
-            fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
-      - file: "src/content/pages/faq.md"
-        name: faq
-        label: "FAQ"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - name: faqs
-            label: "Questions"
-            widget: list
-            fields:
-              - { name: n, label: "Number (e.g. 01)", widget: string }
-              - { name: q, label: "Question", widget: string }
-              - { name: a, label: "Answer (HTML allowed)", widget: text }
-      - file: "src/content/pages/contact.md"
-        name: contact
-        label: "Contact"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: page_title, label: "Page title", widget: string }
-          - { name: page_intro, label: "Intro line", widget: text }
+      - name: url
+        label: Link
+        widget: string
+      - name: sold
+        label: Sold
+        widget: boolean
+        required: false
+- name: settings
+  label: Site settings
+  description: Phone numbers, social media links, office addresses, shared section labels (location, payment, amenities, ...) and footer newsletter box (mailchimp).
+  files:
+  - file: src/_data/site.json
+    name: general
+    label: Contact, social links, labels & newsletter
+    fields:
+    - name: phone_display
+      label: Phone (as shown)
+      widget: string
+    - name: phone_tel
+      label: Phone (digits for dialing, e.g. +96125920920)
+      widget: string
+    - name: wa_display
+      label: WhatsApp (as shown)
+      widget: string
+    - name: wa_number
+      label: WhatsApp (digits only, e.g. 96171333769)
+      widget: string
+    - name: email
+      label: Sales email
+      widget: string
+    - name: facebook
+      label: Facebook URL
+      widget: string
+    - name: linkedin
+      label: LinkedIn URL
+      widget: string
+    - name: instagram
+      label: Instagram URL
+      widget: string
+    - name: offices
+      label: Sales offices
+      widget: list
+      fields:
+      - name: city
+        label: City
+        widget: string
+      - name: country
+        label: Country
+        widget: string
+      - name: address
+        label: Address (use <br> for a line break)
+        widget: text
+    - name: ui
+      label: Shared section labels
+      widget: object
+      collapsed: true
+      fields:
+      - name: gallery_eyebrow
+        label: Gallery eyebrow
+        widget: string
+      - name: amenities
+        label: Amenities heading
+        widget: string
+      - name: film_eyebrow
+        label: Film eyebrow
+        widget: string
+      - name: film_title
+        label: Film heading
+        widget: string
+      - name: payment_eyebrow
+        label: Payment eyebrow
+        widget: string
+      - name: location_eyebrow
+        label: Location eyebrow
+        widget: string
+      - name: location_title
+        label: Location heading
+        widget: string
+      - name: speak
+        label: Speak with our team
+        widget: string
+      - name: footer_legal
+        label: Footer legal line
+        widget: string
+    - name: newsletter
+      label: Newsletter signup (Mailchimp)
+      widget: object
+      collapsed: true
+      fields:
+      - name: title
+        label: Heading
+        widget: string
+      - name: sub
+        label: Subtitle
+        widget: string
+      - name: button
+        label: Button label
+        widget: string
+      - name: action
+        label: Mailchimp form URL (Audience → Signup forms → Embedded forms — leave empty to hide the box)
+        widget: string
+        required: false
