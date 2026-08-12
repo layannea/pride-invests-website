@@ -379,7 +379,7 @@ families:
     blocks: Blocks E · L · R
     range: 227 – 390 m²
     hub_sub: Three blocks, one shared set of apartments and floor plans · one
-      full-floor apartment per level
+      full-floor apartment
     meta_desc: "The Full-Floor Residences at Louayzeh Village (Blocks E, L, R):
       apartments of 227 – 390 m² with shared sample floor plans."
     intro: One private home per level. The most exclusive residences in the village,
