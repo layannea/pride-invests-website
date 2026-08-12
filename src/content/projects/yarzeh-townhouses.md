@@ -1,6 +1,7 @@
 ---
 layout: layouts/projects/yarzeh-townhouses.njk
 permalink: "/projects/yarzeh-townhouses/index.html"
+page_name: "The Yarzeh Townhouses"
 title_tag: "The Yarzeh Townhouses | Delivered &amp; Sold Out | Pride Invests"
 meta_desc: "The Yarzeh Townhouses: six townhouses across Mansion Redwood and Mansion Magnolia on the hills of Yarzeh, delivered and fully sold. Private gardens, pools, jacuzzis, gyms, saunas and steam rooms, finished to the smallest detail."
 gallery_title: "Inside the townhouses"

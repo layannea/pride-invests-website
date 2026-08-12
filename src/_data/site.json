@@ -34,5 +34,11 @@
     "location_title": "Where you'll find us",
     "speak": "Speak with our team",
     "footer_legal": "© 2026 Pride Invests · Beirut · Cannes · Lisbon"
+  },
+  "newsletter": {
+    "title": "Join our mailing list",
+    "sub": "Project launches, construction milestones and offers, straight to your inbox.",
+    "button": "Subscribe",
+    "action": ""
   }
 }

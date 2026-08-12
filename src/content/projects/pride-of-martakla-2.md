@@ -1,6 +1,7 @@
 ---
 layout: layouts/projects/pride-of-martakla-2.njk
 permalink: "/projects/pride-of-martakla-2/index.html"
+page_name: "Pride of Martakla 2"
 title_tag: "Pride of Martakla 2 | Delivered &amp; Sold Out | Pride Invests"
 meta_desc: "Pride of Martakla 2: an affordable gateway to luxury minutes from Beirut, delivered and fully sold. Marble receptions, panoramic elevators and premium specifications across blocks A and B."
 gallery_title: "Built, delivered, lived in"

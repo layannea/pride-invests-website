@@ -1,6 +1,12 @@
 module.exports = function (cfg) {
   cfg.addFilter("lines", (v) => String(v == null ? "" : v).split(/\r?\n/).map((s) => s.trim()).filter(Boolean));
   cfg.addFilter("findSlug", (arr, slug) => (arr || []).find((p) => p.fileSlug === slug));
+  cfg.addFilter("pageLabel", (u) => {
+    if (!u || u === "/") return "Homepage";
+    return u.split("/").filter(Boolean).map((seg) =>
+      seg === "faq" ? "FAQ" : seg.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+    ).join(" · ");
+  });
   cfg.addCollection("residenceCollections", (api) =>
     api.getFilteredByGlob("src/content/collections/*.md").sort((a, b) => (a.data.hub_order || 0) - (b.data.hub_order || 0)));
   cfg.addCollection("projectPages", (api) => api.getFilteredByGlob("src/content/projects/*.md"));

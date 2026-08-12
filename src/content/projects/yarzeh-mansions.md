@@ -1,6 +1,7 @@
 ---
 layout: layouts/projects/yarzeh-mansions.njk
 permalink: "/projects/yarzeh-mansions/index.html"
+page_name: "The Yarzeh Mansions"
 title_tag: "The Yarzeh Mansions | Luxury Homes for Sale in Yarzeh, Baabda | Pride Invests"
 meta_desc: "The Yarzeh Mansions: four residences of 445 to 690 m² in two stone mansions on the hills of Yarzeh, Baabda, ten minutes from Beirut. Private gardens, rooftop suites, pool, gym, sauna. US$ 4,500 per m² with staged payments. Delivery December 2027."
 gallery_title: "A first look"

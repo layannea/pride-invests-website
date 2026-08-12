@@ -20,5 +20,16 @@
       </a>
     </div>
   </div>
-  <p class="footer-legal">{{ site.ui.footer_legal | safe }}</p>
+{% if site.newsletter.action %}  <div class="footer-news">
+    <div class="fn-copy">
+      <h3>{{ site.newsletter.title | safe }}</h3>
+      <p>{{ site.newsletter.sub | safe }}</p>
+    </div>
+    <form class="fn-form" action="{{ site.newsletter.action }}" method="post" target="_blank">
+      <label class="sr-only" for="fnEmail">Email address</label>
+      <input id="fnEmail" type="email" name="EMAIL" placeholder="Your email address" required autocomplete="email">
+      <button type="submit" class="btn btn-navy">{{ site.newsletter.button | safe }}</button>
+    </form>
+  </div>
+{% endif %}  <p class="footer-legal">{{ site.ui.footer_legal | safe }}</p>
 </footer>

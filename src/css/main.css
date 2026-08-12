@@ -272,6 +272,14 @@
   .soc span{font-size:.9rem;letter-spacing:.06em;color:var(--ink)}
   .soc:hover{transform:translateY(-2px);opacity:.78}
   /* a hairline ties the legal line to the row above instead of leaving it floating */
+  /* footer newsletter — renders only when a Mailchimp URL is set in Site settings */
+  .footer-news{margin-top:36px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+  .footer-news h3{font-family:var(--font-display);font-weight:400;color:var(--navy);font-size:1.35rem}
+  .footer-news p{font-size:.9rem;color:var(--ink);margin-top:4px;font-weight:300}
+  .fn-form{display:flex;gap:10px;flex-wrap:wrap}
+  .fn-form input{border:1px solid var(--line);background:#fff;padding:12px 16px;font:inherit;font-size:.9rem;min-width:260px;color:var(--ink)}
+  .fn-form input:focus{outline:none;border-color:var(--navy)}
+  @media(max-width:760px){.footer-news{flex-direction:column;align-items:flex-start}.fn-form input{min-width:0;flex:1}}
   .footer-legal{margin-top:36px;padding-top:26px;border-top:1px solid var(--line);
     font-size:.74rem;letter-spacing:.14em;color:var(--gray);text-align:center}
   

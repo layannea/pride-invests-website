@@ -8,10 +8,11 @@ public_folder: "/media/uploads"
 collections:
   - name: settings
     label: "Site settings"
+    description: "Phone numbers, social links, office addresses, shared section labels and the footer newsletter box."
     files:
       - file: "src/_data/site.json"
         name: general
-        label: "Contact details & social links"
+        label: "Contact, social links, labels & newsletter"
         fields:
           - { name: phone_display, label: "Phone (as shown)", widget: string }
           - { name: phone_tel, label: "Phone (digits for dialing, e.g. +96125920920)", widget: string }
@@ -42,9 +43,19 @@ collections:
               - { name: location_title, label: "Location heading", widget: string }
               - { name: speak, label: "Speak with our team", widget: string }
               - { name: footer_legal, label: "Footer legal line", widget: string }
+          - name: newsletter
+            label: "Newsletter signup (Mailchimp)"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Heading", widget: string }
+              - { name: sub, label: "Subtitle", widget: string }
+              - { name: button, label: "Button label", widget: string }
+              - { name: action, label: "Mailchimp form URL (Audience → Signup forms → Embedded forms — leave empty to hide the box)", widget: string, required: false }
 
   - name: inventory
     label: "Apartment inventory"
+    description: "The homes shown in the Find-your-home search. One row per apartment."
     files:
       - file: "src/_data/units.json"
         name: units
@@ -70,6 +81,8 @@ collections:
 
   - name: collections
     label: "Louayzeh collections"
+    description: "The four apartment families at Louayzeh Village. Titles, sizes and floor-plan images here update the collection pages, the hub page and the interactive map together."
+    identifier_field: ctitle
     folder: "src/content/collections"
     create: false
     delete: false
@@ -100,12 +113,15 @@ collections:
 
   - name: projects
     label: "Projects"
+    description: "One entry per development. Photos, text, key facts, amenities, specifications and payment terms for each project page."
+    identifier_field: page_name
     folder: "src/content/projects"
     create: false
     delete: false
     fields:
       - { name: layout, widget: hidden }
       - { name: permalink, widget: hidden }
+      - { name: page_name, label: "Project name", widget: string }
       - { name: title_tag, label: "Browser-tab title", widget: string }
       - { name: meta_desc, label: "Search-engine description", widget: text }
       - { name: intro_title, label: "Introduction heading", widget: string, required: false }
@@ -197,7 +213,31 @@ collections:
 
   - name: pages
     label: "Pages"
+    description: "Every other page: homepage, projects index, floor-plan pages, our story, FAQ and contact."
     files:
+      - file: "src/content/pages/home.md"
+        name: home
+        label: "Homepage"
+        fields:
+          - { name: layout, widget: hidden }
+          - { name: permalink, widget: hidden }
+          - { name: title_tag, label: "Browser-tab title", widget: string }
+          - { name: meta_desc, label: "Search-engine description", widget: text }
+          - { name: statement, label: "Statement line", widget: text }
+          - name: stats
+            label: "Numbers strip"
+            widget: list
+            fields:
+              - { name: k, label: "Number", widget: string }
+              - { name: l, label: "Label", widget: string }
+          - name: horizon
+            label: "On the Horizon cards"
+            widget: list
+            fields:
+              - { name: image, label: "Background photo", widget: image }
+              - { name: badge, label: "Badge", widget: string }
+              - { name: country, label: "Country line", widget: string }
+              - { name: name, label: "Project name", widget: string }
       - file: "src/content/pages/projects.md"
         name: projects
         label: "Projects index"
@@ -280,44 +320,6 @@ collections:
                   - { name: alt, label: "Alt text (accessibility)", widget: string }
               - { name: link_text, label: "Extra link text", widget: string, required: false }
               - { name: link_url, label: "Extra link URL", widget: string, required: false }
-      - file: "src/content/pages/home.md"
-        name: home
-        label: "Homepage"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - { name: statement, label: "Statement line", widget: text }
-          - name: stats
-            label: "Numbers strip"
-            widget: list
-            fields:
-              - { name: k, label: "Number", widget: string }
-              - { name: l, label: "Label", widget: string }
-          - name: horizon
-            label: "On the Horizon cards"
-            widget: list
-            fields:
-              - { name: image, label: "Background photo", widget: image }
-              - { name: badge, label: "Badge", widget: string }
-              - { name: country, label: "Country line", widget: string }
-              - { name: name, label: "Project name", widget: string }
-      - file: "src/content/pages/faq.md"
-        name: faq
-        label: "FAQ"
-        fields:
-          - { name: layout, widget: hidden }
-          - { name: permalink, widget: hidden }
-          - { name: title_tag, label: "Browser-tab title", widget: string }
-          - { name: meta_desc, label: "Search-engine description", widget: text }
-          - name: faqs
-            label: "Questions"
-            widget: list
-            fields:
-              - { name: n, label: "Number (e.g. 01)", widget: string }
-              - { name: q, label: "Question", widget: string }
-              - { name: a, label: "Answer (HTML allowed)", widget: text }
       - file: "src/content/pages/our-story.md"
         name: our-story
         label: "Our story"
@@ -348,6 +350,21 @@ collections:
             label: "Paragraphs · part 4"
             widget: list
             fields: [ { name: cls, widget: hidden }, { name: html, label: "Paragraph (HTML allowed)", widget: text } ]
+      - file: "src/content/pages/faq.md"
+        name: faq
+        label: "FAQ"
+        fields:
+          - { name: layout, widget: hidden }
+          - { name: permalink, widget: hidden }
+          - { name: title_tag, label: "Browser-tab title", widget: string }
+          - { name: meta_desc, label: "Search-engine description", widget: text }
+          - name: faqs
+            label: "Questions"
+            widget: list
+            fields:
+              - { name: n, label: "Number (e.g. 01)", widget: string }
+              - { name: q, label: "Question", widget: string }
+              - { name: a, label: "Answer (HTML allowed)", widget: text }
       - file: "src/content/pages/contact.md"
         name: contact
         label: "Contact"
