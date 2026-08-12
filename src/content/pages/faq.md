@@ -4,7 +4,7 @@ permalink: /faq/index.html
 title_tag: FAQ | Pride Invests
 meta_desc: "Frequently asked questions about Pride Invests: property types,
   locations in Yarzeh, Baabda and Louayzeh, availability, floor plans, private
-  viewings, payment terms and delivery dates. [TEST]"
+  viewings, payment terms and delivery dates. "
 faqs:
   - n: "01"
     q: What types of properties does Pride Invests offer?
