@@ -122,4 +122,14 @@ residences:
 brochure: /media/projects/louayzeh/Louayzeh-Village-Brochure.pdf
 title_tag: Louayzeh Village | Apartments &amp; Duplexes for Sale in Louayzeh | Pride Invests
 meta_desc: 'Louayzeh Village: a gated community of garden apartments, duplexes and roof duplexes from 175 m² in Louayzeh, Lebanon. Pools, courts, nursery and clubhouse. Own from 15% down with monthly installments. Delivery 2032.'
+families_page:
+  title_tag: Residence collections | Louayzeh Village | Pride Invests
+  meta_desc: 'Every apartment at Louayzeh Village: ground-floor garden apartments, first-floor simplexes, first duplexes and roof duplexes from 175 to 390 m², with sample floor plans per block group and a live apartment finder.'
+  title: Residence collections
+  intro: Four residence collections span the village, each with its own set of apartments and floor plans.<br>Spot your block on the plan below, then open its collection to see the floor plans.
+  map_hint: Select a building to explore its collection
+  finder:
+    title: Find your apartment
+    sub: Select your preferences and the matching apartments appear below.
+    empty: No apartments match these filters yet. Try widening your search, or ask our team what is coming next.
 ---

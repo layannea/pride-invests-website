@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% set lv = (collections.projectPages | findSlug("louayzeh-village")).data %}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>{{ title_tag | safe }}</title>
-<meta name="description" content="{{ meta_desc | safe }}">
+<title>{{ lv.families_page.title_tag | safe }}</title>
+<meta name="description" content="{{ lv.families_page.meta_desc | safe }}">
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
@@ -19,8 +19,8 @@
   <div class="page-head">
     <a class="fp-back" href="/projects/louayzeh-village/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to Louayzeh Village</span></a>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/louayzeh-village/">Louayzeh Village</a> / Residences</nav>
-    <h1 class="page-title">{{ page_title | safe }}</h1>
-    <p class="page-intro">{{ page_intro | safe }}</p>
+    <h1 class="page-title">{{ lv.families_page.title | safe }}</h1>
+    <p class="page-intro">{{ lv.families_page.intro | safe }}</p>
   </div>
 
   <div class="with-rail">
@@ -57,7 +57,7 @@
             <rect class="bm-blk" x="818" y="438" width="224" height="250" rx="10"/>
           </a>
           </svg>
-          <span class="vm-hint">{{ map_hint | safe }}</span>
+          <span class="vm-hint">{{ lv.families_page.map_hint | safe }}</span>
           <a class="bm-label" href="/projects/louayzeh-village/floor-plans/"><b></b><span>View floor plans <i>&rarr;</i></span></a>
         </div>
 
@@ -76,8 +76,8 @@
 
       <!-- ══ louayzeh-only apartment finder ══ -->
       <section class="finder" id="finder" style="margin-top:64px">
-        <h2 class="section-title reveal" style="margin-bottom:10px">{{ finder.title | safe }}</h2>
-        <p class="finder-sub reveal">{{ finder.sub | safe }}</p>
+        <h2 class="section-title reveal" style="margin-bottom:10px">{{ lv.families_page.finder.title | safe }}</h2>
+        <p class="finder-sub reveal">{{ lv.families_page.finder.sub | safe }}</p>
         <div class="finder-bar reveal">
           <div class="fld">
             <label class="sr-only" for="fType">Apartment type</label>
@@ -144,7 +144,7 @@
         </div>
         <p class="finder-count" id="finderCount" style="display:none"></p>
         <div class="unit-grid" id="unitGrid" data-location="Louayzeh" data-wait-for-filter></div>
-        <p class="finder-empty" id="finderEmpty" style="display:none">{{ finder.empty | safe }}</p>
+        <p class="finder-empty" id="finderEmpty" style="display:none">{{ lv.families_page.finder.empty | safe }}</p>
       </section>
     </div>
 

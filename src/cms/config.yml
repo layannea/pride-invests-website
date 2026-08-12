@@ -6,7 +6,7 @@ public_folder: /media/uploads
 collections:
 - name: pages
   label: Pages
-  description: 'Every other page: homepage, projects index, floor-plan pages, our story, FAQ and contact.'
+  description: The homepage, projects index, our story, FAQ and contact. Each project page and its floor-plan pages are edited under Projects.
   files:
   - file: src/content/pages/home.md
     name: home
@@ -176,114 +176,6 @@ collections:
         label: Message when no homes match
         widget: text
       hint: The filter options themselves are wired to the search and are managed by the developer.
-    - name: title_tag
-      label: Google result title (SEO, not shown on the page)
-      widget: string
-    - name: meta_desc
-      label: Google result description (SEO, not shown on the page)
-      widget: text
-  - file: src/content/pages/louayzeh-floor-plans.md
-    name: louayzeh_floor_plans
-    label: Louayzeh residence collections (hub)
-    fields:
-    - name: layout
-      widget: hidden
-    - name: permalink
-      widget: hidden
-    - name: page_title
-      label: Page title
-      widget: string
-    - name: page_intro
-      label: Intro (use <br> for a line break)
-      widget: text
-    - name: map_hint
-      label: Map hint line
-      widget: string
-    - name: finder
-      label: Find your apartment section
-      widget: object
-      collapsed: true
-      fields:
-      - name: title
-        label: Heading
-        widget: string
-      - name: sub
-        label: Subtitle
-        widget: string
-      - name: empty
-        label: Message when no apartments match
-        widget: text
-      hint: The filter options themselves are wired to the search and are managed by the developer.
-    - name: title_tag
-      label: Google result title (SEO, not shown on the page)
-      widget: string
-    - name: meta_desc
-      label: Google result description (SEO, not shown on the page)
-      widget: text
-  - file: src/content/pages/yarzeh-floor-plans.md
-    name: yarzeh_floor_plans
-    label: Yarzeh Mansions floor plans
-    fields:
-    - name: layout
-      widget: hidden
-    - name: permalink
-      widget: hidden
-    - name: page_title
-      label: Page title
-      widget: string
-    - name: page_intro
-      label: Intro line
-      widget: text
-    - name: residences
-      label: Residences
-      widget: list
-      fields:
-      - name: mansion
-        label: Mansion group label
-        widget: string
-      - name: slug
-        label: Anchor id (no spaces, e.g. daisy-i)
-        widget: string
-      - name: name
-        label: Residence name
-        widget: string
-      - name: type
-        label: Type line
-        widget: string
-      - name: price
-        label: Price line
-        widget: string
-      - name: specs
-        label: Spec chips (bold with <b>…</b>)
-        widget: list
-        field:
-          name: s
-          label: Spec
-          widget: string
-      - name: text
-        label: Description
-        widget: text
-      - name: plans
-        label: Floor plan images
-        widget: list
-        fields:
-        - name: file
-          label: Plan image
-          widget: image
-        - name: label
-          label: Caption (e.g. Ground floor · 210 m²)
-          widget: string
-        - name: alt
-          label: Alt text (accessibility)
-          widget: string
-      - name: link_text
-        label: Extra link text
-        widget: string
-        required: false
-      - name: link_url
-        label: Extra link URL
-        widget: string
-        required: false
     - name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
@@ -641,6 +533,106 @@ collections:
       - name: text
         label: Description
         widget: text
+  - name: plans_page
+    label: Floor plans page
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: title
+      label: Page title
+      widget: string
+    - name: intro
+      label: Intro line
+      widget: text
+    - name: residences
+      label: Residences
+      widget: list
+      fields:
+      - name: mansion
+        label: Mansion group label
+        widget: string
+      - name: slug
+        label: Anchor id (no spaces, e.g. daisy-i)
+        widget: string
+      - name: name
+        label: Residence name
+        widget: string
+      - name: type
+        label: Type line
+        widget: string
+      - name: price
+        label: Price line
+        widget: string
+      - name: specs
+        label: Spec chips (bold with <b>…</b>)
+        widget: list
+        field:
+          name: s
+          label: Spec
+          widget: string
+      - name: text
+        label: Description
+        widget: text
+      - name: plans
+        label: Floor plan images
+        widget: list
+        fields:
+        - name: file
+          label: Plan image
+          widget: image
+        - name: label
+          label: Caption (e.g. Ground floor · 210 m²)
+          widget: string
+        - name: alt
+          label: Alt text (accessibility)
+          widget: string
+      - name: link_text
+        label: Extra link text
+        widget: string
+        required: false
+      - name: link_url
+        label: Extra link URL
+        widget: string
+        required: false
+    - &id001
+      name: title_tag
+      label: Google result title (SEO, not shown on the page)
+      widget: string
+    - &id002
+      name: meta_desc
+      label: Google result description (SEO, not shown on the page)
+      widget: text
+  - name: families_page
+    label: Residence collections overview page
+    widget: object
+    collapsed: true
+    required: false
+    fields:
+    - name: title
+      label: Page title
+      widget: string
+    - name: intro
+      label: Intro (use <br> for a line break)
+      widget: text
+    - name: map_hint
+      label: Hint line on the village map
+      widget: string
+    - name: finder
+      label: Find your apartment section
+      widget: object
+      fields:
+      - name: title
+        label: Heading
+        widget: string
+      - name: sub
+        label: Subtitle
+        widget: string
+      - name: empty
+        label: Message when no apartments match
+        widget: text
+    - *id001
+    - *id002
   - name: brochure
     label: Brochure (PDF)
     widget: file

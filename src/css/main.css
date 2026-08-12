@@ -842,11 +842,28 @@
   @media(min-width:1021px){.to-top{bottom:26px}}
   
   /* contact page layout */
-  .contact-grid{display:grid;grid-template-columns:420px 400px;justify-content:center;gap:48px;max-width:1100px;margin:0 auto;padding:10px 6vw 90px;align-items:start}
-  .office-card{background:#fff;padding:38px 36px 34px;box-shadow:0 24px 60px -34px rgba(23,34,74,.4);position:sticky;top:96px}
-  .office-card .office-title{margin-bottom:6px;font-size:1.35rem}
-  .office-card .dest-city{margin-top:14px;display:block}
-  @media(max-width:860px){.office-card{position:static}}
+  .contact-grid{display:block;max-width:1100px;margin:0 auto;padding:16px 6vw 90px}
+  .contact-card{max-width:760px;margin:0 auto}
+  /* office strip: slim horizontal band between the intro and the form */
+  .office-strip{max-width:1100px;margin:0 auto;padding:0 6vw}
+  .office-strip .os-inner{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 30px;text-align:center}
+  .office-strip h2{font-family:var(--font-display);font-weight:400;color:var(--navy);font-size:1.02rem;letter-spacing:.14em;text-transform:uppercase}
+  .os-office{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 26px}
+  .os-city{font-family:var(--font-display);color:var(--navy);font-size:1.05rem}
+  .os-office address{font-style:normal;color:var(--ink);font-weight:300;font-size:.95rem}
+  .os-office a{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:300;font-size:.95rem;transition:color .25s}
+  .os-office a:hover{color:var(--navy)}
+  .os-office a svg{width:16px;height:16px;flex:none;fill:currentColor}
+  .os-office .dest-wa svg{fill:#25D366}
+  .os-office .dest-tel svg{fill:var(--navy)}
+  /* two-column form: half the height, matched proportions */
+  .contact-card .rail-form{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px}
+  .contact-card .rail-form > *{grid-column:1/-1;margin:0}
+  .contact-card .rail-form > div:nth-of-type(1),
+  .contact-card .rail-form > div:nth-of-type(2),
+  .contact-card .rail-form > div:nth-of-type(3),
+  .contact-card .rail-form > div:nth-of-type(4){grid-column:auto}
+  @media(max-width:640px){.contact-card .rail-form{grid-template-columns:1fr}}
   .contact-card{box-shadow:0 24px 60px -34px rgba(23,34,74,.4)}
   @media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:44px}}
   

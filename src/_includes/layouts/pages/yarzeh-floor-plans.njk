@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+{% set ym = (collections.projectPages | findSlug("yarzeh-mansions")).data %}<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>{{ title_tag | safe }}</title>
-<meta name="description" content="{{ meta_desc | safe }}">
+<title>{{ ym.plans_page.title_tag | safe }}</title>
+<meta name="description" content="{{ ym.plans_page.meta_desc | safe }}">
 <link rel="icon" type="image/png" href="/media/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,13 +15,13 @@
 <body class="has-action-bar">
 
 {% set nav_solid = true %}{% include "nav.njk" %}
-{% set ym = (collections.projectPages | findSlug("yarzeh-mansions")).data %}
+
 <main class="page plans-page">
   <div class="page-head">
     <a class="fp-back" href="/projects/yarzeh-mansions/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to The Yarzeh Mansions</span></a>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / <a href="/projects/yarzeh-mansions/">The Yarzeh Mansions</a> / Floor plans</nav>
-    <h1 class="page-title">{{ page_title | safe }}</h1>
-    <p class="page-intro">{{ page_intro | safe }}</p>
+    <h1 class="page-title">{{ ym.plans_page.title | safe }}</h1>
+    <p class="page-intro">{{ ym.plans_page.intro | safe }}</p>
     <div class="detail-actions" style="margin-top:20px">
       {% if ym.brochure %}<a class="btn btn-navy" href="{{ ym.brochure }}" download>Download brochure</a>{% endif %}
     </div>
@@ -30,7 +30,7 @@
   <div class="with-rail">
     <div>
       <section class="detail-section" id="residences" style="margin-top:0">
-{% for r in residences %}{% if loop.first or r.mansion != residences[loop.index0 - 1].mansion %}<p class="res-mansion">{{ r.mansion | safe }}</p>
+{% for r in ym.plans_page.residences %}{% if loop.first or r.mansion != ym.plans_page.residences[loop.index0 - 1].mansion %}<p class="res-mansion">{{ r.mansion | safe }}</p>
 {% endif %}        <article class="res-card reveal" id="{{ r.slug }}">
           <div class="res-head">
             <h3>{{ r.name | safe }}</h3><span class="res-type">{{ r.type | safe }}</span>
