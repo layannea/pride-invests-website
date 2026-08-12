@@ -842,7 +842,11 @@
   @media(min-width:1021px){.to-top{bottom:26px}}
   
   /* contact page layout */
-  .contact-grid{display:grid;grid-template-columns:400px minmax(0,1fr);gap:60px;max-width:1100px;margin:0 auto;padding:10px 6vw 90px;align-items:start}
+  .contact-grid{display:grid;grid-template-columns:420px 400px;justify-content:center;gap:48px;max-width:1100px;margin:0 auto;padding:10px 6vw 90px;align-items:start}
+  .office-card{background:#fff;padding:38px 36px 34px;box-shadow:0 24px 60px -34px rgba(23,34,74,.4);position:sticky;top:96px}
+  .office-card .office-title{margin-bottom:6px;font-size:1.35rem}
+  .office-card .dest-city{margin-top:14px;display:block}
+  @media(max-width:860px){.office-card{position:static}}
   .contact-card{box-shadow:0 24px 60px -34px rgba(23,34,74,.4)}
   @media(max-width:860px){.contact-grid{grid-template-columns:1fr;gap:44px}}
   

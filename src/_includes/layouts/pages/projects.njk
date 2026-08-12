@@ -58,8 +58,8 @@
 
       <!-- ══ find your home — filters first, results appear on selection ══ -->
       <section class="finder" id="finder" style="margin-top:70px">
-        <h2 class="section-title reveal" style="margin-bottom:8px">{{ finder_title | safe }}</h2>
-        <p class="finder-sub reveal">{{ finder_sub | safe }}</p>
+        <h2 class="section-title reveal" style="margin-bottom:8px">{{ finder.title | safe }}</h2>
+        <p class="finder-sub reveal">{{ finder.sub | safe }}</p>
         <div class="finder-bar reveal">
           <div class="fld">
             <label class="sr-only" for="fLoc">Project</label>
@@ -138,7 +138,7 @@
         </div>
         <p class="finder-count" id="finderCount" style="display:none"></p>
         <div class="unit-grid" id="unitGrid" data-wait-for-filter></div>
-        <p class="finder-empty" id="finderEmpty" style="display:none">{{ finder_empty | safe }}</p>
+        <p class="finder-empty" id="finderEmpty" style="display:none">{{ finder.empty | safe }}</p>
       </section>
     </div>
 
