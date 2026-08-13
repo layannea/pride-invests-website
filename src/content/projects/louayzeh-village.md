@@ -6,8 +6,8 @@ intro_title: A village of your own
 intro:
   - Eighteen low-rise blocks step down a wooded hillside in Louayzeh, a gated
     community where children play safely and every apartment opens to green.
-    Choose a garden apartment, a first floor home, a duplex or a roof duplex,
-    from 175 to 390 m² with three to five master bedrooms.
+    Choose a garden apartment, a first floor home, a garden duplex or a roof
+    duplex, from 175 to 390 m² with three to five master bedrooms.
   - "Ownership is designed to be within reach: 15% down, with the remainder in
     moderate monthly installments. A 175 m² apartment, for example, comes to USD
     629 per month over six years. Every residence is priced at US$ 1,675 per
@@ -142,7 +142,7 @@ payment:
 residences:
   title: Residences &amp; floor plans
   text: "Blocks A to R share four apartment families: ground-floor gardens,
-    first-floor simplexes, first duplexes and roof duplexes. See the sample
+    first-floor simplexes, garden duplexes and roof duplexes. See the sample
     floor plans per block group."
 families_page:
   title_tag: Residence collections | Louayzeh Village | Pride Invests
@@ -261,7 +261,7 @@ families:
             cap: ""
             area: ""
             alt: The Classic Residences · First floor floor plan
-      - name: First duplex
+      - name: Garden duplex
         area: 299 m² + 57 m² garden
         plans:
           - file: /media/projects/louayzeh/plans/classic/fd_lower.jpg
@@ -308,7 +308,7 @@ families:
             cap: ""
             area: ""
             alt: The Select Residences · First floor floor plan
-      - name: First duplex
+      - name: Garden duplex
         area: 309 m² + 54 m² garden
         plans:
           - file: /media/projects/louayzeh/plans/select/fd_lower.jpg
@@ -355,7 +355,7 @@ families:
             cap: ""
             area: ""
             alt: The Grand Residences · First floor floor plan
-      - name: First duplex
+      - name: Garden duplex
         area: 327 m² + 96 m² garden
         plans:
           - file: /media/projects/louayzeh/plans/grand/fd_lower.jpg
@@ -402,7 +402,7 @@ families:
             cap: ""
             area: ""
             alt: The Full-Floor Residences · Second floor floor plan
-      - name: First duplex
+      - name: Garden duplex
         area: 390 m² + 96 m² garden
         plans:
           - file: /media/projects/louayzeh/plans/full-floor/fd_lower.jpg
