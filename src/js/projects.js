@@ -350,6 +350,16 @@
 
   /* ── Contact rail form (submits to Netlify Forms) ── */
   document.querySelectorAll('.rail-form').forEach(function (form) {
+    var emailInput = form.querySelector('input[type="email"]');
+    if (emailInput) {
+      emailInput.addEventListener('invalid', function () { emailInput.setCustomValidity('Invalid email address'); });
+      emailInput.addEventListener('input', function () { emailInput.setCustomValidity(''); });
+    }
+    var em = form.querySelector('input[type="email"]');
+    if (em) {
+      em.addEventListener('invalid', function () { em.setCustomValidity('Invalid email address'); });
+      em.addEventListener('input', function () { em.setCustomValidity(''); });
+    }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var btn = form.querySelector('button');
@@ -367,13 +377,34 @@
           var mcMap = JSON.parse(form.getAttribute('data-mc-map') || '[]');
           var fdI = new FormData(form);
           var chosen = (fdI.get('interest') || '').trim();
+          var hit = null;
           for (var mi = 0; mi < mcMap.length; mi++) {
-            if (mcMap[mi].interest && mcMap[mi].url && mcMap[mi].interest.trim() === chosen) { mc = mcMap[mi].url; break; }
+            if (mcMap[mi].interest && mcMap[mi].url && mcMap[mi].interest.trim() === chosen) { hit = mcMap[mi]; break; }
           }
+          if (!hit) {
+            var pg = (fdI.get('page') || '').toLowerCase();
+            for (var mj = 0; mj < mcMap.length; mj++) {
+              if (!mcMap[mj].interest || !mcMap[mj].url) continue;
+              var key = mcMap[mj].interest.toLowerCase().replace(/^the /, '').trim();
+              if (key && pg.indexOf(key) !== -1) { hit = mcMap[mj]; break; }
+            }
+          }
+          if (!hit) {
+            var noteStr = ((fdI.get('note') || '') + '').toLowerCase();
+            if (noteStr) {
+              for (var mk = 0; mk < mcMap.length; mk++) {
+                if (!mcMap[mk].interest || !mcMap[mk].url) continue;
+                var keyN = mcMap[mk].interest.toLowerCase().replace(/^the /, '').trim();
+                if (keyN && noteStr.indexOf(keyN) !== -1) { hit = mcMap[mk]; break; }
+              }
+            }
+          }
+          if (hit) mc = hit.url;
         } catch (eMap) {}
         if (mc) {
           try {
             var fd = new FormData(form);
+            if (!((fd.get('email') || '') + '').trim()) { throw new Error('no email'); }
             var mcBody = new URLSearchParams();
             mcBody.append('EMAIL', fd.get('email') || '');
             mcBody.append('FNAME', fd.get('name') || '');

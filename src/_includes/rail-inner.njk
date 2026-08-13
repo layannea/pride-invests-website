@@ -16,7 +16,7 @@
           </div>
           <div>
             <label for="cfEmail">Email</label>
-            <input id="cfEmail" type="email" name="email" required autocomplete="email">
+            <input id="cfEmail" type="email" name="email" autocomplete="email" oninvalid="this.setCustomValidity('Invalid email address')" oninput="this.setCustomValidity('')">
           </div>
           <div>
             <label for="cfInterest">I am interested in</label>
