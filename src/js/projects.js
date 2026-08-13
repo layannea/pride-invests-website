@@ -363,6 +363,14 @@
       }).then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         var mc = form.getAttribute('data-mc');
+        try {
+          var mcMap = JSON.parse(form.getAttribute('data-mc-map') || '[]');
+          var fdI = new FormData(form);
+          var chosen = (fdI.get('interest') || '').trim();
+          for (var mi = 0; mi < mcMap.length; mi++) {
+            if (mcMap[mi].interest && mcMap[mi].url && mcMap[mi].interest.trim() === chosen) { mc = mcMap[mi].url; break; }
+          }
+        } catch (eMap) {}
         if (mc) {
           try {
             var fd = new FormData(form);

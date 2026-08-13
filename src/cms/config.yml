@@ -1041,6 +1041,19 @@ collections:
       collapsed: true
       fields:
       - name: action
-        label: Mailchimp form URL (used to send contact-form leads to Mailchimp)
+        label: Default Mailchimp form URL (used when no match below)
         widget: string
         required: false
+      - name: lists
+        label: Per-project lists
+        widget: list
+        required: false
+        summary: '{{ fields.interest }}'
+        hint: Interest must match the form dropdown exactly (e.g. The Yarzeh Mansions). Each URL comes from that audience’s embedded form.
+        fields:
+        - name: interest
+          label: Interest (exactly as in the form dropdown)
+          widget: string
+        - name: url
+          label: That audience’s Mailchimp form URL
+          widget: string

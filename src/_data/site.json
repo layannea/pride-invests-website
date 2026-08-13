@@ -23,7 +23,8 @@
     }
   ],
   "newsletter": {
-    "action": ""
+    "action": "",
+    "lists": []
   },
   "email": "sales@prideinvests.com",
   "linkedin": "https://www.linkedin.com/company/pride-invests",
