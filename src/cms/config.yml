@@ -114,6 +114,25 @@ collections:
     - name: horizon_kicker
       label: Small line above the coming-soon cards
       widget: string
+    - name: cta
+      label: Bottom call-to-action band
+      widget: object
+      collapsed: true
+      required: false
+      fields:
+      - name: title
+        label: Heading
+        widget: string
+        required: false
+      - name: text
+        label: Text line
+        widget: text
+        required: false
+      - name: button
+        label: Button label
+        widget: string
+        required: false
+      hint: The "Speak with our team" line above it and the phone buttons come from Site settings.
     - name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
@@ -160,6 +179,10 @@ collections:
         required: false
       - name: badge_sold
         label: Sold-out badge style
+        widget: boolean
+        required: false
+      - name: badge_delivered
+        label: Delivered banner style (delivered, homes still available)
         widget: boolean
         required: false
       - name: soon

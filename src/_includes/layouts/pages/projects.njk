@@ -30,7 +30,7 @@
 {% for c in cards %}{% if c.soon %}        <article class="pcard soon reveal" aria-label="{{ c.name | safe }} — coming soon">
           <div class="pcard-media">
             {% if c.image %}<img src="{{ c.image }}" alt="{{ c.alt | safe }}" loading="lazy">{% else %}<span class="pcard-noimg" aria-hidden="true"></span>{% endif %}
-            <span class="pcard-badge{% if c.badge_sold %} sold{% endif %}">{{ c.badge | safe }}</span>
+            <span class="pcard-badge{% if c.badge_sold %} sold{% elif c.badge_delivered %} delivered-not-sold{% endif %}">{{ c.badge | safe }}</span>
           </div>
           <div class="pcard-body">
             <span class="pcard-loc">{{ c.loc | safe }}</span>
@@ -43,7 +43,7 @@
           <a class="pcard-cover" href="{{ c.url }}" aria-label="View {{ c.name | safe }}"></a>
           <a class="pcard-media" href="{{ c.url }}">
             {% if c.image %}<img src="{{ c.image }}" alt="{{ c.alt | safe }}" loading="lazy">{% else %}<span class="pcard-noimg" aria-hidden="true"></span>{% endif %}
-            <span class="pcard-badge{% if c.badge_sold %} sold{% endif %}">{{ c.badge | safe }}</span>
+            <span class="pcard-badge{% if c.badge_sold %} sold{% elif c.badge_delivered %} delivered-not-sold{% endif %}">{{ c.badge | safe }}</span>
           </a>
           <div class="pcard-body">
             <span class="pcard-loc">{{ c.loc | safe }}</span>
