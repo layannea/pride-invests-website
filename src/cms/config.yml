@@ -103,6 +103,10 @@ collections:
       - name: name
         label: Project name
         widget: string
+      - name: text
+        label: Description (shows on the card when filled)
+        widget: text
+        required: false
       - name: url
         label: Page link (add when the project gets its page)
         widget: string

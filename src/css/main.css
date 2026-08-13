@@ -843,6 +843,7 @@
   
   /* contact page layout */
   .qn-page{padding-top:36px}
+  .hc-text{font-size:.84rem;font-weight:300;margin-top:6px;opacity:.85;max-width:34ch}
   .hc-live{cursor:pointer;transition:transform .35s ease}
   .hc-live:hover{transform:translateY(-4px)}
   .pcard-noimg{display:block;width:100%;aspect-ratio:16/10;background:var(--night)}

@@ -118,10 +118,12 @@
       <span class="hc-soon">{{ h.badge | safe }}</span>
       <span class="hc-country">{{ h.country | safe }}</span>
       <h3>{{ h.name | safe }}</h3>
+      {% if h.text %}<p class="hc-text">{{ h.text | safe }}</p>{% endif %}
     </a>{% else %}<article class="horizon-card hc-photo" style="background-image:url('{{ h.image }}')">
       <span class="hc-soon">{{ h.badge | safe }}</span>
       <span class="hc-country">{{ h.country | safe }}</span>
       <h3>{{ h.name | safe }}</h3>
+      {% if h.text %}<p class="hc-text">{{ h.text | safe }}</p>{% endif %}
     </article>{% endif %}
     {% endfor %}</div>
   </div>
