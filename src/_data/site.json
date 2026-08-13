@@ -23,8 +23,25 @@
     }
   ],
   "newsletter": {
-    "action": "",
-    "lists": []
+    "action": "https://prideinvests.us11.list-manage.com/subscribe/post?u=d6719f644893dec42d4830016&id=4f7df86d75",
+    "lists": [
+      {
+        "interest": "The Yarzeh Mansions",
+        "url": "https://prideinvests.us11.list-manage.com/subscribe/post?u=d6719f644893dec42d4830016&id=5bf08fe49c"
+      },
+      {
+        "interest": "Louayzeh Village",
+        "url": "https://prideinvests.us11.list-manage.com/subscribe/post?u=d6719f644893dec42d4830016&id=5399b85de9"
+      },
+      {
+        "interest": "yarzeh",
+        "url": "https://prideinvests.us11.list-manage.com/subscribe/post?u=d6719f644893dec42d4830016&id=5bf08fe49c"
+      },
+      {
+        "interest": "louayzeh",
+        "url": "https://prideinvests.us11.list-manage.com/subscribe/post?u=d6719f644893dec42d4830016&id=5399b85de9"
+      }
+    ]
   },
   "email": "sales@prideinvests.com",
   "linkedin": "https://www.linkedin.com/company/pride-invests",
