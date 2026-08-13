@@ -2,6 +2,7 @@
 layout: layouts/projects/pride-of-martakla-2.njk
 permalink: /projects/pride-of-martakla-2/index.html
 page_name: Pride of Martakla 2
+hero: /media/projects/martakla2/render-night.jpg
 intro_title: An affordable gateway to luxury
 intro:
 - Located a few minutes from Beirut, Pride of Martakla 2 is an affordable gateway to luxury.

@@ -430,6 +430,10 @@ collections:
   - name: page_name
     label: Project name
     widget: string
+  - name: hero
+    label: Hero photo (big image at the top of the page)
+    widget: image
+    required: false
   - name: intro_title
     label: Intro heading
     widget: string

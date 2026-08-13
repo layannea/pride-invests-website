@@ -406,12 +406,14 @@
             var fd = new FormData(form);
             if (!((fd.get('email') || '') + '').trim()) { throw new Error('no email'); }
             var mcBody = new URLSearchParams();
+            var titleCase = function (s) {
+              return ((s || '') + '').trim().toLowerCase().replace(/(^|[\s'\-])([a-z\u00e0-\u00ff])/g, function (m, p, c) { return p + c.toUpperCase(); });
+            };
             mcBody.append('EMAIL', fd.get('email') || '');
-            mcBody.append('FNAME', fd.get('name') || '');
+            mcBody.append('FNAME', titleCase(fd.get('name')));
             mcBody.append('INTEREST', fd.get('interest') || '');
             mcBody.append('PHONE', fd.get('phone') || '');
-            mcBody.append('PHONE', fd.get('phone') || '');
-            mcBody.append('PHONE', fd.get('phone') || '');
+            mcBody.append('NOTE', fd.get('note') || '');
             fetch(mc, { method: 'POST', mode: 'no-cors',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
               body: mcBody.toString() }).catch(function () {});

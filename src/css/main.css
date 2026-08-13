@@ -1173,7 +1173,8 @@
     .page{padding-top:116px}
     .page-head{padding-bottom:28px}
     /* sales offices — homepage and contact page: tighter type, less air */
-    .destinations{padding-top:48px;padding-bottom:48px}
+    .horizon-grid{margin-bottom:34px}
+    .destinations{padding-top:34px;padding-bottom:48px}
     .dest-row{gap:22px}
     .dest{gap:4px}
     .dest-city{font-size:1.05rem !important;letter-spacing:.04em}

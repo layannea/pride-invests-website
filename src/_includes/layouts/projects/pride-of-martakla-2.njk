@@ -15,7 +15,7 @@
 {% set nav_solid = true %}{% include "nav.njk" %}
 
 <main style="padding-top:70px">
-  <section class="detail-hero" style="background-image:url('/media/projects/martakla2/render-night.jpg')">
+  <section class="detail-hero" style="background-image:url('{{ hero or gallery.slides[0].image }}')">
     <div class="detail-hero-inner">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / Pride of Martakla 2</nav>
       <h1>Pride of Martakla 2</h1>

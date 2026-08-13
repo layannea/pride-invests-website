@@ -2,6 +2,7 @@
 layout: layouts/projects/yarzeh-mansions.njk
 permalink: /projects/yarzeh-mansions/index.html
 page_name: The Yarzeh Mansions
+hero: /media/projects/yarzeh/facade-hero.jpg
 intro_title: Ten minutes from Beirut, a world away
 intro:
 - On the hills of Yarzeh in Baabda, two stone mansions, Daisy and Jasmine, hold four private residences of 445 to 690 m², with views running from the Mediterranean to the ridges of Mount Lebanon.

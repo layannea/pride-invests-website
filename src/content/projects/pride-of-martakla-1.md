@@ -2,6 +2,7 @@
 layout: layouts/projects/pride-of-martakla-1.njk
 permalink: /projects/pride-of-martakla-1/index.html
 page_name: Pride of Martakla 1
+hero: /media/projects/martakla/facade.jpg
 intro_title: Charming in every aspect
 intro:
 - With its contemporary design and marvelous scenery, Pride of Martakla 1 is in harmony with its surroundings.
