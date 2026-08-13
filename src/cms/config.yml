@@ -103,6 +103,10 @@ collections:
       - name: name
         label: Project name
         widget: string
+      - name: url
+        label: Page link (add when the project gets its page)
+        widget: string
+        required: false
     - name: horizon_kicker
       label: Small line above the coming-soon cards
       widget: string

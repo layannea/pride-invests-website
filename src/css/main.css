@@ -843,6 +843,8 @@
   
   /* contact page layout */
   .qn-page{padding-top:36px}
+  .hc-live{cursor:pointer;transition:transform .35s ease}
+  .hc-live:hover{transform:translateY(-4px)}
   .pcard-noimg{display:block;width:100%;aspect-ratio:16/10;background:var(--night)}
   .contact-grid{display:block;max-width:1100px;margin:0 auto;padding:0 6vw 90px}
   .contact-card{max-width:760px;margin:0 auto}

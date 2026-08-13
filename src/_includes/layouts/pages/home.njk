@@ -114,11 +114,15 @@
 
 {% endif %}{% endfor %}  <p class="eyebrow eyebrow-strong reveal" style="margin-top:30px">{{ horizon_kicker | safe }}</p>
   <div class="horizon-grid">
-    {% for h in horizon %}<article class="horizon-card hc-photo" style="background-image:url('{{ h.image }}')">
+    {% for h in horizon %}{% if h.url %}<a class="horizon-card hc-photo hc-live" href="{{ h.url }}" style="background-image:url('{{ h.image }}')">
       <span class="hc-soon">{{ h.badge | safe }}</span>
       <span class="hc-country">{{ h.country | safe }}</span>
       <h3>{{ h.name | safe }}</h3>
-    </article>
+    </a>{% else %}<article class="horizon-card hc-photo" style="background-image:url('{{ h.image }}')">
+      <span class="hc-soon">{{ h.badge | safe }}</span>
+      <span class="hc-country">{{ h.country | safe }}</span>
+      <h3>{{ h.name | safe }}</h3>
+    </article>{% endif %}
     {% endfor %}</div>
   </div>
 </section>
