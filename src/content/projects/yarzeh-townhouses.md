@@ -28,7 +28,7 @@ facts:
 gallery:
   title: Inside the townhouses
   slides:
-    - image: /media/uploads/10.jpg
+    - image: /media/uploads/night-pools-copy.png
       cap: The pools between the mansions, at night
       alt: The lit pools and jacuzzi between the two stone mansions at night
     - image: /media/projects/townhouses/facade.jpg
