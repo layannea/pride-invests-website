@@ -6,6 +6,8 @@
 <title>{{ title_tag | safe }}</title>
 <meta name="description" content="{{ meta_desc | safe }}">
 <link rel="icon" type="image/png" href="/media/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css?v={{ build.time }}">
 {% include "pixels-head.njk" %}
@@ -15,15 +17,31 @@
 {% set nav_solid = true %}{% include "nav.njk" %}
 
 <main style="padding-top:70px">
+  <!-- ══ hero ══ -->
   <section class="detail-hero" style="background-image:url('{{ hero or gallery.slides[0].image }}')">
     <div class="detail-hero-inner">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / Pride of Martakla 1</nav>
-      <h1>Pride of Martakla 1</h1>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/projects/">Projects</a> / The Yarzeh Mansions</nav>
+      <h1>The Yarzeh Mansions</h1>
+      
     </div>
   </section>
 
+  <nav class="quick-nav" aria-label="Page sections">
+    <div class="quick-nav-inner">
+      <a href="#facts">Key facts</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#specs">Specs</a>
+      <a href="#payment">Payment</a>
+      <a href="#location">Location</a>
+      <a href="/projects/yarzeh-mansions/floor-plans/">Floor plans</a>
+      {% if brochure %}<a class="qn-brochure" href="{{ brochure }}" download>Brochure ↓</a>{% endif %}
+    </div>
+  </nav>
+
   <div class="with-rail" style="padding-top:0">
     <div>
+      <!-- ══ key facts ══ -->
       <section class="detail-section" id="facts" style="margin-top:44px">
         <div class="facts-strip reveal">
           {% for f in facts %}<div class="fact-cell">
@@ -32,8 +50,13 @@
         </div>
         {% endfor %}
         </div>
+        <div class="detail-actions reveal">
+          {% if brochure %}<a class="btn btn-navy" href="{{ brochure }}" download>Download brochure</a>{% endif %}
+          <a class="btn btn-line-navy" href="/projects/yarzeh-mansions/floor-plans/">Residences &amp; floor plans</a>
+        </div>
       </section>
 
+      <!-- ══ overview ══ -->
       <section class="detail-section">
         <h2 class="reveal">{{ intro_title | safe }}</h2>
         <div class="detail-prose reveal">
@@ -41,17 +64,13 @@
 {% endfor %}        </div>
       </section>
 
-      <section class="detail-section" id="film">
-        <p class="detail-eyebrow reveal">{{ site.ui.film_eyebrow | safe }}</p>
-        <h2 class="reveal">{{ site.ui.film_title | safe }}</h2>
-        <div class="walk-embed reveal">
-          <iframe src="{{ film_url }}" title="Pride of Martakla 1 — project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-      </section>
-
+      <!-- ══ gallery ══ -->
       <section class="detail-section" id="gallery">
         <p class="detail-eyebrow reveal">{{ site.ui.gallery_eyebrow | safe }}</p>
         <h2 class="reveal">{{ gallery.title | safe }}</h2>
+        <div class="gal-sub reveal">
+          <p class="gal-label">{{ gallery.exterior_label | safe }}</p>
+        </div>
         <div class="slider reveal" id="gallerySlider">
 {% for s in gallery.slides %}          <div class="sl-item{% if loop.first %} on{% endif %}" data-cap="{{ s.cap | safe }}" data-full="{{ s.image | safe }}"><img src="{{ s.image | safe }}" alt="{{ s.alt | safe }}"{% if not loop.first %} loading="lazy"{% endif %}></div>
 {% endfor %}          <button class="sl-arrow sl-prev" aria-label="Previous image">‹</button>
@@ -59,28 +78,7 @@
           <span class="sl-caption"></span>
           <div class="sl-dots" role="tablist"></div>
         </div>
-      </section>
-
-      <section class="detail-section" id="apartments">
-        <p class="detail-eyebrow reveal">{{ residences.eyebrow | safe }}</p>
-        <h2 class="reveal">{{ residences.title | safe }}</h2>
-        <nav class="interior-nav room-tabs reveal" id="roomTabs" aria-label="Blocks">
-          {% for b in blocks %}<button type="button"{% if loop.first %} class="on"{% endif %} data-room="{{ b.key }}">{{ b.label | safe }}</button>
-          {% endfor %}</nav>
-        {% for b in blocks %}<div class="room-group{% if loop.first %} on{% endif %}" id="room-{{ b.key }}">
-          <div class="sold-grid">
-{% for c in b.cards %}          <article class="scard">
-            <span class="scard-badge">Sold</span>
-            <h4>{{ c.name | safe }}</h4>
-            <p class="scard-floor">{{ c.floor | safe }}</p>
-            <p>{{ c.text | safe }}</p>
-          </article>
-{% endfor %}          </div>
-        </div>
-        {% endfor %}</section>
-{% if interiors.rooms %}
-      <!-- ══ interior renders ══ -->
-      <section class="detail-section">
+      
         <div class="gal-sub reveal">
           <p class="gal-label">{{ interiors.label | safe }}</p>
         </div>
@@ -97,10 +95,6 @@
           </div>
         </div>
 {% endfor %}
-      </section>
-{% endif %}{% if walkthrough.tabs %}
-      <!-- ══ 360° walkthrough ══ -->
-      <section class="detail-section">
         <div class="gal-sub reveal">
           <p class="gal-label">{{ walkthrough.label | safe }}</p>
         </div>
@@ -110,42 +104,60 @@
         <div class="walk-embed reveal">
           <iframe id="walkFrame" src="{{ walkthrough.tabs[0].src }}" title="360° walkthrough of Daisy II" loading="lazy" allowfullscreen></iframe>
         </div>
+        <p class="walk-fallback reveal"><a id="walkExt" href="{{ walkthrough.tabs[0].src }}" target="_blank" rel="noopener">Open the walkthrough full screen ↗</a></p>
       </section>
-{% endif %}{% if amenities.items %}
+
       <!-- ══ amenities ══ -->
       <section class="detail-section" id="amenities">
-        {% if amenities.eyebrow %}<p class="detail-eyebrow reveal">{{ amenities.eyebrow | safe }}</p>
-        {% endif %}<h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
+        <p class="detail-eyebrow reveal">{{ amenities.eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.amenities | safe }}</h2>
         <ul class="amen-list reveal">
 {% for a in amenities.items %}          <li>{{ a.icon | safe }}{{ a.label | safe }}</li>
 {% endfor %}        </ul>
       </section>
-{% endif %}{% if specs.groups %}
-      <!-- ══ specifications ══ -->
+
+
+
+      <!-- ══ craftsmanship ══ -->
       <section class="detail-section" id="specs">
         <p class="detail-eyebrow reveal">{{ specs.eyebrow | safe }}</p>
         <h2 class="reveal">{{ specs.title | safe }}</h2>
         <div class="spec-list reveal">
-          {% for s in specs.groups %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><div class="spec-body">{% for line in s.text | lines %}<p>{{ line | safe }}</p>{% endfor %}</div></div>
+          {% for s in specs.groups %}<div class="spec-row"><h4>{{ s.title | safe }}</h4><p>{{ s.text | safe }}</p></div>
           {% endfor %}</div>
       </section>
-{% endif %}{% if payment.steps %}
+
       <!-- ══ payment ══ -->
       <section class="detail-section" id="payment">
         <p class="detail-eyebrow reveal">{{ site.ui.payment_eyebrow | safe }}</p>
         <h2 class="reveal">{{ payment.title | safe }}</h2>
-        <div class="timeline reveal{% if (payment.steps | length) == 3 %} tl-3{% endif %}">
+        <div class="timeline reveal">
           <div class="tl-line"></div>
-          <div class="tl-steps{% if (payment.steps | length) == 3 %} tl-cols-3{% endif %}">
+          <div class="tl-steps">
             {% for t in payment.steps %}<div class="tl-step"><span class="pct">{{ t.pct }}</span><span class="tl-dot"></span><p>{{ t.text | safe }}</p></div>
             {% endfor %}</div>
         </div>
       </section>
+    
+{% if film_url %}
+      <!-- ══ film ══ -->
+      <section class="detail-section">
+        <p class="detail-eyebrow reveal">{{ site.ui.film_eyebrow | safe }}</p>
+        <h2 class="reveal">{{ site.ui.film_title | safe }}</h2>
+        <div class="walk-embed reveal">
+          <iframe src="{{ film_url }}" title="{{ page_name | safe }} — project film" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </section>
 {% endif %}      <!-- ══ location ══ -->
-      {% set loc_name = "Pride of Martakla 1" %}{% set loc_q = "VH34%2B57X+La+Vista+5311,+Baabda" %}{% set loc_z = "16" %}{% set loc_illu = false %}{% include "location.njk" %}
+      {% set loc_name = "The Yarzeh Mansions" %}{% set loc_q = "33%C2%B050%2718.3%22N+35%C2%B033%2704.6%22E" %}{% set loc_z = "17" %}{% set loc_illu %}
+        <a class="loc-illustration reveal" href="/media/projects/yarzeh/location-map.jpg" data-lightbox>
+          <img src="/media/projects/yarzeh/location-map.jpg" alt="Illustrated map of Yarzeh showing the Mansions, the road to Beirut, the Yarzeh Country Club and Alyarz Leisure Club" loading="lazy">
+        </a>
+{% endset %}{% include "location.njk" %}
 
     </div>
 
+    <!-- ══ persistent contact rail ══ -->
     {% include "rail.njk" %}
   </div>
 </main>
