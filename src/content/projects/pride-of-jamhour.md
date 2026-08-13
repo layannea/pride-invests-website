@@ -2,7 +2,7 @@
 layout: layouts/projects/pride-of-jamhour.njk
 permalink: /projects/pride-of-jamhour/index.html
 page_name: Pride of Jamhour
-hero: /media/projects/jamhour/facade.jpg
+hero: /media/uploads/jamhourhero.png
 intro_title: 24,000 m² of natural beauty
 intro:
   - 24,000 m² of natural beauty and unique architecture. 96 m² apartments and
