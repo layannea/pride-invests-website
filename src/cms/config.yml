@@ -301,6 +301,32 @@ collections:
       - name: html
         label: Paragraph (HTML allowed)
         widget: text
+    - name: photo1
+      label: First photo (founder portrait)
+      widget: object
+      collapsed: true
+      required: false
+      fields:
+      - name: image
+        label: Photo
+        widget: image
+      - name: alt
+        label: Alt text
+        widget: string
+        required: false
+    - name: photo2
+      label: Second photo (the founders)
+      widget: object
+      collapsed: true
+      required: false
+      fields:
+      - name: image
+        label: Photo
+        widget: image
+      - name: alt
+        label: Alt text
+        widget: string
+        required: false
     - name: title_tag
       label: Google result title (SEO, not shown on the page)
       widget: string
