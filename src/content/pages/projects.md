@@ -61,7 +61,7 @@ cards:
     url: /projects/pride-of-jamhour/
     cta: View residences
     badge_sold: true
-    image: /media/projects/jamhour/facade.jpg
+    image: /media/uploads/jamhourhero.png
   - loc: Yarzeh · Baabda, Lebanon
     badge: Delivered &amp; Sold Out
     alt: The lit pools between the two mansions of the Yarzeh Townhouses at night
