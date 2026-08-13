@@ -465,7 +465,15 @@ collections:
         widget: string
         required: false
   - name: film_url
-    label: 'Film section: YouTube embed URL'
+    label: 'Film: YouTube embed URL (section titles are in Site settings, Shared section labels)'
+    widget: string
+    required: false
+  - name: film_eyebrow
+    label: Film section small line (leave empty to use the shared label)
+    widget: string
+    required: false
+  - name: film_title
+    label: Film section heading (leave empty to use the shared label)
     widget: string
     required: false
   - name: interiors
@@ -653,7 +661,7 @@ collections:
         required: false
       required: false
   - name: plans_page
-    label: Floor plans page
+    label: Residences & floor plans page
     widget: object
     collapsed: true
     required: false
