@@ -54,7 +54,7 @@ horizon:
 horizon_kicker: On the Horizon
 title_tag: Pride Invests | Luxury Apartments &amp; Homes
 meta_desc: Pride Invests is a real estate developer building luxury apartments,
-  mansions and gated communities in Yarzeh, Louayzeh and Jamhour — Lebanon, with
+  mansions and gated communities in Yarzeh, Louayzeh and Jamhour, Lebanon, with
   sales offices in Beirut, Cannes and Lisbon. In-house construction, flexible
   installment plans, premium finishing.
 ---

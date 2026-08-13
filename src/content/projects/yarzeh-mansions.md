@@ -264,7 +264,7 @@ title_tag: The Yarzeh Mansions | Luxury Homes for Sale in Yarzeh, Baabda | Pride
 meta_desc: 'The Yarzeh Mansions: four residences of 445 to 690 m² in two stone mansions on the hills of Yarzeh, Baabda, ten minutes from Beirut. Private gardens, rooftop suites, pool, gym, sauna. US$ 4,500 per m² with staged payments. Delivery December 2027.'
 plans_page:
   title_tag: Residences &amp; Floor Plans | The Yarzeh Mansions | Pride Invests
-  meta_desc: The four residences of the Yarzeh Mansions — Daisy I, Daisy II, Jasmine I and Jasmine II — with full specifications, prices and floor plans.
+  meta_desc: The four residences of the Yarzeh Mansions, Daisy I, Daisy II, Jasmine I and Jasmine II, with full specifications, prices and floor plans.
   title: Residences &amp; floor plans
   intro: Four private residences across Mansion Daisy and Mansion Jasmine.
   residences:
