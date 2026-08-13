@@ -409,6 +409,9 @@
             mcBody.append('EMAIL', fd.get('email') || '');
             mcBody.append('FNAME', fd.get('name') || '');
             mcBody.append('INTEREST', fd.get('interest') || '');
+            mcBody.append('PHONE', fd.get('phone') || '');
+            mcBody.append('PHONE', fd.get('phone') || '');
+            mcBody.append('PHONE', fd.get('phone') || '');
             fetch(mc, { method: 'POST', mode: 'no-cors',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
               body: mcBody.toString() }).catch(function () {});
