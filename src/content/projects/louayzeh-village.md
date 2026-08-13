@@ -250,7 +250,7 @@ families:
       - name: Ground floor apartment
         area: 175 m² + 75 m² garden
         plans:
-          - file: /media/uploads/jamhourhero.png
+          - file: /media/uploads/gf.jpg
             cap: ""
             area: ""
             alt: The Classic Residences · Ground floor floor plan
