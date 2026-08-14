@@ -40,7 +40,7 @@ featured:
         duplexes starting at 175 m². Pools, sports courts, a nursery and a
         private clubhouse bring resort living to your doorstep. Own your home
         with just 15% down and comfortable monthly installments over six years.
-        Every home is priced at US$ 1,675 per m².
+        Every home starts at US$ 1,675 per m².
       cta: View apartments
 horizon:
   - image: /media/projects/saintpaul/saint-paul-gardens.jpg
