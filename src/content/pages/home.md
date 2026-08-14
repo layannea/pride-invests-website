@@ -27,8 +27,8 @@ featured:
       text: Four grand residences of 445 to 690 m², set within two private mansions on
         the hills of Yarzeh, only ten minutes from Beirut. Wake up to views that
         sweep from the Mediterranean to Mount Lebanon, then unwind in your own
-        pool, gym, sauna and steam room. Premium materials and refined finishing
-        in every detail.
+        pool, gym and sauna. Premium materials and refined finishing in every
+        detail.
       cta: View residences
       next_kicker: Upcoming
     - name: Louayzeh Village
