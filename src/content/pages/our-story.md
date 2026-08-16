@@ -43,7 +43,7 @@ photo1:
   image: /media/story/founder-portrait.jpg
   alt: Ahmad El Assaad, founder of Pride Invests, at his desk
 photo2:
-  image: /media/story/founders.jpg
+  image: /media/uploads/aa-.png
   alt: The founders of Pride Invests
 title_tag: Our Story | Pride Invests
 meta_desc: "The story of Pride Invests: founder Ahmad El Assaad returned to
