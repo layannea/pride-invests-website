@@ -6,9 +6,9 @@ hero: /media/projects/yarzeh/facade-hero.jpg
 intro_title: Ten minutes from Beirut, a world away
 intro:
   - On the hills of Yarzeh in Baabda, two stone mansions, Daisy and Jasmine,
-    hold four private residences of 445 to 690 m², with views running from the
+    hold four private residences of 577 to 732 m², with views running from the
     Mediterranean to the ridges of Mount Lebanon.
-  - Each mansion keeps a private pool and sun deck, a private garden, four
+  - Each residence keeps a private pool and sun deck, a private garden, four
     underground parking spaces, generous storage and a fireplace, with a KNX
     smart system quietly running heating, cooling and hot water.
 facts:
@@ -17,7 +17,7 @@ facts:
   - k: Expected delivery
     v: December 2027
   - k: Size range
-    v: 445 – 690 m²
+    v: 577 – 732 m²
   - k: Price</span><span class="fv fv-nowrap">From US$ 4,500/m²</span></div> <div
       class="fact-cell"><span class="fk">Location
     v: Yarzeh · Baabda
