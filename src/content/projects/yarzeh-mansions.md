@@ -336,7 +336,7 @@ plans_page:
       specs:
         - <b>672 m²</b> interior
         - <b>80 m²</b> garden
-        - <b>162 m²</b> terraces
+        - <b>100 m²</b> terraces
         - <b>4</b> master bedrooms
         - Three levels + private lift
         - <b>4</b> parking spaces
