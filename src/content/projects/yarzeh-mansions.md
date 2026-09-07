@@ -327,10 +327,10 @@ plans_page:
       name: Daisy II
       slug: daisy-ii
       text: The crown of Mansion Daisy. Three bedroom suites and a TV room open onto
-        162 m² of wraparound terraces, the floor above holds double salons, a
-        garden and a chef's kitchen, and a private elevator rises to a rooftop
-        master suite with its own kitchenette. Six hundred and ten square meters
-        that live like a villa in the sky.
+        162 m² of wraparound terraces, the floor above holds double salons with
+        two fireplace, a garden and a chef's kitchen, and a private elevator
+        rises to a rooftop master suite with its own kitchenette. Six hundred
+        and ten square meters that live like a villa in the sky.
       mansion: Mansion Daisy
       link_text: See the interior renders of Daisy II
       specs:
@@ -341,9 +341,9 @@ plans_page:
         - Three levels + private lift
         - <b>4</b> parking spaces
       type: Triplex · Flagship
-    - mansion: Mansion Jasmine
+    - mansion: Mansion Jasmine / Sold
       slug: jasmine-i
-      name: Jasmine I
+      name: Jasmine I / sold
       type: Duplex
       price: US$ 2,214,000
       specs:
@@ -363,9 +363,9 @@ plans_page:
         - file: /media/projects/yarzeh/plans/jasmine-i-first.jpg
           label: First floor · 240 m²
           alt: Jasmine I first floor plan, 240 m²
-    - mansion: Mansion Jasmine
+    - mansion: Mansion Jasmine / Sold
       slug: jasmine-ii
-      name: Jasmine II
+      name: Jasmine II / Sold
       type: Triplex
       price: US$ 2,138,000
       specs:
