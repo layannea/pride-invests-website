@@ -224,13 +224,6 @@ amenities:
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9
         4v10M15 4v10M9 8h6M9 12h6"/><path d="M3 18c2-1.5 4 1.5 6 0s4 1.5 6 0 4
         1.5 6 0"/></svg>
-    - label: Fitness room
-      icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7
-        9v6M4.5 10.5v3M17 9v6M19.5 10.5v3M7 12h10"/></svg>
-    - label: Sauna
-      icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8
-        4c-1.4 1.5-1.4 3 0 4.5S9.4 11.5 8 13M12 4c-1.4 1.5-1.4 3 0 4.5s1.4 3 0
-        4.5M16 4c-1.4 1.5-1.4 3 0 4.5s1.4 3 0 4.5"/><path d="M5 18h14"/></svg>
     - label: Private gardens &amp; terraces
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19
         5c-8 0-13 4-13 12 8 0 13-4 13-12z"/><path d="M6 17c3-4 6-7 9-9"/></svg>
@@ -238,7 +231,7 @@ amenities:
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6"
         y="4" width="12" height="16" rx="1"/><path d="M10 9.5l2-2 2 2M10 14.5l2
         2 2-2"/></svg>
-    - label: Four parking spaces per mansion
+    - label: Four parking spaces per residence
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5"
         y="5" width="14" height="14" rx="2"/><path d="M10 16V8h2.6a2.4 2.4 0 0 1
         0 4.8H10"/></svg>
@@ -246,7 +239,7 @@ amenities:
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4
         11l8-6 8 6"/><path d="M6 10v9h12v-9"/><circle cx="12" cy="14.5"
         r="1.6"/></svg>
-    - label: Fireplace in every mansion
+    - label: Fireplace in every residence
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c2
         3-2 4.5-2 8a2.9 2.9 0 0 0 5.8 0c0-1.6-.8-2.7-1.4-3.6-.4.8-.9 1.2-1.5
         1.3.6-2 .2-4-.9-5.7z"/><path d="M6 20h12"/></svg>
@@ -284,6 +277,11 @@ payment:
       text: On receipt of the occupancy permit (Iskan)
     - pct: 25%
       text: With the title deed in your hands
+blocks:
+  - key: Mansion Jasmine
+    cards:
+      - name: Jasmine I
+      - name: Jasmine II
 plans_page:
   title_tag: Residences &amp; Floor Plans | The Yarzeh Mansions | Pride Invests
   meta_desc: The four residences of the Yarzeh Mansions, Daisy I, Daisy II,
