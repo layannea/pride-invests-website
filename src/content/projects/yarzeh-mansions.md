@@ -329,16 +329,19 @@ plans_page:
       name: Daisy II
       slug: daisy-ii
       text: The crown of Mansion Daisy. Three bedroom suites and a TV room open onto
-        162 m² of wraparound terraces, the floor above holds double salons with
+        100 m² of wraparound terraces, the floor above holds double salons with
         two fireplace, a garden and a chef's kitchen, and a private elevator
         rises to a rooftop master suite with its own kitchenette. Six hundred
-        and ten square meters that live like a villa in the sky.
+        and ten square meters that live like a villa in the sky, complete with
+        your own private pool.
       mansion: Mansion Daisy
       link_text: See the interior renders of Daisy II
       specs:
         - <b>672 m²</b> interior
         - <b>80 m²</b> garden
         - <b>100 m²</b> terraces
+        - <b></b> private pool
+        - <b></b> two fireplaces
         - <b>4</b> master bedrooms
         - Three levels + private lift
         - <b>4</b> parking spaces
