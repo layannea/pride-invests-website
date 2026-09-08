@@ -298,7 +298,7 @@ plans_page:
         - <b>520 m²</b> interior
         - <b>170 m²</b> garden
         - "<b>private pool</b> "
-        - <b></b> fireplace
+        - "<b>fireplace</b> "
         - <b>4</b> master bedrooms
         - Ground + first floor
         - <b>4</b> parking spaces
@@ -341,7 +341,7 @@ plans_page:
         - <b>80 m²</b> garden
         - <b>100 m²</b> terraces
         - <b>private pool</b>
-        - <b>2</b> fireplaces
+        - "<b>2 fireplaces</b> "
         - <b>4</b> master bedrooms
         - Three levels + private lift
         - <b>4</b> parking spaces
