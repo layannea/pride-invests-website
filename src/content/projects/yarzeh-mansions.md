@@ -8,9 +8,9 @@ intro:
   - On the hills of Yarzeh in Baabda, two stone mansions, Daisy and Jasmine,
     hold four private residences of 577 to 732 m², with views running from the
     Mediterranean to the ridges of Mount Lebanon.
-  - Each residence keeps a private pool and sun deck, a private garden, four
-    underground parking spaces, generous storage and a fireplace, with a KNX
-    smart system quietly running heating, cooling and hot water.
+  - Each residence has a private pool, a private garden, four underground
+    parking spaces, generous storage and a fireplace, with a KNX smart system
+    quietly running heating, cooling and hot water.
 facts:
   - k: Project status
     v: Under construction
@@ -220,7 +220,7 @@ walkthrough:
 amenities:
   eyebrow: Life at the Mansions
   items:
-    - label: Swimming pool &amp; sun deck
+    - label: Private swimming pool
       icon: <svg class="am-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9
         4v10M15 4v10M9 8h6M9 12h6"/><path d="M3 18c2-1.5 4 1.5 6 0s4 1.5 6 0 4
         1.5 6 0"/></svg>
@@ -332,7 +332,7 @@ plans_page:
         100 m² of wraparound terraces, the floor above holds double salons with
         two fireplace, a garden and a chef's kitchen, and a private elevator
         rises to a rooftop master suite with its own kitchenette. Six hundred
-        and ten square meters that live like a villa in the sky, complete with
+        and seventy two meters that live like a villa in the sky, complete with
         your own private pool.
       mansion: Mansion Daisy
       link_text: See the interior renders of Daisy II
