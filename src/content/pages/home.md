@@ -25,10 +25,10 @@ featured:
       image: /media/projects/yarzeh/facade-hd.jpg
       url: /projects/yarzeh-mansions/
       text: Four grand residences of 445 to 690 m², set within two private mansions on
-        the hills of Yarzeh, only ten minutes from Beirut. Wake up to views that
-        sweep from the Mediterranean to Mount Lebanon, then unwind in your own
-        pool, gym and sauna. Premium materials and refined finishing in every
-        detail.
+        the hills of Yarzeh, only ten minutes from Beirut. Each with a private
+        pool and a private garden. Wake up to views that sweep from the
+        Mediterranean to Mount Lebanon, then unwind in your own pool and garden.
+        Premium materials and refined finishing in every detail.
       cta: View residences
       next_kicker: Upcoming
     - name: Louayzeh Village
