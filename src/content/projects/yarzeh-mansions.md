@@ -298,6 +298,7 @@ plans_page:
         - <b>520 m²</b> interior
         - <b>170 m²</b> garden
         - <b></b> private pool
+        - <b></b> fireplace
         - <b>4</b> master bedrooms
         - Ground + first floor
         - <b>4</b> parking spaces
