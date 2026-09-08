@@ -328,12 +328,12 @@ plans_page:
       link_url: /projects/yarzeh-mansions/#gallery
       name: Daisy II
       slug: daisy-ii
-      text: The crown of Mansion Daisy. Three bedroom suites and a TV room open onto
-        100 m² of wraparound terraces, the floor above holds double salons with
-        two fireplace, a garden and a chef's kitchen, and a private elevator
-        rises to a rooftop master suite with its own kitchenette. Six hundred
-        and seventy two meters that live like a villa in the sky, complete with
-        your own private pool.
+      text: The crown of Mansion Daisy. Three bedroom suites and a TV family room with
+        a fireplace open onto 100 m² of wraparound terraces, the floor above
+        holds three salons with another fireplace, a garden and a chef's
+        kitchen, and a private elevator rises to a rooftop master suite with its
+        own kitchenette. Six hundred and seventy two meters that live like a
+        villa in the sky, complete with your own private pool.
       mansion: Mansion Daisy
       link_text: See the interior renders of Daisy II
       specs:
