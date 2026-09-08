@@ -340,8 +340,8 @@ plans_page:
         - <b>672 m²</b> interior
         - <b>80 m²</b> garden
         - <b>100 m²</b> terraces
-        - <b></b> private pool
-        - <b></b> two fireplaces
+        - <b>private pool</b>
+        - <b>2</b>fireplaces
         - <b>4</b> master bedrooms
         - Three levels + private lift
         - <b>4</b> parking spaces
