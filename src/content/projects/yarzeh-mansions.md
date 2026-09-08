@@ -343,7 +343,7 @@ plans_page:
         - <b>private pool</b>
         - "<b>2 fireplaces</b> "
         - <b>4</b> master bedrooms
-        - Three levels + private lift
+        - <b>3</b> levels + private lift
         - <b>4</b> parking spaces
       type: Triplex · Flagship
     - mansion: Mansion Jasmine / Sold
