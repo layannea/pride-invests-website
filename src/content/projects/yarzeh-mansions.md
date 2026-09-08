@@ -305,7 +305,7 @@ plans_page:
         family around a TV room and three master suites opening toward 170 m² of
         private lawn, while the first floor is made for hosting: twin salons, a
         fireplace, a full kitchen with island and a fourth master suite with
-        walk-in closet."
+        walk-in closet. Completing the experience: your own private pool."
       plans:
         - file: /media/projects/yarzeh/plans/daisy-i-ground.jpg
           label: Ground floor · 210 m²
