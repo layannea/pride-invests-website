@@ -296,6 +296,7 @@ plans_page:
       type: Duplex
       price: US$ 2,597,000
       specs:
+        - "<b>577 m²</b> total "
         - <b>520 m²</b> interior
         - <b>170 m²</b> garden
         - "<b>private pool</b> "
