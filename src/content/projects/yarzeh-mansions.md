@@ -20,7 +20,7 @@ facts:
   - k: Size range
     v: 577 – 732 m²
   - k: Price
-    v: From US$ 4,500/m²
+    v: US$ 4,500/m²
   - k: location
     v: Yarzeh · Baabda
 gallery:
