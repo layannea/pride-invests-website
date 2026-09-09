@@ -316,11 +316,11 @@ plans_page:
         - file: /media/projects/yarzeh/plans/daisy-i-first.jpg
           label: First floor · 310 m²
           alt: Daisy I first floor plan, 310 m²
-    - price: US$ 3,294,000
+    - price: "US$ 3,294,000 "
       plans:
         - file: /media/projects/yarzeh/plans/daisy-ii-ground.jpg
           label: Ground floor · 307 m²
-          alt: Daisy II ground floor plan, 245 m² with 162 m² of terraces
+          alt: Daisy II ground floor plan, 307 m² with 100 m² of terraces
         - file: /media/projects/yarzeh/plans/daisy-ii-first.jpg
           label: First floor · 245 m²
           alt: Daisy II first floor plan, 245 m² with 80 m² garden
