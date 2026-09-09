@@ -10,12 +10,13 @@ cards:
       - label: Delivery
         value: Dec 2027
       - label: Sizes
-        value: 445–690 m²
+        value: 577–732 m²
     alt: Stone facade of the Yarzeh Mansions on the hills of Yarzeh
     name: The Yarzeh Mansions
-    text: Two stone mansions holding four grand residences of 445 to 690 m², ten
-      minutes from Beirut. Private gardens, rooftop suites, and a shared pool,
-      gym, sauna and steam room.
+    text: "Two stone mansions, Daisy and Jasmine, ten minutes from Beirut. With
+      Jasmine sold, Mansion Daisy offers the two remaining grand residences:
+      Daisy I at 577 m² and Daisy II at 732 m², each with its own private garden
+      and private pool."
     url: /projects/yarzeh-mansions/
     cta: View residences
     image: /media/projects/yarzeh/facade-hd.jpg
