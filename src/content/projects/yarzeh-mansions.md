@@ -19,8 +19,9 @@ facts:
     v: December 2027
   - k: Size range
     v: 577 – 732 m²
-  - k: Price</span><span class="fv fv-nowrap">From US$ 4,500/m²</span></div> <div
-      class="fact-cell"><span class="fk">Location
+  - k: Price
+    v: From US$ 4,500/m²
+  - k: location
     v: Yarzeh · Baabda
 gallery:
   title: A first look
