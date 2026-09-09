@@ -397,7 +397,7 @@ plans_page:
         - file: /media/projects/yarzeh/plans/jasmine-ii-roof.jpg
           label: Roof suite · 95 m²
           alt: Jasmine II roof floor plan, 95 m² master suite
-brochure: /media/projects/yarzeh/The-Yarzeh-Mansions-Brochure.pdf
+brochure: /media/uploads/the-yarzeh-mansions-brochure.pdf
 title_tag: The Yarzeh Mansions | Luxury Homes for Sale in Yarzeh, Baabda | Pride Invests
 meta_desc: "The Yarzeh Mansions: Two residences of 577 to 732 m² in two stone
   mansions on the hills of Yarzeh, Baabda, ten minutes from Beirut. Private
