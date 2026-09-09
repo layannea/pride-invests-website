@@ -307,7 +307,7 @@ plans_page:
         - <b>4</b> parking spaces
       text: "A grand garden duplex in Mansion Daisy. The ground floor gathers the
         family around a TV room and three master suites opening toward 170 m² of
-        private lawn, while the first floor is made for hosting: twin salons, a
+        private lawn, while the first floor is made for hosting: three salons, a
         fireplace, a full kitchen with island and a fourth master suite with
         walk-in closet. Completing the experience: your own private pool."
       plans:
