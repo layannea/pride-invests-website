@@ -339,6 +339,7 @@ plans_page:
       mansion: Mansion Daisy
       link_text: See the interior renders of Daisy II
       specs:
+        - <b>732 m²</b> total
         - <b>672 m²</b> interior
         - <b>80 m²</b> garden
         - <b>100 m²</b> terraces
