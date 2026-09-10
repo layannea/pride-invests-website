@@ -311,10 +311,10 @@ plans_page:
         fireplace, a full kitchen with island and a fourth master suite with
         walk-in closet. Completing the experience: your own private pool."
       plans:
-        - file: /media/projects/yarzeh/plans/daisy-i-ground.jpg
+        - file: /media/uploads/daisy-1-ground-floor.jpg
           label: Ground floor · 210 m²
           alt: Daisy I ground floor plan, 210 m² with 170 m² garden
-        - file: /media/projects/yarzeh/plans/daisy-i-first.jpg
+        - file: /media/uploads/daisy-1-first-floor.jpg
           label: First floor · 310 m²
           alt: Daisy I first floor plan, 310 m²
     - price: "US$ 3,294,000 "
