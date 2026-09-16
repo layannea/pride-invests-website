@@ -2,8 +2,8 @@
 layout: layouts/pages/our-story.njk
 permalink: /our-story/index.html
 story_eyebrow: Since 2010 · Beirut
-story_lead: Some people leave their country and never look back. Ahmad El Assaad
-  wasn't one of them
+story_lead: "Some people leave their country and never look back. Ahmad El
+  Assaad wasn't one of them. "
 copy1:
   - cls: reveal
     html: After spending years building a life and career in Europe, he returned to
