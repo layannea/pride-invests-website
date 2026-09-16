@@ -19,9 +19,8 @@ intro:
     experience The Yarzeh Townhouses, a journey into the most distinguished
     mansions in Yarzeh.
 facts:
-  - k: Project status</span><span class="fv fv-sold">Delivered &amp; Sold
-      Out</span></div> <div class="fact-cell"><span class="fk">Location
-    v: Yarzeh · Baabda
+  - k: Project status
+    v: Delivered
   - k: Composition
     v: 6 townhouses · 2 mansions
   - k: Per mansion
