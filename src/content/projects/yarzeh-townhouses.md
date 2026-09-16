@@ -25,6 +25,8 @@ facts:
     v: 6 townhouses · 2 mansions
   - k: Per mansion
     v: Pool · Jacuzzi · Gym · Sauna
+  - k: Location
+    v: Yarzeh - Baabda
 gallery:
   title: Inside the townhouses
   slides:
