@@ -95,11 +95,11 @@ specs:
       text: Automatic parking gate with remote control, EIB smart system linked to
         phones, and 24/7 monitored CCTV.
     - title: Signature features
-      text: Three to five underground parkings and a private driver's quarter per
-        townhouse, a 20 m² basement storage room, private gardens, a custom
-        fireplace in each home, exquisite kitchens, walk-in closets, a sound
-        system in the main master shower; and per mansion, a shared 10 × 4 m
-        pool, jacuzzi, tanning area, gym, sauna and steam room.
+      text: Five underground parkings and a private driver's quarter per townhouse, a
+        20 m² basement storage room, private gardens, a custom fireplace in each
+        home, exquisite kitchens, walk-in closets, a sound system in the main
+        master shower; and per mansion, a shared 10 × 4 m pool, jacuzzi, tanning
+        area, gym, sauna and steam room.
 residences:
   eyebrow: The residences
   title: Inside the six townhouses
