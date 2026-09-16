@@ -25,6 +25,8 @@ facts:
     v: 6 townhouses · 2 mansions
   - k: Per mansion
     v: Pool · Jacuzzi · Gym · Sauna
+  - k: Price
+    v: $2,250/m²
   - k: Location
     v: Yarzeh - Baabda
 gallery:
