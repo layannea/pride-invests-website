@@ -104,6 +104,10 @@ specs:
         home, exquisite kitchens, walk-in closets, a sound system in the main
         master shower; and per mansion, a shared 10 × 4 m pool, jacuzzi, tanning
         area, gym, sauna and steam room.
+payment:
+  steps:
+    - pct: 25%
+      text: a
 residences:
   eyebrow: The residences
   title: Inside the six townhouses
