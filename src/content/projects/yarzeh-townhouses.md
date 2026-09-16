@@ -2,6 +2,7 @@
 layout: layouts/projects/yarzeh-townhouses.njk
 permalink: /projects/yarzeh-townhouses/index.html
 page_name: The Yarzeh Townhouses
+hero: /media/uploads/10.jpg
 intro_title: A dream come true on the hills of Yarzeh
 intro:
   - Nestled on one of the most beautiful hills of Yarzeh in the Baabda area, The
