@@ -14,10 +14,10 @@ intro:
     Mansion Magnolia. Each townhouse has its own private garden and its own
     unique character, and each mansion keeps a swimming pool, a jacuzzi, a
     tanning area, a gym, a sauna and a steam room."
-  - Every part of this project is executed with premium quality materials and
-    very high-end finishing, down to the smallest details. We invite you to
-    experience The Yarzeh Townhouses, a journey into the most distinguished
-    mansions in Yarzeh.
+  - "Each townhouse has its own private garden and its own unique character, and
+    each mansion keeps a swimming pool, a jacuzzi, a tanning area, a gym, a
+    sauna and a steam room. Only one townhouse remains available, in Mansion
+    Magnolia: a duplex of 750 m² with a 180 m² garden and terrace."
 facts:
   - k: Project status
     v: Delivered
