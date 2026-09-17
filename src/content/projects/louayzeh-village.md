@@ -424,7 +424,7 @@ families:
             cap: Upper level
             area: 95 m²
             alt: The Full-Floor Residences · Upper level floor plan
-brochure: /media/projects/louayzeh/Louayzeh-Village-Brochure.pdf
+brochure: https://claude.ai/artifact/MqofBybNRU8UVquk3k8YpX
 title_tag: Louayzeh Village | Apartments &amp; Duplexes for Sale in Louayzeh |
   Pride Invests
 meta_desc: "Louayzeh Village: a gated community of garden apartments, duplexes
