@@ -109,7 +109,7 @@ payment:
 residences:
   eyebrow: The residences
   title: Inside the six townhouses
-brochure: https://prideinvests.com/media/uploads/magnolia-ii-yarzeh-townhouses-brochure.pdf
+brochure: https://claude.ai/artifact/UzBgkDkwHoAmcUzmLJZ1dr
 title_tag: The Yarzeh Townhouses | Delivered &amp; | Pride Invests
 meta_desc: "The Yarzeh Townhouses: six townhouses across Mansion Redwood and
   Mansion Magnolia on the hills of Yarzeh, delivered and fully sold. Private
