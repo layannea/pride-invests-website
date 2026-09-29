@@ -73,7 +73,7 @@ cards:
     url: /projects/yarzeh-townhouses/
     cta: View residences
     badge_sold: true
-    image: /media/projects/townhouses/night-pools.jpg
+    image: /media/uploads/10.jpg
   - loc: Martakla, Lebanon
     badge: Delivered &amp; Sold Out
     alt: Pride of Martakla 1, stone facade with wooden bands above the valley
