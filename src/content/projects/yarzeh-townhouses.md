@@ -20,7 +20,7 @@ intro:
     Magnolia: a duplex of 750 m² with a 180 m² garden and terrace."
 facts:
   - k: Project status
-    v: Delivered
+    v: ""
   - k: Composition
     v: 6 townhouses · 2 mansions
   - k: Per mansion
