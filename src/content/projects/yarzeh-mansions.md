@@ -300,7 +300,7 @@ plans_page:
         - "<b>577 m²</b> total "
         - <b>520 m²</b> interior
         - <b>170 m²</b> garden
-        - "<b>private pool</b> "
+        - "<b>private outdoor jacuzzi</b> "
         - "<b>fireplace</b> "
         - <b>4</b> master bedrooms
         - Ground + first floor
@@ -309,7 +309,8 @@ plans_page:
         family around a TV room and three master suites opening toward 170 m² of
         private lawn, while the first floor is made for hosting: three salons, a
         fireplace, a full kitchen with island and a fourth master suite with
-        walk-in closet. Completing the experience: your own private pool."
+        walk-in closet. Completing the experience: your own private outdoor
+        jacuzzi."
       plans:
         - file: /media/uploads/daisy-1-ground-floor.jpg
           label: Ground floor · 210 m²
